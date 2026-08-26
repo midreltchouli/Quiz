@@ -8,4 +8,4 @@ cmds = [
 ]
 
 [start]
-cmd = "php artisan config:cache && php artisan route:cache && vendor/bin/heroku-php-apache2 -p $PORT public/"
+cmd = "php artisan config:cache && php artisan route:cache && php -S 0.0.0.0:$PORT -t public"
