@@ -6,3 +6,5 @@ cmds = [
     "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache",
     "chmod -R 775 storage bootstrap/cache"
 ]
+[start]
+cmd = "php artisan config:cache && php artisan route:cache && vendor/bin/heroku-php-apache2 public/"
