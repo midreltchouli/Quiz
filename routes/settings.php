@@ -2,15 +2,19 @@
 
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
+use App\Http\Controllers\Settings\PreferencesController;
 /* @chisel-password-confirmation */
 use Illuminate\Auth\Middleware\RequirePassword;
 /* @end-chisel-password-confirmation */
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', '/settings/profile');
+    Route::get('settings', [PreferencesController::class, 'edit'])->name('preferences.edit');
+    Route::patch('settings/preferences', [PreferencesController::class, 'update'])->name('preferences.update');
+    Route::get('settings/data', [PreferencesController::class, 'export'])->name('preferences.export');
 
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('account/photo', [ProfileController::class, 'avatar'])->name('account.avatar');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 

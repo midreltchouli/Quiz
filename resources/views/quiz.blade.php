@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz</title>
     <style>
         body {
-            font-family: system-ui, sans-serif;
+            font-family: {{ auth()->user()->interfaceFont() }}; font-size: {{ auth()->user()->interfaceTextSize() }};
             background: #f4f4f8;
             display: flex;
             justify-content: center;
@@ -78,13 +80,14 @@
 </head>
 <body>
     <div class="quiz-card">
+        <a href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
         <form method="POST" action="/deconnexion" style="margin-bottom: 1rem;">
             @csrf
             <button type="submit" style="background: #999; font-size: 0.85rem; padding: 0.4rem 0.9rem;">
-                logout
+                {{ __('Log out') }}
             </button>
         </form>
-        <p class="progress">Question {{ $number }} / {{ $total }}</p>
+        <p class="progress">{{ __('Question :number / :total', ['number' => $number, 'total' => $total]) }}</p>
         <h1>{{ $question->question }}</h1>
 
         <form method="POST" action="/quiz/verified">
@@ -101,10 +104,10 @@
 
             <input type="hidden" name="bonne_reponse" value="{{ $question->answer }}">
 
-            <button type="submit">Confirm</button>
+            <button type="submit">{{ __('Confirm') }}</button>
         </form>
 
-        @if(session('resultat'))
+        @if(session('resultat') && (auth()->user()->quiz_notifications ?? true))
             <div class="resultat">{{ session('resultat') }}</div>
         @endif
     </div>

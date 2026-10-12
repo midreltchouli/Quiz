@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ __('Log in') }}</title>
     <style>
         body {
             font-family: system-ui, sans-serif;
@@ -82,7 +84,7 @@
 <body>
 
     <div class="login-card">
-        <h1>Login</h1>
+        <h1>{{ __('Log in') }}</h1>
         @if ($errors->any())
         <div style="background: #fdecea; color: #c0392b; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
             {{ $errors->first() }}
@@ -90,18 +92,19 @@
         @endif
         <form method="POST" action="/login">
             @csrf
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <label for="name">{{ __('Name') }}</label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" autocomplete="name" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <label for="email">{{ __('Email address') }}</label>
+            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="username" required>
 
-            <button type="submit">Login</button>
+            <label for="password">{{ __('Password') }}</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+            <button type="submit">{{ __('Log in') }}</button>
         </form>
 
-        <a href="/register" class="signup-link">Don't have an account yet? Sign up here</a>
+        <a href="/register" class="signup-link">{{ __('Do not have an account? Sign up') }}</a>
     </div>
 
 </body>

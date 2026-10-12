@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <title>Inscription</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ __('Create an account') }}</title>
     <style>
         body {
             font-family: system-ui, sans-serif;
@@ -82,23 +84,23 @@
 <body>
 
     <div class="register-card">
-        <h1>create an account</h1>
+        <h1>{{ __('Create an account') }}</h1>
         <form method="POST" action="/register">
             @csrf
 
-            <label for="name">Name</label>
+            <label for="name">{{ __('Name') }}</label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">Email</label>
+            <label for="email">{{ __('Email address') }}</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="password">Password</label>
+            <label for="password">{{ __('Password') }}</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Sign Up</button>
+            <button type="submit">{{ __('Sign up') }}</button>
         </form>
 
-        <a href="/login" class="login-link">Already have an account? Log in here</a>
+        <a href="/login" class="login-link">{{ __('Already have an account? Log in') }}</a>
     </div>
 
 </body>

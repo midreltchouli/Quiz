@@ -36,6 +36,10 @@ const user = computed(() => page.props.auth.user);
 
     <h1 class="sr-only">Profile settings</h1>
 
+    <a href="/accueil" class="text-sm text-muted-foreground underline underline-offset-4">
+        Retour à l’accueil
+    </a>
+
     <div class="flex flex-col space-y-6">
         <Heading
             variant="small"
@@ -106,6 +110,38 @@ const user = computed(() => page.props.auth.user);
             </div>
         </Form>
     </div>
+
+    <details class="rounded-lg border p-4">
+        <summary class="cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4">
+            Paiement
+        </summary>
+        <div class="mt-4 space-y-4 text-sm">
+            <p class="text-muted-foreground">
+                Les offres et les tarifs restent à définir. Aucun achat n’est disponible pour le moment.
+            </p>
+            <ul class="space-y-3">
+                <li>
+                    <span class="font-medium">Accès à tous les jeux</span>
+                    <p class="text-muted-foreground">Un achat unique pour un ensemble de jeux, avec une durée d’accès à définir.</p>
+                </li>
+                <li>
+                    <span class="font-medium">Accès à un jeu</span>
+                    <p class="text-muted-foreground">Un achat pour le jeu de ton choix, avec une durée d’accès à définir.</p>
+                </li>
+                <li>
+                    <span class="font-medium">Abonnement</span>
+                    <p class="text-muted-foreground">Une formule mensuelle ou annuelle, avec des avantages à définir.</p>
+                </li>
+                <li>
+                    <span class="font-medium">Pack de crédits</span>
+                    <p class="text-muted-foreground">Un achat ponctuel de crédits, dont la quantité et l’utilisation restent à définir.</p>
+                </li>
+            </ul>
+            <div id="payment-element" class="rounded-md bg-muted p-3 text-muted-foreground">
+                Le paiement n’est pas encore disponible.
+            </div>
+        </div>
+    </details>
 
     <DeleteUser />
 </template>

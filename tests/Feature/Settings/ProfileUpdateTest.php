@@ -10,6 +10,11 @@ class ProfileUpdateTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_guests_cannot_access_a_profile(): void
+    {
+        $this->get(route('profile.edit'))->assertRedirect(route('login'));
+    }
+
     public function test_profile_page_is_displayed()
     {
         $user = User::factory()->create();
@@ -18,7 +23,10 @@ class ProfileUpdateTest extends TestCase
             ->actingAs($user)
             ->get(route('profile.edit'));
 
-        $response->assertOk();
+        $response->assertOk()->assertViewIs('profile')
+            ->assertSee($user->name)->assertSee($user->email)
+            ->assertSee('Payment')->assertDontSee('name="name"', false)
+            ->assertDontSee('name="password"', false);
     }
 
     public function test_profile_information_can_be_updated()
@@ -34,7 +42,7 @@ class ProfileUpdateTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect(route('profile.edit'));
+            ->assertRedirect(route('preferences.edit', ['section' => 'account']));
 
         $user->refresh();
 
@@ -56,7 +64,7 @@ class ProfileUpdateTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect(route('profile.edit'));
+            ->assertRedirect(route('preferences.edit', ['section' => 'account']));
 
         $this->assertNotNull($user->refresh()->email_verified_at);
     }

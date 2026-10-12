@@ -46,7 +46,7 @@ class QuestionSeeder extends Seeder
         ];
 
         foreach ($questions as $q) {
-            Question::create($q);
+            Question::firstOrCreate(['question' => $q['question']], $q);
         }
     }
 }

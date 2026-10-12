@@ -41,7 +41,13 @@ class Quizcontroller extends Controller
     // ];
     public function index()
     {
-        $questions= Question::all();
+        $questions= Question::orderBy('id')->get();
+        if ($questions->isEmpty()) {
+            session()->forget(['question_index', 'score']);
+
+            return view('quiz_empty');
+        }
+
          // Si c'est la première visite, on initialise l'index et le score à 0
         if (!session()->has('question_index')) {
             session(['question_index' => 0, 'score' => 0]);
@@ -52,7 +58,6 @@ class Quizcontroller extends Controller
         // Si toutes les questions sont terminées, on affiche le résultat final
         if ($index >= $questions->count()) {
             $score = session('score');
-            session()->forget(['question_index', 'score']); // on réinitialise pour un nouveau tour
             return view('quiz_finish', ['score' => $score, 'total' => $questions->count()]);
         }
 
@@ -65,15 +70,22 @@ class Quizcontroller extends Controller
         ]);
     }
 
+    public function restart(Request $request)
+    {
+        $request->session()->forget(['question_index', 'score', 'resultat']);
+
+        return redirect('/quiz');
+    }
+
     public function verified(Request $request){
         $reponse = $request->input('reponse');
         $answer = $request->input('bonne_reponse');
         if($reponse === $answer){
-            $result = 'the answer is correct';
+                $result = __('The answer is correct.');
                 //return back()->with('resultat', 'True');
             }
             else{
-                $result = 'the answer is not correct. the correct answer is: ' . $answer;
+                $result = __('The answer is incorrect. The correct answer is: :answer', ['answer' => $answer]);
                 //return back()->with('resultat', 'False');
             }           
             if ($reponse === $answer) {

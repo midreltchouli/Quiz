@@ -42,12 +42,32 @@ class User extends Authenticatable implements PasskeyUser
     protected function casts(): array
     {
         return [
+            'quiz_notifications' => 'boolean',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             /* @chisel-2fa */
             'two_factor_confirmed_at' => 'datetime',
             /* @end-chisel-2fa */
         ];
+    }
+
+    public function interfaceFont(): string
+    {
+        return match ($this->font_family) {
+            'arial' => 'Arial, sans-serif',
+            'georgia' => 'Georgia, serif',
+            'monospace' => 'monospace',
+            default => 'system-ui, sans-serif',
+        };
+    }
+
+    public function interfaceTextSize(): string
+    {
+        return match ($this->text_size) {
+            'small' => '14px',
+            'large' => '18px',
+            default => '16px',
+        };
     }
 
 }

@@ -5,11 +5,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
+        if ($request->header('X-Inertia')) {
+            return Inertia::location(route('login'));
+        }
+
         return view('login');
     }
 
@@ -23,7 +28,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/quiz');
+            $request->session()->forget('url.intended');
+
+            return redirect()->route('accueil');
         }
 
         return back()->withErrors([
@@ -31,8 +38,12 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        if ($request->header('X-Inertia')) {
+            return Inertia::location(route('register'));
+        }
+
         return view('register');
     }
 
@@ -52,7 +63,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/quiz');
+        return redirect()->route('accueil');
     }
     
     public function logout(Request $request){
