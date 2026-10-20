@@ -88,7 +88,20 @@
             </button>
         </form>
         <p class="progress">{{ __('Question :number / :total', ['number' => $number, 'total' => $total]) }}</p>
+        <p role="status"><strong>{{ __(':name to play', ['name' => $players[$currentPlayer]['name']]) }}</strong></p>
+        <ul aria-label="{{ __('Player scores') }}">
+            @foreach($players as $player)
+                <li>{{ $player['name'] }} : {{ $player['score'] }} / {{ $player['answered'] }}</li>
+            @endforeach
+        </ul>
+        <p><a href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change players') }}</a></p>
+        @if(session('payment_status'))
+            <p class="resultat" role="status">{{ session('payment_status') }}</p>
+        @endif
         <h1>{{ $question->question }}</h1>
+        @if($errors->any())
+            <p role="alert">{{ $errors->first() }}</p>
+        @endif
 
         <form method="POST" action="/quiz/verified">
             @csrf
@@ -102,7 +115,7 @@
                 @endforeach
             </div>
 
-            <input type="hidden" name="bonne_reponse" value="{{ $question->answer }}">
+            <input type="hidden" name="question_id" value="{{ $question->id }}">
 
             <button type="submit">{{ __('Confirm') }}</button>
         </form>

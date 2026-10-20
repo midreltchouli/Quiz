@@ -25,7 +25,7 @@ class ProfileUpdateTest extends TestCase
 
         $response->assertOk()->assertViewIs('profile')
             ->assertSee($user->name)->assertSee($user->email)
-            ->assertSee('Payment')->assertDontSee('name="name"', false)
+            ->assertDontSee('Payment')->assertDontSee('name="name"', false)
             ->assertDontSee('name="password"', false);
     }
 

@@ -1,0 +1,78 @@
+PAIEMENT DANS LE QUIZ
+
+Fonctionnement
+Les 10 premières réponses sont gratuites. Ensuite /quiz affiche la demande
+de passage au compte payant, avant la question suivante. Le prix initial est
+1 EUR, en paiement unique, pour accéder à toutes les questions de ce quiz.
+Le compteur est enregistré sur le compte : recommencer ou se reconnecter
+ne remet pas le quota à zéro. Le score et la progression restent en session.
+Un paiement confirmé permet de reprendre la partie en cours.
+
+Où modifier les paramètres
+config/billing.php centralise la configuration et ses valeurs par défaut.
+Dans le fichier .env local, ajouter ces variables (modèle dans .env.example) :
+
+QUIZ_FREE_QUESTION_LIMIT=10
+QUIZ_UPGRADE_AMOUNT=100
+QUIZ_UPGRADE_CURRENCY=eur
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+Le montant est exprimé en centimes : 100 = 1 EUR, 250 = 2,50 EUR.
+Le type d'achat est défini par 'mode' => 'payment' dans
+app/Http/Controllers/QuizPaymentController.php. Un abonnement exigerait
+une autre gestion de facturation ; changer ce champ seul ne suffit pas.
+Les clés restent sur le serveur et ne sont jamais incluses dans le HTML.
+Après modification du .env : php artisan config:clear
+Installer les nouvelles colonnes : php artisan migrate
+
+Comment connecter Stripe
+1. Dans ton compte Stripe, récupérer la clé secrète du mode test et la
+   placer dans STRIPE_SECRET_KEY. Aucune clé publique n'est nécessaire
+   pour cette page de paiement hébergée par Stripe.
+2. Activer les méthodes souhaitées dans les paramètres de paiement Stripe :
+   https://dashboard.stripe.com/settings/payment_methods
+   Le code ne force pas une liste de méthodes : Stripe affiche celles qui
+   sont activées et compatibles avec le pays, la devise, le montant et
+   l'appareil. Aucun prestataire ne garantit toutes les méthodes partout.
+3. Ajouter une destination webhook, format Snapshot, à l'adresse :
+   https://TON-DOMAINE/payments/stripe/webhook
+   Événements à sélectionner :
+   checkout.session.completed
+   checkout.session.async_payment_succeeded
+   checkout.session.async_payment_failed
+   Copier son secret de signature dans STRIPE_WEBHOOK_SECRET.
+4. En local, utiliser Stripe CLI :
+   stripe listen --events checkout.session.completed,checkout.session.async_payment_succeeded,checkout.session.async_payment_failed --forward-to http://localhost:8000/payments/stripe/webhook
+   Utiliser le secret whsec_ affiché par cette commande pour les essais.
+5. Faire un paiement en mode test : Stripe propose la carte de test
+   4242 4242 4242 4242, une date future et un CVC quelconque.
+   Vérifier aussi l'annulation et les moyens de paiement différés.
+6. Pour recevoir de vrais paiements, remplacer les clés de test par les
+   clés de production et configurer le webhook de production avec son
+   propre secret. APP_URL doit correspondre au domaine HTTPS du site.
+
+Comment le déblocage est vérifié
+Quizcontroller.php contrôle le quota sur l'affichage et la soumission.
+QuizPaymentController.php crée le paiement côté serveur, réutilise une
+session de paiement ouverte, contrôle la signature des notifications Stripe
+et vérifie paiement, compte, session, montant et devise avant le déblocage.
+Le montant attendu est enregistré lors de la création du paiement : modifier
+le tarif ensuite ne bloque pas un paiement déjà engagé.
+Le retour du navigateur est aussi vérifié auprès de Stripe. Pour un paiement
+différé, le compte reste gratuit jusqu'à confirmation du paiement.
+User.php expose hasReachedFreeQuizLimit() et stocke quiz_upgraded_at.
+resources/views/quiz_upgrade.blade.php contient l'écran d'upgrade.
+Les anciens blocs de paiement ont été retirés de l'accueil et du profil.
+Sans les deux secrets Stripe, le bouton reste désactivé.
+
+Validation automatique (aucun débit réel)
+php artisan test --filter=QuizPaymentTest
+Ces tests simulent Stripe et couvrent quota, reconnexion, prix, sécurité des
+notifications, paiement différé, retour de paiement et reprise du quiz.
+
+Documentation officielle
+https://docs.stripe.com/api/checkout/sessions/create
+https://docs.stripe.com/payments/payment-methods/dynamic-payment-methods
+https://docs.stripe.com/checkout/fulfillment
+https://docs.stripe.com/webhooks

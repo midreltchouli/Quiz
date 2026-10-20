@@ -42,6 +42,9 @@ class User extends Authenticatable implements PasskeyUser
     protected function casts(): array
     {
         return [
+            'quiz_questions_answered' => 'integer',
+            'quiz_upgraded_at' => 'datetime',
+            'quiz_checkout_amount' => 'integer',
             'quiz_notifications' => 'boolean',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
@@ -49,6 +52,12 @@ class User extends Authenticatable implements PasskeyUser
             'two_factor_confirmed_at' => 'datetime',
             /* @end-chisel-2fa */
         ];
+    }
+
+    public function hasReachedFreeQuizLimit(): bool
+    {
+        return $this->quiz_upgraded_at === null
+            && $this->quiz_questions_answered >= config('billing.free_question_limit');
     }
 
     public function interfaceFont(): string
@@ -69,5 +78,4 @@ class User extends Authenticatable implements PasskeyUser
             default => '16px',
         };
     }
-
 }

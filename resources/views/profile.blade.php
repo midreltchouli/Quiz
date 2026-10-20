@@ -59,17 +59,6 @@
                     <p>{{ $user->email }}</p>
                     <a href="{{ route('preferences.edit', ['section' => 'account']) }}">{{ __('Edit account details') }}</a>
                 </section>
-                <details class="card">
-                    <summary>{{ __('Payment') }}</summary>
-                    <p>{{ __('Offers and prices are still being defined. No purchases are available yet.') }}</p>
-                    <ul>
-                        <li><strong>{{ __('Access to all games') }}:</strong> {{ __('One-time purchase; included games and access duration to be defined.') }}</li>
-                        <li><strong>{{ __('Access to one game') }}:</strong> {{ __('Buy access to a game of your choice; duration to be defined.') }}</li>
-                        <li><strong>{{ __('Subscription') }}:</strong> {{ __('A monthly or annual plan is being considered.') }}</li>
-                        <li><strong>{{ __('Credit pack') }}:</strong> {{ __('Credit amounts and uses are still to be defined.') }}</li>
-                    </ul>
-                    <p id="payment-element">{{ __('Payment is not available yet.') }}</p>
-                </details>
             </div>
         </main>
     </div>

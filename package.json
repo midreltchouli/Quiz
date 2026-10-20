@@ -45,7 +45,10 @@
     "vue-sonner": "^2.0.9"
   },
   "devDependencies": {
-    "concurrently": "10.0.5"
+    "@types/node": "^26.6.5",
+    "@vitejs/devtools": "^0.7.6",
+    "concurrently": "10.0.5",
+    "vite-plugin-vue-devtools": "^8.2.1"
   },
   "overrides": {
     "shell-quote": "1.11.0"

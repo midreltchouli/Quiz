@@ -27,7 +27,7 @@ class PreferencesTest extends TestCase
             ->assertSee('Account')->assertSee('Privacy')->assertSee('name="locale"', false)
             ->assertDontSee('name="password"', false);
         $this->get(route('profile.edit'))->assertOk()->assertSee('My profile')
-            ->assertSee('Payment')->assertDontSee('name="locale"', false);
+            ->assertDontSee('Payment')->assertDontSee('name="locale"', false);
     }
 
     public function test_account_and_privacy_have_their_own_sections(): void

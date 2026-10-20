@@ -28,7 +28,9 @@ class QuizTest extends TestCase
         $this->seed(QuestionSeeder::class);
         $this->assertSame(30, Question::count());
 
-        $this->actingAs(User::factory()->create())->get('/quiz')
+        $this->actingAs(User::factory()->create())->get('/quiz')->assertViewIs('games.players');
+        $this->post(route('games.players.store', ['game' => 'quiz']), ['player_count' => 1, 'players' => ['Alice']])->assertRedirect('/quiz');
+        $this->get('/quiz')
             ->assertOk()
             ->assertViewIs('quiz')
             ->assertViewHas('number', 1)
@@ -62,8 +64,8 @@ class QuizTest extends TestCase
 
         $this->post(route('quiz.restart'))
             ->assertRedirect('/quiz')
-            ->assertSessionMissing('question_index')
-            ->assertSessionMissing('score')
+            ->assertSessionHas('question_index', 0)
+            ->assertSessionHas('score', 0)
             ->assertSessionMissing('resultat');
 
         $this->get('/quiz')
