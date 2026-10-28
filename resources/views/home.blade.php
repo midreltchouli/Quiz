@@ -10,8 +10,15 @@
         a { color: #4f46e5; }
         .container { max-width: 1040px; margin: auto; padding: 24px; }
         header, nav { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-        header { justify-content: space-between; padding-bottom: 24px; border-bottom: 1px solid #e0e0e5; }
-        .brand { font-weight: 800; font-size: 1.2rem; color: #202039; text-decoration: none; }
+        header { justify-content: flex-end; padding-bottom: 24px; border-bottom: 1px solid #e0e0e5; }
+        .language-picker { position: relative; }
+        .language-picker summary { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border: 1px solid #cce6f6; border-radius: 22px; background: #f0faff; color: #176398; cursor: pointer; list-style: none; font-weight: 600; font-size: .85rem; }
+        .language-picker summary::-webkit-details-marker { display: none; }
+        .language-picker summary:hover { background: #def3ff; }
+        .language-picker summary:focus-visible, .language-options button:focus-visible { outline: 3px solid #818cf8; outline-offset: 3px; }
+        .language-options { position: absolute; right: 0; top: calc(100% + 10px); z-index: 20; min-width: 170px; padding: 6px; background: white; border: 1px solid #dce9ee; border-radius: 12px; box-shadow: 0 12px 32px rgb(58 100 126 / 14%); }
+        .language-options button { display: flex; justify-content: space-between; gap: 16px; width: 100%; padding: 11px 12px; border: 0; border-radius: 8px; background: white; color: #202039; font: inherit; text-align: left; cursor: pointer; }
+        .language-options button:hover, .language-options button[aria-pressed="true"] { background: #eaf7ff; color: #176398; }
         .button { display: inline-block; background: #4f46e5; color: white; border: 0; border-radius: 8px; padding: 12px 20px; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
         .button:hover { background: #4338ca; }
         a:focus-visible, button:focus-visible { outline: 3px solid #818cf8; outline-offset: 4px; }
@@ -27,13 +34,33 @@
         footer { margin-top: 32px; color: #77778b; font-size: .85rem; }
         @media (max-width: 600px) { .container { padding: 18px; } .hero { padding-top: 32px; } nav { gap: 10px; } }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <a class="brand" href="{{ route('accueil') }}">{{ __('Game space') }}</a>
             <nav aria-label="{{ __('Main navigation') }}">
-                <a href="#jeux">{{ __('Games') }}</a>
+                <details class="language-picker">
+                    <summary aria-label="{{ __('Language') }}" title="{{ __('Language') }}">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <ellipse cx="12" cy="12" rx="4" ry="9" />
+                            <path d="M3 12h18" />
+                        </svg>
+                        <span aria-hidden="true">{{ strtoupper(app()->getLocale()) }}</span>
+                    </summary>
+                    <form class="language-options" method="POST" action="{{ route('preferences.update') }}">
+                        @csrf
+                        @method('PATCH')
+                        <input type="hidden" name="return_to" value="home">
+                        @foreach (['fr' => 'Français', 'en' => 'English', 'de' => 'Deutsch'] as $code => $label)
+                            <button type="submit" name="locale" value="{{ $code }}" lang="{{ $code }}" aria-pressed="{{ app()->getLocale() === $code ? 'true' : 'false' }}">
+                                {{ $label }}
+                                @if (app()->getLocale() === $code)<span aria-hidden="true">✓</span>@endif
+                            </button>
+                        @endforeach
+                    </form>
+                </details>
                 @include('partials.user-menu')
             </nav>
         </header>
@@ -47,12 +74,14 @@
                 <h2 id="games-title">{{ __('Games') }}</h2>
                 <div class="games">
                     <article class="card">
+                        <img class="game-image" src="{{ asset('images/games/quiz.svg') }}" alt="" width="640" height="360">
                         <span class="badge">{{ __('Available') }}</span>
                         <h3>{{ __('General knowledge quiz') }}</h3>
                         <p>{{ __('Answer the questions and discover your score at the end.') }}</p>
                         <a class="button" href="{{ route('quiz') }}">{{ __('Play quiz') }}</a>
                     </article>
                     <article class="card">
+                        <img class="game-image" src="{{ asset('images/games/connect-four.svg') }}" alt="" width="640" height="360">
                         <span class="badge">{{ __('Available') }}</span>
                         <h3>{{ __('Connect Four') }}</h3>
                         <p>{{ __('Two players, one screen. Align four discs to win.') }}</p>
@@ -61,7 +90,8 @@
                 </div>
             </section>
         </main>
-        <footer>{{ __('Game space') }} &middot; {{ __('Your next challenge starts here.') }}</footer>
+        <footer>{{ __('Your next challenge starts here.') }}</footer>
     </div>
+    @include('partials.chatbox')
 </body>
 </html>

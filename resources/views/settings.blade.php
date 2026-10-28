@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('Settings') }} — {{ __('Game space') }}</title>
+    <title>{{ __(request()->routeIs('purchases.index') ? 'Purchases and subscription' : 'Settings') }} — {{ __('Game space') }}</title>
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: {{ auth()->user()->interfaceFont() }}; font-size: {{ auth()->user()->interfaceTextSize() }}; background: #f4f4f8; color: #202039; }
@@ -37,22 +37,23 @@
         .settings-nav a:hover { background: #e9e9f2; }
         @media (max-width: 600px) { .container { padding: 18px; } .settings-layout { grid-template-columns: 1fr; } .settings-nav { flex-direction: row; flex-wrap: wrap; } }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
             <a class="brand" href="{{ route('accueil') }}">{{ __('Game space') }}</a>
             <nav aria-label="{{ __('Main navigation') }}">
-                <a href="{{ route('accueil') }}">{{ __('Home') }}</a>
+                <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Home') }}</a>
                 @include('partials.user-menu')
             </nav>
         </header>
         <main>
 
             @php
-                $section = in_array(request('section'), ['general', 'account', 'privacy'], true) ? request('section') : 'general';
+                $section = request()->routeIs('purchases.index') ? 'purchases' : (in_array(request('section'), ['general', 'account', 'privacy'], true) ? request('section') : 'general');
             @endphp
-            <h1>{{ __('Settings') }}</h1>
+            <h1>{{ __($section === 'purchases' ? 'Purchases and subscription' : 'Settings') }}</h1>
             @if (session('status'))
                 <p class="notice" role="status">{{ __('Your changes have been saved.') }}</p>
             @endif
@@ -63,12 +64,16 @@
             @endif
             <div class="settings-layout">
                 <nav class="settings-nav" aria-label="{{ __('Settings sections') }}">
+                    <a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                    <a href="{{ route('purchases.index') }}" @if ($section === 'purchases') aria-current="page" @endif>{{ __('Purchases and subscription') }}</a>
                     @foreach (['general' => 'General', 'account' => 'Account', 'privacy' => 'Privacy'] as $key => $label)
                         <a href="{{ route('preferences.edit', ['section' => $key]) }}" @if ($section === $key) aria-current="page" @endif>{{ __($label) }}</a>
                     @endforeach
                 </nav>
                 <div>
-                    @if ($section === 'general')
+                    @if ($section === 'purchases')
+                        @include('settings.purchases')
+                    @elseif ($section === 'general')
                         <section class="card" aria-labelledby="general-title">
                             <h2 id="general-title">{{ __('General settings') }}</h2>
                             <form method="POST" action="{{ route('preferences.update') }}">
@@ -165,5 +170,6 @@
             </div>
         </main>
     </div>
+    @include('partials.chatbox')
 </body>
 </html>

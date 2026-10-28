@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,10 @@ class QuizPaymentController extends Controller
         return Http::withToken(config('billing.stripe_secret'))->asForm()->timeout(15);
     }
 
+    //the checkout method is used to initiate the payment process for a quiz upgrade.
+    //  It checks if the user has reached their free quiz limit and if the Stripe configuration is set up correctly.
+    //  If both conditions are met, it creates a new checkout session with Stripe or reuses an existing one if available. 
+    // The user is then redirected to the Stripe checkout page to complete the payment.   
     public function checkout(Request $request)
     {
         if (! $request->user()->refresh()->hasReachedFreeQuizLimit()) {
@@ -33,6 +38,12 @@ class QuizPaymentController extends Controller
                 }
                 if ($user->quiz_checkout_session_id) {
                     $existing = $this->stripe()->get('https://api.stripe.com/v1/checkout/sessions/'.rawurlencode($user->quiz_checkout_session_id))->throw()->json();
+                    if ($existing['status'] === 'expired') {
+                        $user->payments()
+                            ->where('stripe_checkout_session_id', $user->quiz_checkout_session_id)
+                            ->where('status', 'pending')
+                            ->update(['status' => 'expired']);
+                    }
                     if ($existing['status'] === 'open') {
                         return $existing['url'];
                     }
@@ -67,6 +78,14 @@ class QuizPaymentController extends Controller
                     'quiz_checkout_currency' => $currency,
                 ])->save();
 
+                $user->payments()->create([
+                    'stripe_checkout_session_id' => $session['id'],
+                    'stripe_payment_intent_id' => $session['payment_intent'] ?? null,
+                    'amount' => $amount,
+                    'currency' => $currency,
+                    'status' => 'pending',
+                ]);
+
                 return $session['url'];
             });
 
@@ -77,6 +96,9 @@ class QuizPaymentController extends Controller
         }
     }
 
+    // The success method is called after the user completes the payment on Stripe's checkout page.
+    // It validates the session ID returned by Stripe and checks if it matches the user's stored session ID.
+    //  If the session is valid, it retrieves the session details from Stripe and activates the user's quiz
     public function success(Request $request)
     {
         $request->validate(['session_id' => ['required', 'string', 'max:255']]);
@@ -96,6 +118,9 @@ class QuizPaymentController extends Controller
         }
     }
 
+    // The webhook method handles incoming webhook events from Stripe.
+    // It verifies the authenticity of the webhook request using the Stripe signature and secret.
+    //  If the event is a successful payment, it activates the user's quiz access.
     public function webhook(Request $request)
     {
         $secret = config('billing.stripe_webhook_secret');
@@ -123,6 +148,11 @@ class QuizPaymentController extends Controller
         if (($event['type'] ?? '') === 'checkout.session.async_payment_failed') {
             $session = $event['data']['object'] ?? [];
             if (($session['metadata']['purpose'] ?? '') === 'quiz_upgrade') {
+                Payment::where('stripe_checkout_session_id', $session['id'] ?? '')
+                    ->where('user_id', $session['metadata']['user_id'] ?? null)
+                    ->where('status', 'pending')
+                    ->update(['status' => 'failed']);
+
                 User::whereKey($session['metadata']['user_id'] ?? null)
                     ->where('quiz_checkout_session_id', $session['id'] ?? '')
                     ->whereNull('quiz_upgraded_at')
@@ -133,6 +163,9 @@ class QuizPaymentController extends Controller
         return response()->noContent();
     }
 
+    // The activate method is responsible for activating the user's quiz access after a successful payment.
+    // It checks the payment session details to ensure that the payment was successful and that the session corresponds to the correct user and payment purpose.
+    // If all checks pass, it updates the user's record to mark the quiz as upgraded and returns true. Otherwise, it returns false.
     private function activate(array $session): bool
     {
         if (($session['mode'] ?? '') !== 'payment'
@@ -150,6 +183,18 @@ class QuizPaymentController extends Controller
                 || $user->quiz_checkout_currency !== ($session['currency'] ?? null)) {
                 return false;
             }
+            // Keep the payment history and access activation in the same transaction.
+            $payment = $user->payments()->firstOrNew([
+                'stripe_checkout_session_id' => $session['id'],
+            ]);
+            $payment->fill([
+                'stripe_payment_intent_id' => $session['payment_intent'] ?? $payment->stripe_payment_intent_id,
+                'amount' => $session['amount_total'],
+                'currency' => $session['currency'],
+                'status' => 'paid',
+                'paid_at' => $payment->paid_at ?? $user->quiz_upgraded_at ?? now(),
+            ])->save();
+
             if (! $user->quiz_upgraded_at) {
                 $user->forceFill(['quiz_upgraded_at' => now()])->save();
             }

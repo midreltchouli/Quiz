@@ -7,13 +7,14 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; // Importe le type de relation plusieurs-à-plusieurs utilisé pour les conversations du chat.
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Fortify\Contracts\PasskeyUser;
 use Laravel\Fortify\PasskeyAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property string $name
@@ -54,6 +55,12 @@ class User extends Authenticatable implements PasskeyUser
         ];
     }
 
+    /** @return BelongsToMany<Conversation, $this> Relation vers les conversations de cet utilisateur, précisée pour l'analyse du code. */
+    public function conversations(): BelongsToMany // Déclare la relation qui permet de retrouver les conversations auxquelles cet utilisateur participe.
+    { // Début de la méthode conversations().
+        return $this->belongsToMany(Conversation::class)->withTimestamps(); // belongsToMany() utilise conversation_user ; withTimestamps() gère les dates de participation.
+    } // Fin de la méthode conversations().
+
     public function hasReachedFreeQuizLimit(): bool
     {
         return $this->quiz_upgraded_at === null
@@ -77,5 +84,10 @@ class User extends Authenticatable implements PasskeyUser
             'large' => '18px',
             default => '16px',
         };
+    }
+    
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
     }
 }

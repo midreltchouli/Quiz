@@ -43,5 +43,6 @@
     </head>
     <body class="font-sans antialiased">
         <x-inertia::app />
+        @include('partials.chatbox')
     </body>
 </html>

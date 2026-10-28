@@ -24,15 +24,30 @@
         button { font: inherit; background: #4f46e5; color: white; border: 0; border-radius: 8px; padding: 12px 18px; cursor: pointer; margin-top: 16px; }
         .notice { background: #eef0ff; padding: 12px; border-radius: 8px; }
         .errors { background: #fef2f2; color: #991b1b; padding: 12px 24px; border-radius: 8px; }
+        .quiz-setup { max-width: 960px; }
+        .category-fieldset { border: 0; padding: 0; margin: 0 0 28px; min-width: 0; }
+        .category-fieldset legend { font-size: 1.3rem; font-weight: 700; padding: 0; }
+        .category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .category-choice { display: flex; align-items: flex-start; gap: 10px; margin: 0; padding: 14px; border: 2px solid #dce9ee; border-radius: 12px; background: #fff; cursor: pointer; }
+        .category-choice:hover { background: #f3fbff; border-color: #a9d7f4; }
+        .category-choice:has(input:checked) { background: #ecf6ff; border-color: #4f46e5; }
+        .category-choice:has(input:disabled) { opacity: .55; cursor: not-allowed; }
+        .category-choice input { width: 18px; height: 18px; padding: 0; margin: 4px 0 0; flex-shrink: 0; accent-color: #4f46e5; }
+        .category-choice strong, .category-choice small { display: block; }
+        .category-choice small { font-weight: 400; color: #51516b; line-height: 1.4; margin-top: 6px; }
+        .category-choice .category-count { color: #3730a3; font-weight: 600; }
+        @media (max-width: 760px) { .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 480px) { main { padding: 12px; } .category-grid { grid-template-columns: 1fr; } }
         :focus-visible { outline: 3px solid #818cf8; outline-offset: 3px; }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
-<main>
-    <a href="{{ route('accueil') }}">&larr; {{ __('Back to home') }}</a>
-    <section class="card">
+<body class="game-page">
+<main class="game-shell {{ $isQuiz ? 'quiz-setup' : '' }}">
+    <a class="action-button action-secondary" href="{{ route('accueil') }}">&larr; {{ __('Back to home') }}</a>
+    <section class="card game-surface setup-surface">
         <h1>{{ $title }}</h1>
-        <h2>{{ __('Choose players') }}</h2>
+        @if(!$isQuiz)<h2>{{ __('Choose players') }}</h2>@endif
         <p>{{ __('Play together on this screen using one account. Each participant chooses a name.') }}</p>
         @if($isQuiz)
             <p class="notice">{{ __('Quiz: 1 to 6 players. Each player answers a different question in turn, with the same number of questions per player. Scores are separate; the account question limit is shared.') }}</p>
@@ -47,6 +62,25 @@
         <form method="POST" action="{{ route('games.players.store', ['game' => $gameType]) }}">
             @csrf
             @if($isQuiz)
+                <fieldset class="category-fieldset" aria-describedby="category-help">
+                    <legend>{{ __('Choose a category') }}</legend>
+                    <p id="category-help">{{ __('Standard categories contain intermediate and difficult questions. Kids discovery keeps a simpler selection.') }}</p>
+                    <div class="category-grid">
+                        @foreach($quizCategories as $key => $category)
+                            <label class="category-choice">
+                                <input type="radio" name="category" value="{{ $key }}" required
+                                    @checked(old('category', session('quiz_category', 'general')) === $key)
+                                    @disabled($category['count'] === 0)>
+                                <span>
+                                    <strong><span aria-hidden="true">{{ $category['icon'] }}</span> {{ __($category['label']) }}</strong>
+                                    <small>{{ __($category['description']) }}</small>
+                                    <small class="category-count">{{ trans_choice(':count question|:count questions', $category['count']) }}</small>
+                                </span>
+                            </label>
+                        @endforeach
+                    </div>
+                </fieldset>
+                <h2>{{ __('Choose players') }}</h2>
                 <label for="player-count">{{ __('Number of players') }}</label>
                 <select id="player-count" name="player_count">
                     @for($n = $min; $n <= $max; $n++)
@@ -68,7 +102,7 @@
             <button type="submit">{{ __('Start game') }}</button>
         </form>
         @if(count($saved))
-            <p><a href="{{ route($isQuiz ? 'quiz' : 'connect-four.show') }}">{{ __('Return to current game') }}</a></p>
+            <p><a class="action-button action-secondary" href="{{ route($isQuiz ? 'quiz' : 'connect-four.show') }}">{{ __('Return to current game') }}</a></p>
         @endif
     </section>
 </main>
@@ -86,5 +120,6 @@
     });
 </script>
 @endif
+    @include('partials.chatbox')
 </body>
 </html>

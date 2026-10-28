@@ -80,6 +80,7 @@
             text-decoration: underline;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
 <body>
 
@@ -100,7 +101,7 @@
             <button type="submit">{{ __('Sign up') }}</button>
         </form>
 
-        <a href="/login" class="login-link">{{ __('Already have an account? Log in') }}</a>
+        <a href="/login" class="login-link action-button action-secondary">{{ __('Already have an account? Log in') }}</a>
     </div>
 
 </body>

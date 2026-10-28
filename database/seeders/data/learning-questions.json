@@ -1,0 +1,1559 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "key": "learning:ww2-end",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "In which year did the Second World War end?",
+          "options": [
+            "1945",
+            "1918",
+            "1939",
+            "1961"
+          ],
+          "answer": "1945"
+        },
+        "fr": {
+          "question": "En quelle année la Seconde Guerre mondiale s’est-elle terminée ?",
+          "options": [
+            "1945",
+            "1918",
+            "1939",
+            "1961"
+          ],
+          "answer": "1945"
+        },
+        "de": {
+          "question": "In welchem Jahr endete der Zweite Weltkrieg?",
+          "options": [
+            "1945",
+            "1918",
+            "1939",
+            "1961"
+          ],
+          "answer": "1945"
+        }
+      }
+    },
+    {
+      "key": "learning:bastille",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "On which date was the Bastille stormed?",
+          "options": [
+            "11 November 1918",
+            "8 May 1945",
+            "1 January 1800",
+            "14 July 1789"
+          ],
+          "answer": "14 July 1789"
+        },
+        "fr": {
+          "question": "À quelle date a eu lieu la prise de la Bastille ?",
+          "options": [
+            "11 novembre 1918",
+            "8 mai 1945",
+            "1er janvier 1800",
+            "14 juillet 1789"
+          ],
+          "answer": "14 juillet 1789"
+        },
+        "de": {
+          "question": "An welchem Datum wurde die Bastille gestürmt?",
+          "options": [
+            "11. November 1918",
+            "8. Mai 1945",
+            "1. Januar 1800",
+            "14. Juli 1789"
+          ],
+          "answer": "14. Juli 1789"
+        }
+      }
+    },
+    {
+      "key": "learning:roman-language",
+      "category": "history",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which language was spoken in ancient Rome?",
+          "options": [
+            "Swedish",
+            "Russian",
+            "Latin",
+            "Japanese"
+          ],
+          "answer": "Latin"
+        },
+        "fr": {
+          "question": "Quelle langue était parlée dans la Rome antique ?",
+          "options": [
+            "Suédois",
+            "Russe",
+            "Latin",
+            "Japonais"
+          ],
+          "answer": "Latin"
+        },
+        "de": {
+          "question": "Welche Sprache wurde im antiken Rom gesprochen?",
+          "options": [
+            "Schwedisch",
+            "Russisch",
+            "Latein",
+            "Japanisch"
+          ],
+          "answer": "Latein"
+        }
+      }
+    },
+    {
+      "key": "learning:berlin-wall",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "In which year did the Berlin Wall fall?",
+          "options": [
+            "2001",
+            "1989",
+            "1945",
+            "1961"
+          ],
+          "answer": "1989"
+        },
+        "fr": {
+          "question": "En quelle année le mur de Berlin est-il tombé ?",
+          "options": [
+            "2001",
+            "1989",
+            "1945",
+            "1961"
+          ],
+          "answer": "1989"
+        },
+        "de": {
+          "question": "In welchem Jahr fiel die Berliner Mauer?",
+          "options": [
+            "2001",
+            "1989",
+            "1945",
+            "1961"
+          ],
+          "answer": "1989"
+        }
+      }
+    },
+    {
+      "key": "learning:gutenberg",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "Which inventor is associated with movable metal type printing in fifteenth-century Europe?",
+          "options": [
+            "Johannes Gutenberg",
+            "Isaac Newton",
+            "James Watt",
+            "Louis Pasteur"
+          ],
+          "answer": "Johannes Gutenberg"
+        },
+        "fr": {
+          "question": "Quel inventeur est associé à l’imprimerie à caractères métalliques mobiles en Europe au XVe siècle ?",
+          "options": [
+            "Johannes Gutenberg",
+            "Isaac Newton",
+            "James Watt",
+            "Louis Pasteur"
+          ],
+          "answer": "Johannes Gutenberg"
+        },
+        "de": {
+          "question": "Welcher Erfinder ist mit dem Druck mit beweglichen Metalllettern im Europa des 15. Jahrhunderts verbunden?",
+          "options": [
+            "Johannes Gutenberg",
+            "Isaac Newton",
+            "James Watt",
+            "Louis Pasteur"
+          ],
+          "answer": "Johannes Gutenberg"
+        }
+      }
+    },
+    {
+      "key": "learning:egypt-writing",
+      "category": "history",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is the ancient Egyptian writing system with pictorial signs called?",
+          "options": [
+            "Braille",
+            "Morse code",
+            "Binary code",
+            "Hieroglyphs"
+          ],
+          "answer": "Hieroglyphs"
+        },
+        "fr": {
+          "question": "Comment appelle-t-on l’écriture de l’Égypte antique utilisant des signes figuratifs ?",
+          "options": [
+            "Braille",
+            "Code Morse",
+            "Code binaire",
+            "Hiéroglyphes"
+          ],
+          "answer": "Hiéroglyphes"
+        },
+        "de": {
+          "question": "Wie heißt die Schrift des alten Ägyptens mit bildhaften Zeichen?",
+          "options": [
+            "Brailleschrift",
+            "Morsecode",
+            "Binärcode",
+            "Hieroglyphen"
+          ],
+          "answer": "Hieroglyphen"
+        }
+      }
+    },
+    {
+      "key": "learning:first-world-war-end",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "In which year was the armistice of 11 November signed, ending the fighting on the Western Front of World War I?",
+          "options": [
+            "1939",
+            "1945",
+            "1918",
+            "1914"
+          ],
+          "answer": "1918"
+        },
+        "fr": {
+          "question": "En quelle année l’armistice du 11 novembre a-t-il mis fin aux combats du front occidental de la Première Guerre mondiale ?",
+          "options": [
+            "1939",
+            "1945",
+            "1918",
+            "1914"
+          ],
+          "answer": "1918"
+        },
+        "de": {
+          "question": "In welchem Jahr beendete der Waffenstillstand vom 11. November die Kämpfe an der Westfront des Ersten Weltkriegs?",
+          "options": [
+            "1939",
+            "1945",
+            "1918",
+            "1914"
+          ],
+          "answer": "1918"
+        }
+      }
+    },
+    {
+      "key": "learning:rosetta",
+      "category": "history",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "Which stone helped scholars decipher Egyptian hieroglyphs?",
+          "options": [
+            "Black Stone",
+            "Rosetta Stone",
+            "Stonehenge",
+            "Moon rock"
+          ],
+          "answer": "Rosetta Stone"
+        },
+        "fr": {
+          "question": "Quelle pierre a aidé les savants à déchiffrer les hiéroglyphes égyptiens ?",
+          "options": [
+            "Pierre noire",
+            "Pierre de Rosette",
+            "Stonehenge",
+            "Roche lunaire"
+          ],
+          "answer": "Pierre de Rosette"
+        },
+        "de": {
+          "question": "Welcher Stein half bei der Entzifferung der ägyptischen Hieroglyphen?",
+          "options": [
+            "Schwarzer Stein",
+            "Stein von Rosette",
+            "Stonehenge",
+            "Mondgestein"
+          ],
+          "answer": "Stein von Rosette"
+        }
+      }
+    },
+    {
+      "key": "learning:caterpillar",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What does a butterfly caterpillar become after its chrysalis stage?",
+          "options": [
+            "A butterfly",
+            "A frog",
+            "A fish",
+            "A spider"
+          ],
+          "answer": "A butterfly"
+        },
+        "fr": {
+          "question": "Que devient une chenille de papillon après le stade de chrysalide ?",
+          "options": [
+            "Un papillon",
+            "Une grenouille",
+            "Un poisson",
+            "Une araignée"
+          ],
+          "answer": "Un papillon"
+        },
+        "de": {
+          "question": "Was wird aus einer Schmetterlingsraupe nach dem Puppenstadium?",
+          "options": [
+            "Ein Schmetterling",
+            "Ein Frosch",
+            "Ein Fisch",
+            "Eine Spinne"
+          ],
+          "answer": "Ein Schmetterling"
+        }
+      }
+    },
+    {
+      "key": "learning:tadpole",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is a young frog called during its aquatic larval stage?",
+          "options": [
+            "A chick",
+            "A caterpillar",
+            "A cub",
+            "A tadpole"
+          ],
+          "answer": "A tadpole"
+        },
+        "fr": {
+          "question": "Comment appelle-t-on la larve aquatique d’une grenouille ?",
+          "options": [
+            "Un poussin",
+            "Une chenille",
+            "Un ourson",
+            "Un têtard"
+          ],
+          "answer": "Un têtard"
+        },
+        "de": {
+          "question": "Wie nennt man die im Wasser lebende Larve eines Frosches?",
+          "options": [
+            "Ein Küken",
+            "Eine Raupe",
+            "Ein Bärenjunges",
+            "Eine Kaulquappe"
+          ],
+          "answer": "Eine Kaulquappe"
+        }
+      }
+    },
+    {
+      "key": "learning:insect-legs",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "How many legs does an adult insect have?",
+          "options": [
+            "8",
+            "10",
+            "6",
+            "4"
+          ],
+          "answer": "6"
+        },
+        "fr": {
+          "question": "Combien de pattes un insecte adulte possède-t-il ?",
+          "options": [
+            "8",
+            "10",
+            "6",
+            "4"
+          ],
+          "answer": "6"
+        },
+        "de": {
+          "question": "Wie viele Beine hat ein erwachsenes Insekt?",
+          "options": [
+            "8",
+            "10",
+            "6",
+            "4"
+          ],
+          "answer": "6"
+        }
+      }
+    },
+    {
+      "key": "learning:dolphin",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "To which animal group do dolphins belong?",
+          "options": [
+            "Birds",
+            "Mammals",
+            "Fish",
+            "Insects"
+          ],
+          "answer": "Mammals"
+        },
+        "fr": {
+          "question": "À quel groupe d’animaux les dauphins appartiennent-ils ?",
+          "options": [
+            "Oiseaux",
+            "Mammifères",
+            "Poissons",
+            "Insectes"
+          ],
+          "answer": "Mammifères"
+        },
+        "de": {
+          "question": "Zu welcher Tiergruppe gehören Delfine?",
+          "options": [
+            "Vögel",
+            "Säugetiere",
+            "Fische",
+            "Insekten"
+          ],
+          "answer": "Säugetiere"
+        }
+      }
+    },
+    {
+      "key": "learning:gills",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which organs do most fish use to take oxygen from water?",
+          "options": [
+            "Gills",
+            "Wings",
+            "Roots",
+            "Antennae"
+          ],
+          "answer": "Gills"
+        },
+        "fr": {
+          "question": "Quels organes la plupart des poissons utilisent-ils pour prélever l’oxygène de l’eau ?",
+          "options": [
+            "Branchies",
+            "Ailes",
+            "Racines",
+            "Antennes"
+          ],
+          "answer": "Branchies"
+        },
+        "de": {
+          "question": "Mit welchen Organen nehmen die meisten Fische Sauerstoff aus dem Wasser auf?",
+          "options": [
+            "Kiemen",
+            "Flügel",
+            "Wurzeln",
+            "Fühler"
+          ],
+          "answer": "Kiemen"
+        }
+      }
+    },
+    {
+      "key": "learning:penguin",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which of these birds cannot fly?",
+          "options": [
+            "Eagle",
+            "Swallow",
+            "Sparrow",
+            "Penguin"
+          ],
+          "answer": "Penguin"
+        },
+        "fr": {
+          "question": "Lequel de ces oiseaux ne peut pas voler ?",
+          "options": [
+            "Aigle",
+            "Hirondelle",
+            "Moineau",
+            "Manchot"
+          ],
+          "answer": "Manchot"
+        },
+        "de": {
+          "question": "Welcher dieser Vögel kann nicht fliegen?",
+          "options": [
+            "Adler",
+            "Schwalbe",
+            "Spatz",
+            "Pinguin"
+          ],
+          "answer": "Pinguin"
+        }
+      }
+    },
+    {
+      "key": "learning:photosynthesis",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is the process by which green plants use sunlight to make sugars called?",
+          "options": [
+            "Erosion",
+            "Freezing",
+            "Photosynthesis",
+            "Evaporation"
+          ],
+          "answer": "Photosynthesis"
+        },
+        "fr": {
+          "question": "Comment s’appelle le processus par lequel les plantes vertes utilisent la lumière du Soleil pour produire des sucres ?",
+          "options": [
+            "Érosion",
+            "Congélation",
+            "Photosynthèse",
+            "Évaporation"
+          ],
+          "answer": "Photosynthèse"
+        },
+        "de": {
+          "question": "Wie heißt der Vorgang, bei dem grüne Pflanzen mithilfe von Sonnenlicht Zucker herstellen?",
+          "options": [
+            "Erosion",
+            "Gefrieren",
+            "Photosynthese",
+            "Verdunstung"
+          ],
+          "answer": "Photosynthese"
+        }
+      }
+    },
+    {
+      "key": "learning:acorn",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which tree produces acorns?",
+          "options": [
+            "Palm tree",
+            "Oak",
+            "Apple tree",
+            "Pine"
+          ],
+          "answer": "Oak"
+        },
+        "fr": {
+          "question": "Quel arbre produit des glands ?",
+          "options": [
+            "Palmier",
+            "Chêne",
+            "Pommier",
+            "Pin"
+          ],
+          "answer": "Chêne"
+        },
+        "de": {
+          "question": "Welcher Baum trägt Eicheln?",
+          "options": [
+            "Palme",
+            "Eiche",
+            "Apfelbaum",
+            "Kiefer"
+          ],
+          "answer": "Eiche"
+        }
+      }
+    },
+    {
+      "key": "learning:bee-honey",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which insect produces honey?",
+          "options": [
+            "Honey bee",
+            "Mosquito",
+            "Butterfly",
+            "Grasshopper"
+          ],
+          "answer": "Honey bee"
+        },
+        "fr": {
+          "question": "Quel insecte produit du miel ?",
+          "options": [
+            "Abeille domestique",
+            "Moustique",
+            "Papillon",
+            "Sauterelle"
+          ],
+          "answer": "Abeille domestique"
+        },
+        "de": {
+          "question": "Welches Insekt produziert Honig?",
+          "options": [
+            "Honigbiene",
+            "Stechmücke",
+            "Schmetterling",
+            "Heuschrecke"
+          ],
+          "answer": "Honigbiene"
+        }
+      }
+    },
+    {
+      "key": "learning:polar-bear",
+      "category": "nature",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "In which polar region do wild polar bears naturally live?",
+          "options": [
+            "Antarctic",
+            "Both polar regions",
+            "Neither polar region",
+            "Arctic"
+          ],
+          "answer": "Arctic"
+        },
+        "fr": {
+          "question": "Dans quelle région polaire les ours polaires vivent-ils naturellement à l’état sauvage ?",
+          "options": [
+            "Antarctique",
+            "Les deux régions polaires",
+            "Aucune région polaire",
+            "Arctique"
+          ],
+          "answer": "Arctique"
+        },
+        "de": {
+          "question": "In welcher Polarregion leben Eisbären von Natur aus?",
+          "options": [
+            "Antarktis",
+            "In beiden Polarregionen",
+            "In keiner Polarregion",
+            "Arktis"
+          ],
+          "answer": "Arktis"
+        }
+      }
+    },
+    {
+      "key": "learning:sun-star",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What kind of celestial object is the Sun?",
+          "options": [
+            "A moon",
+            "A comet",
+            "A star",
+            "A planet"
+          ],
+          "answer": "A star"
+        },
+        "fr": {
+          "question": "Quel type d’astre est le Soleil ?",
+          "options": [
+            "Une lune",
+            "Une comète",
+            "Une étoile",
+            "Une planète"
+          ],
+          "answer": "Une étoile"
+        },
+        "de": {
+          "question": "Welche Art von Himmelskörper ist die Sonne?",
+          "options": [
+            "Ein Mond",
+            "Ein Komet",
+            "Ein Stern",
+            "Ein Planet"
+          ],
+          "answer": "Ein Stern"
+        }
+      }
+    },
+    {
+      "key": "learning:eight-planets",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "How many planets are in our Solar System?",
+          "options": [
+            "12",
+            "8",
+            "6",
+            "9"
+          ],
+          "answer": "8"
+        },
+        "fr": {
+          "question": "Combien de planètes notre système solaire compte-t-il ?",
+          "options": [
+            "12",
+            "8",
+            "6",
+            "9"
+          ],
+          "answer": "8"
+        },
+        "de": {
+          "question": "Wie viele Planeten hat unser Sonnensystem?",
+          "options": [
+            "12",
+            "8",
+            "6",
+            "9"
+          ],
+          "answer": "8"
+        }
+      }
+    },
+    {
+      "key": "learning:earth-moon",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is the name of Earth’s natural satellite?",
+          "options": [
+            "The Moon",
+            "The Sun",
+            "Mars",
+            "Venus"
+          ],
+          "answer": "The Moon"
+        },
+        "fr": {
+          "question": "Quel est le nom du satellite naturel de la Terre ?",
+          "options": [
+            "La Lune",
+            "Le Soleil",
+            "Mars",
+            "Vénus"
+          ],
+          "answer": "La Lune"
+        },
+        "de": {
+          "question": "Wie heißt der natürliche Satellit der Erde?",
+          "options": [
+            "Der Mond",
+            "Die Sonne",
+            "Mars",
+            "Venus"
+          ],
+          "answer": "Der Mond"
+        }
+      }
+    },
+    {
+      "key": "learning:closest-sun",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which planet is closest to the Sun?",
+          "options": [
+            "Earth",
+            "Jupiter",
+            "Neptune",
+            "Mercury"
+          ],
+          "answer": "Mercury"
+        },
+        "fr": {
+          "question": "Quelle planète est la plus proche du Soleil ?",
+          "options": [
+            "Terre",
+            "Jupiter",
+            "Neptune",
+            "Mercure"
+          ],
+          "answer": "Mercure"
+        },
+        "de": {
+          "question": "Welcher Planet ist der Sonne am nächsten?",
+          "options": [
+            "Erde",
+            "Jupiter",
+            "Neptun",
+            "Merkur"
+          ],
+          "answer": "Merkur"
+        }
+      }
+    },
+    {
+      "key": "learning:farthest-planet",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which of the eight planets is farthest from the Sun?",
+          "options": [
+            "Earth",
+            "Mars",
+            "Neptune",
+            "Mercury"
+          ],
+          "answer": "Neptune"
+        },
+        "fr": {
+          "question": "Laquelle des huit planètes est la plus éloignée du Soleil ?",
+          "options": [
+            "Terre",
+            "Mars",
+            "Neptune",
+            "Mercure"
+          ],
+          "answer": "Neptune"
+        },
+        "de": {
+          "question": "Welcher der acht Planeten ist am weitesten von der Sonne entfernt?",
+          "options": [
+            "Erde",
+            "Mars",
+            "Neptun",
+            "Merkur"
+          ],
+          "answer": "Neptun"
+        }
+      }
+    },
+    {
+      "key": "learning:milky-way",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is the name of the galaxy containing our Solar System?",
+          "options": [
+            "Whirlpool Galaxy",
+            "Milky Way",
+            "Andromeda",
+            "Triangulum Galaxy"
+          ],
+          "answer": "Milky Way"
+        },
+        "fr": {
+          "question": "Comment s’appelle la galaxie qui contient notre système solaire ?",
+          "options": [
+            "Galaxie du Tourbillon",
+            "Voie lactée",
+            "Andromède",
+            "Galaxie du Triangle"
+          ],
+          "answer": "Voie lactée"
+        },
+        "de": {
+          "question": "Wie heißt die Galaxie, zu der unser Sonnensystem gehört?",
+          "options": [
+            "Whirlpool-Galaxie",
+            "Milchstraße",
+            "Andromedagalaxie",
+            "Dreiecksgalaxie"
+          ],
+          "answer": "Milchstraße"
+        }
+      }
+    },
+    {
+      "key": "learning:earth-orbit",
+      "category": "space",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "About how long does Earth take to orbit the Sun once?",
+          "options": [
+            "One year",
+            "One day",
+            "One week",
+            "One month"
+          ],
+          "answer": "One year"
+        },
+        "fr": {
+          "question": "Combien de temps la Terre met-elle environ pour faire un tour du Soleil ?",
+          "options": [
+            "Un an",
+            "Un jour",
+            "Une semaine",
+            "Un mois"
+          ],
+          "answer": "Un an"
+        },
+        "de": {
+          "question": "Wie lange braucht die Erde ungefähr für einen Umlauf um die Sonne?",
+          "options": [
+            "Ein Jahr",
+            "Einen Tag",
+            "Eine Woche",
+            "Einen Monat"
+          ],
+          "answer": "Ein Jahr"
+        }
+      }
+    },
+    {
+      "key": "learning:pluto",
+      "category": "space",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "How is Pluto classified by the International Astronomical Union?",
+          "options": [
+            "Star",
+            "Moon of Earth",
+            "Galaxy",
+            "Dwarf planet"
+          ],
+          "answer": "Dwarf planet"
+        },
+        "fr": {
+          "question": "Comment Pluton est-elle classée par l’Union astronomique internationale ?",
+          "options": [
+            "Étoile",
+            "Lune de la Terre",
+            "Galaxie",
+            "Planète naine"
+          ],
+          "answer": "Planète naine"
+        },
+        "de": {
+          "question": "Wie wird Pluto von der Internationalen Astronomischen Union eingestuft?",
+          "options": [
+            "Stern",
+            "Erdmond",
+            "Galaxie",
+            "Zwergplanet"
+          ],
+          "answer": "Zwergplanet"
+        }
+      }
+    },
+    {
+      "key": "learning:lungs",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which organs exchange oxygen and carbon dioxide between air and blood?",
+          "options": [
+            "Stomach",
+            "Bones",
+            "Lungs",
+            "Kidneys"
+          ],
+          "answer": "Lungs"
+        },
+        "fr": {
+          "question": "Quels organes assurent les échanges d’oxygène et de dioxyde de carbone entre l’air et le sang ?",
+          "options": [
+            "Estomac",
+            "Os",
+            "Poumons",
+            "Reins"
+          ],
+          "answer": "Poumons"
+        },
+        "de": {
+          "question": "Welche Organe tauschen Sauerstoff und Kohlenstoffdioxid zwischen Luft und Blut aus?",
+          "options": [
+            "Magen",
+            "Knochen",
+            "Lunge",
+            "Nieren"
+          ],
+          "answer": "Lunge"
+        }
+      }
+    },
+    {
+      "key": "learning:kidneys",
+      "category": "health",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "Which organs filter blood and produce urine?",
+          "options": [
+            "Bones",
+            "Kidneys",
+            "Lungs",
+            "Ears"
+          ],
+          "answer": "Kidneys"
+        },
+        "fr": {
+          "question": "Quels organes filtrent le sang et produisent l’urine ?",
+          "options": [
+            "Os",
+            "Reins",
+            "Poumons",
+            "Oreilles"
+          ],
+          "answer": "Reins"
+        },
+        "de": {
+          "question": "Welche Organe filtern das Blut und bilden Urin?",
+          "options": [
+            "Knochen",
+            "Nieren",
+            "Lunge",
+            "Ohren"
+          ],
+          "answer": "Nieren"
+        }
+      }
+    },
+    {
+      "key": "learning:heart-chambers",
+      "category": "health",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "How many chambers does a normal human heart have?",
+          "options": [
+            "4",
+            "2",
+            "3",
+            "6"
+          ],
+          "answer": "4"
+        },
+        "fr": {
+          "question": "Combien de cavités un cœur humain normal possède-t-il ?",
+          "options": [
+            "4",
+            "2",
+            "3",
+            "6"
+          ],
+          "answer": "4"
+        },
+        "de": {
+          "question": "Wie viele Hohlräume hat ein normales menschliches Herz?",
+          "options": [
+            "4",
+            "2",
+            "3",
+            "6"
+          ],
+          "answer": "4"
+        }
+      }
+    },
+    {
+      "key": "learning:sight",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which organs allow us to see?",
+          "options": [
+            "Ears",
+            "Kidneys",
+            "Lungs",
+            "Eyes"
+          ],
+          "answer": "Eyes"
+        },
+        "fr": {
+          "question": "Quels organes nous permettent de voir ?",
+          "options": [
+            "Oreilles",
+            "Reins",
+            "Poumons",
+            "Yeux"
+          ],
+          "answer": "Yeux"
+        },
+        "de": {
+          "question": "Mit welchen Organen können wir sehen?",
+          "options": [
+            "Ohren",
+            "Nieren",
+            "Lunge",
+            "Augen"
+          ],
+          "answer": "Augen"
+        }
+      }
+    },
+    {
+      "key": "learning:hearing",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which organs allow us to hear sounds?",
+          "options": [
+            "Teeth",
+            "Bones",
+            "Ears",
+            "Eyes"
+          ],
+          "answer": "Ears"
+        },
+        "fr": {
+          "question": "Quels organes nous permettent d’entendre les sons ?",
+          "options": [
+            "Dents",
+            "Os",
+            "Oreilles",
+            "Yeux"
+          ],
+          "answer": "Oreilles"
+        },
+        "de": {
+          "question": "Mit welchen Organen hören wir Geräusche?",
+          "options": [
+            "Zähne",
+            "Knochen",
+            "Ohren",
+            "Augen"
+          ],
+          "answer": "Ohren"
+        }
+      }
+    },
+    {
+      "key": "learning:skeleton",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "What is the framework formed by the bones of the body called?",
+          "options": [
+            "Muscle",
+            "Skeleton",
+            "Skin",
+            "Blood"
+          ],
+          "answer": "Skeleton"
+        },
+        "fr": {
+          "question": "Comment appelle-t-on la charpente formée par les os du corps ?",
+          "options": [
+            "Muscle",
+            "Squelette",
+            "Peau",
+            "Sang"
+          ],
+          "answer": "Squelette"
+        },
+        "de": {
+          "question": "Wie heißt das Gerüst aus den Knochen des Körpers?",
+          "options": [
+            "Muskel",
+            "Skelett",
+            "Haut",
+            "Blut"
+          ],
+          "answer": "Skelett"
+        }
+      }
+    },
+    {
+      "key": "learning:brain",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which organ is protected by the skull?",
+          "options": [
+            "Brain",
+            "Stomach",
+            "Heart",
+            "Liver"
+          ],
+          "answer": "Brain"
+        },
+        "fr": {
+          "question": "Quel organe est protégé par le crâne ?",
+          "options": [
+            "Cerveau",
+            "Estomac",
+            "Cœur",
+            "Foie"
+          ],
+          "answer": "Cerveau"
+        },
+        "de": {
+          "question": "Welches Organ wird vom Schädel geschützt?",
+          "options": [
+            "Gehirn",
+            "Magen",
+            "Herz",
+            "Leber"
+          ],
+          "answer": "Gehirn"
+        }
+      }
+    },
+    {
+      "key": "learning:muscles",
+      "category": "health",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which tissues contract to move the bones of our arms and legs?",
+          "options": [
+            "Hair",
+            "Tooth enamel",
+            "Nails",
+            "Skeletal muscles"
+          ],
+          "answer": "Skeletal muscles"
+        },
+        "fr": {
+          "question": "Quels tissus se contractent pour déplacer les os de nos bras et de nos jambes ?",
+          "options": [
+            "Cheveux",
+            "Émail dentaire",
+            "Ongles",
+            "Muscles squelettiques"
+          ],
+          "answer": "Muscles squelettiques"
+        },
+        "de": {
+          "question": "Welche Gewebe ziehen sich zusammen, um die Knochen unserer Arme und Beine zu bewegen?",
+          "options": [
+            "Haare",
+            "Zahnschmelz",
+            "Nägel",
+            "Skelettmuskeln"
+          ],
+          "answer": "Skelettmuskeln"
+        }
+      }
+    },
+    {
+      "key": "learning:keyboard",
+      "category": "technology",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which device is normally used to type text on a computer?",
+          "options": [
+            "Speaker",
+            "Printer",
+            "Keyboard",
+            "Monitor"
+          ],
+          "answer": "Keyboard"
+        },
+        "fr": {
+          "question": "Quel périphérique utilise-t-on habituellement pour saisir du texte sur un ordinateur ?",
+          "options": [
+            "Haut-parleur",
+            "Imprimante",
+            "Clavier",
+            "Écran"
+          ],
+          "answer": "Clavier"
+        },
+        "de": {
+          "question": "Mit welchem Gerät gibt man normalerweise Text am Computer ein?",
+          "options": [
+            "Lautsprecher",
+            "Drucker",
+            "Tastatur",
+            "Bildschirm"
+          ],
+          "answer": "Tastatur"
+        }
+      }
+    },
+    {
+      "key": "learning:browser",
+      "category": "technology",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which type of software is used to visit websites?",
+          "options": [
+            "File compressor",
+            "Web browser",
+            "Calculator",
+            "Audio recorder"
+          ],
+          "answer": "Web browser"
+        },
+        "fr": {
+          "question": "Quel type de logiciel permet de consulter des sites web ?",
+          "options": [
+            "Compresseur de fichiers",
+            "Navigateur web",
+            "Calculatrice",
+            "Enregistreur audio"
+          ],
+          "answer": "Navigateur web"
+        },
+        "de": {
+          "question": "Mit welcher Art von Software besucht man Webseiten?",
+          "options": [
+            "Dateikomprimierer",
+            "Webbrowser",
+            "Taschenrechner",
+            "Audiorekorder"
+          ],
+          "answer": "Webbrowser"
+        }
+      }
+    },
+    {
+      "key": "learning:usb",
+      "category": "technology",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "What does USB stand for?",
+          "options": [
+            "Universal Serial Bus",
+            "Unified System Browser",
+            "User Storage Board",
+            "Universal Screen Button"
+          ],
+          "answer": "Universal Serial Bus"
+        },
+        "fr": {
+          "question": "Que signifie le sigle USB ?",
+          "options": [
+            "Universal Serial Bus",
+            "Unified System Browser",
+            "User Storage Board",
+            "Universal Screen Button"
+          ],
+          "answer": "Universal Serial Bus"
+        },
+        "de": {
+          "question": "Wofür steht die Abkürzung USB?",
+          "options": [
+            "Universal Serial Bus",
+            "Unified System Browser",
+            "User Storage Board",
+            "Universal Screen Button"
+          ],
+          "answer": "Universal Serial Bus"
+        }
+      }
+    },
+    {
+      "key": "learning:printer",
+      "category": "technology",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "Which device produces a paper copy of a document?",
+          "options": [
+            "Microphone",
+            "Mouse",
+            "Webcam",
+            "Printer"
+          ],
+          "answer": "Printer"
+        },
+        "fr": {
+          "question": "Quel appareil permet d’obtenir une copie papier d’un document ?",
+          "options": [
+            "Microphone",
+            "Souris",
+            "Webcam",
+            "Imprimante"
+          ],
+          "answer": "Imprimante"
+        },
+        "de": {
+          "question": "Welches Gerät erstellt eine Papierkopie eines Dokuments?",
+          "options": [
+            "Mikrofon",
+            "Maus",
+            "Webcam",
+            "Drucker"
+          ],
+          "answer": "Drucker"
+        }
+      }
+    },
+    {
+      "key": "learning:chess-board",
+      "category": "sports",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "How many squares are on a standard chessboard?",
+          "options": [
+            "81",
+            "100",
+            "64",
+            "32"
+          ],
+          "answer": "64"
+        },
+        "fr": {
+          "question": "Combien de cases un échiquier standard possède-t-il ?",
+          "options": [
+            "81",
+            "100",
+            "64",
+            "32"
+          ],
+          "answer": "64"
+        },
+        "de": {
+          "question": "Wie viele Felder hat ein normales Schachbrett?",
+          "options": [
+            "81",
+            "100",
+            "64",
+            "32"
+          ],
+          "answer": "64"
+        }
+      }
+    },
+    {
+      "key": "learning:football",
+      "category": "sports",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "How many players per team start an association football match on the field?",
+          "options": [
+            "15",
+            "11",
+            "5",
+            "7"
+          ],
+          "answer": "11"
+        },
+        "fr": {
+          "question": "Combien de joueurs par équipe sont sur le terrain au début d’un match de football ?",
+          "options": [
+            "15",
+            "11",
+            "5",
+            "7"
+          ],
+          "answer": "11"
+        },
+        "de": {
+          "question": "Wie viele Spieler einer Mannschaft stehen zu Beginn eines Fußballspiels auf dem Feld?",
+          "options": [
+            "15",
+            "11",
+            "5",
+            "7"
+          ],
+          "answer": "11"
+        }
+      }
+    },
+    {
+      "key": "learning:volleyball",
+      "category": "sports",
+      "child_friendly": false,
+      "translations": {
+        "en": {
+          "question": "How many players from one team are on court in standard indoor volleyball?",
+          "options": [
+            "6",
+            "4",
+            "8",
+            "11"
+          ],
+          "answer": "6"
+        },
+        "fr": {
+          "question": "Combien de joueurs d’une équipe sont sur le terrain en volley-ball en salle classique ?",
+          "options": [
+            "6",
+            "4",
+            "8",
+            "11"
+          ],
+          "answer": "6"
+        },
+        "de": {
+          "question": "Wie viele Spieler einer Mannschaft stehen beim klassischen Hallenvolleyball auf dem Feld?",
+          "options": [
+            "6",
+            "4",
+            "8",
+            "11"
+          ],
+          "answer": "6"
+        }
+      }
+    },
+    {
+      "key": "learning:connect-four",
+      "category": "sports",
+      "child_friendly": true,
+      "translations": {
+        "en": {
+          "question": "How many discs must you align to win at Connect Four?",
+          "options": [
+            "3",
+            "5",
+            "6",
+            "4"
+          ],
+          "answer": "4"
+        },
+        "fr": {
+          "question": "Combien de jetons faut-il aligner pour gagner au Puissance 4 ?",
+          "options": [
+            "3",
+            "5",
+            "6",
+            "4"
+          ],
+          "answer": "4"
+        },
+        "de": {
+          "question": "Wie viele Spielsteine muss man bei Vier gewinnt in eine Reihe bringen?",
+          "options": [
+            "3",
+            "5",
+            "6",
+            "4"
+          ],
+          "answer": "4"
+        }
+      }
+    }
+  ]
+}

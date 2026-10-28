@@ -37,13 +37,14 @@
         .settings-nav a:hover { background: #e9e9f2; }
         @media (max-width: 600px) { .container { padding: 18px; } .settings-layout { grid-template-columns: 1fr; } .settings-nav { flex-direction: row; flex-wrap: wrap; } }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
             <a class="brand" href="{{ route('accueil') }}">{{ __('Game space') }}</a>
             <nav aria-label="{{ __('Main navigation') }}">
-                <a href="{{ route('accueil') }}">{{ __('Home') }}</a>
+                <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Home') }}</a>
                 @include('partials.user-menu')
             </nav>
         </header>
@@ -57,10 +58,11 @@
                     @endif
                     <h2 id="profile-title">{{ $user->name }}</h2>
                     <p>{{ $user->email }}</p>
-                    <a href="{{ route('preferences.edit', ['section' => 'account']) }}">{{ __('Edit account details') }}</a>
+                    <a class="action-button action-secondary" href="{{ route('preferences.edit', ['section' => 'account']) }}">{{ __('Edit account details') }}</a>
                 </section>
             </div>
         </main>
     </div>
+    @include('partials.chatbox')
 </body>
 </html>

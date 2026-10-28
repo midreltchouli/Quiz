@@ -1,0 +1,60 @@
+ENRICHISSEMENT DU QUIZ AVEC MISTRAL
+
+Premier essai : lancement manuel, 1 à 5 propositions, 5 appels Mistral maximum.
+Il n'existe aucun lancement planifié ni route publique pour cet outil.
+Les appels consomment le quota API Mistral ; ce code ne garantit pas leur gratuité.
+Utiliser le mode gratuit dans la console Mistral pour commencer et vérifier ses limites.
+
+CONFIGURATION
+Créer une clé dans https://console.mistral.ai/ et la mettre dans le fichier .env local :
+MISTRAL_API_KEY=VOTRE_CLE
+MISTRAL_MODEL=mistral-small-latest
+Ne jamais publier .env ni mettre une vraie clé dans .env.example.
+
+Puis, depuis le dossier du projet :
+php artisan config:clear
+php artisan migrate
+
+GENERER
+php artisan quiz:suggest science --count=5 --difficulty=medium
+Catégories : history, geography, nature, space, health, science, literature,
+arts, math, technology, sports. general et kids sont des sélections transversales.
+Difficultés : easy, medium, hard. easy n'apparaît pas dans les catégories ordinaires.
+Le booléen child_friendly décide de l'inclusion dans la sélection enfants.
+
+L'agent utilise trois outils Laravel : recherche de références Wikipédia en anglais,
+recherche par mots-clés dans la banque existante, soumission des propositions.
+Seuls les liens réellement renvoyés par la recherche sont acceptés.
+La source et son extrait sont conservés pour la relecture. Il ne faut pas reproduire
+textuellement les extraits dans les questions ; reformuler et conserver l'attribution.
+La présence d'une source ne constitue pas une vérification indépendante des faits.
+Les doublons normalisés sont rejetés ; les paraphrases demandent une relecture humaine.
+
+RELIRE ET PUBLIER
+php artisan quiz:suggestions list
+php artisan quiz:suggestions show 1
+Après avoir vérifié la source, la réponse, le niveau et les trois langues :
+php artisan quiz:suggestions approve 1
+Ou, pour refuser une proposition :
+php artisan quiz:suggestions reject 1 --notes="Reponse ambigue"
+Remplacer 1 par l'identifiant affiché. La consultation et la validation ne contactent pas Mistral.
+
+DONNEES
+question_suggestions : brouillons pending/approved/rejected, source, extrait, modèle et date de relecture.
+questions : ajout uniquement lors d'une validation explicite avec approve.
+Une validation répétée du même brouillon ne crée pas un deuxième exemplaire.
+Aucune donnée personnelle, conversation ou paiement n'est envoyé à Mistral.
+Seuls les textes des questions trouvées par les outils et les références sont transmis.
+Une erreur fournisseur interrompt le lancement sans relance automatique ni lot partiel enregistré.
+Un lot incomplet mais valide peut être enregistré si la limite des 5 appels est atteinte.
+
+TESTS SANS APPEL PAYANT
+php artisan test --filter=QuestionEnrichmentTest
+
+FICHIERS
+config/services.php : configuration Mistral.
+app/Services/Quiz/QuestionEnrichmentAgent.php : appels API et outils limités.
+app/Models/QuestionSuggestion.php : brouillons et publication dans le quiz.
+app/Console/Commands/SuggestQuizQuestions.php : génération depuis le terminal.
+app/Console/Commands/ReviewQuizSuggestions.php : consultation, validation et refus.
+database/migrations/2026_10_28_000000_create_question_suggestions_table.php : nouvelle table.

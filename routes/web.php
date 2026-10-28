@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController; // Importe le contrôleur des conversations et des messages du chat.
 use App\Http\Controllers\ConnectFourController;
 use App\Http\Controllers\GamePlayersController;
 use App\Http\Controllers\Quizcontroller;
@@ -18,6 +19,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/settings.php';
+
+Route::middleware('auth')->prefix('chat')->name('chat.')->group(function () { // auth exige une connexion ; prefix() ajoute /chat aux URL ; name() préfixe les noms des routes.
+    Route::get('/recipients', [ChatController::class, 'recipients'])->middleware('throttle:60,1')->name('recipients');
+    Route::post('/conversations/{conversation}/reply', [ChatController::class, 'reply'])->middleware('throttle:10,1')->name('reply');
+    Route::get('/conversations', [ChatController::class, 'index'])->name('index'); // GET liste uniquement les conversations du compte connecté.
+    Route::post('/conversations', [ChatController::class, 'store'])->middleware('throttle:10,1')->name('store'); // POST crée une conversation ; throttle limite à dix créations par minute et par compte.
+    Route::get('/conversations/{conversation}', [ChatController::class, 'show'])->name('show'); // GET consulte l'historique après vérification des droits dans le contrôleur.
+    Route::post('/conversations/{conversation}/messages', [ChatController::class, 'send'])->middleware('throttle:30,1')->name('send'); // POST envoie un message ; throttle limite à trente envois par minute et par compte.
+}); // Fin du groupe des routes du chat ; les requêtes POST conservent la protection CSRF des routes web.
 
 Route::middleware('auth')->group(function () {
     Route::get('/games/{game}/players', [GamePlayersController::class, 'show'])->whereIn('game', ['quiz', 'connect-four'])->name('games.players');

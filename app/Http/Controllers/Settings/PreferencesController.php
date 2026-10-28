@@ -28,7 +28,8 @@ class PreferencesController extends Controller
         ]);
         $request->user()->forceFill($validated)->save();
 
-        return redirect()->route('preferences.edit')->with('status', 'preferences-updated');
+        return redirect()->route($request->input('return_to') === 'home' ? 'accueil' : 'preferences.edit')
+            ->with('status', 'preferences-updated');
     }
 
     public function export(Request $request)

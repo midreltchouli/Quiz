@@ -70,12 +70,12 @@ class GamePlayersTest extends TestCase
     {
         $this->seed(QuestionSeeder::class);
         // An odd bank of five questions gives two players two questions each.
-        Question::whereNotIn('id', Question::orderBy('id')->limit(5)->pluck('id'))->delete();
+        Question::whereNotIn('id', Question::inCategory('general')->orderBy('id')->limit(5)->pluck('id'))->delete();
         $user = User::factory()->create();
         $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 2, 'players' => ['Alice', 'Bob']]);
         $questions = Question::orderBy('id')->get();
-        foreach ($questions->take(4) as $index => $question) {
-            $this->get('/quiz')->assertViewHas('currentPlayer', $index % 2)->assertViewHas('total', 4);
+        for ($index = 0; $index < 4; $index++) {
+            $question = $this->get('/quiz')->assertViewHas('currentPlayer', $index % 2)->assertViewHas('total', 4)->viewData('question');
             $answer = $index % 2 === 0 ? $question->answer : collect($question->options)->first(fn ($option) => $option !== $question->answer);
             $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $answer])->assertRedirect('/quiz');
         }
@@ -103,7 +103,7 @@ class GamePlayersTest extends TestCase
         $this->seed(QuestionSeeder::class);
         $user = User::factory()->create(['quiz_questions_answered' => 8]);
         $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 2, 'players' => ['Alice', 'Bob']]);
-        $question = Question::first();
+        $question = $this->get('/quiz')->viewData('question');
         $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $question->answer]);
         $this->post('/games/connect-four/players', ['player_count' => 2, 'players' => ['Claire', 'David']])
             ->assertSessionHas('quiz_players.0.score', 1)->assertSessionHas('question_index', 1);
@@ -121,10 +121,10 @@ class GamePlayersTest extends TestCase
         config(['billing.free_question_limit' => 1]);
         $user = User::factory()->create();
         $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 2, 'players' => ['Alice', 'Bob']]);
-        $question = Question::first();
+        $question = $this->get('/quiz')->viewData('question');
         $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $question->answer]);
         $this->get('/quiz')->assertViewIs('quiz_upgrade')->assertSee('Alice')->assertSee('Bob');
-        $next = Question::orderBy('id')->skip(1)->first();
+        $next = Question::findOrFail(session('quiz_question_ids.1'));
         $this->post('/quiz/verified', ['question_id' => $next->id, 'reponse' => $next->answer])
             ->assertSessionHas('question_index', 1)->assertSessionHas('quiz_players.1.answered', 0);
         $user->forceFill(['quiz_upgraded_at' => now()])->save();
@@ -135,7 +135,7 @@ class GamePlayersTest extends TestCase
     {
         $this->seed(QuestionSeeder::class);
         $this->actingAs(User::factory()->create())->post('/games/quiz/players', ['player_count' => 2, 'players' => ['Alice', 'Bob']]);
-        $question = Question::first();
+        $question = $this->get('/quiz')->viewData('question');
         for ($attempt = 0; $attempt < 2; $attempt++) {
             $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $question->answer]);
         }

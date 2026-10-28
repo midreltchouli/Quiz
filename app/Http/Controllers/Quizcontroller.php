@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\User;
+use App\Services\Games\QuizCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -12,9 +13,8 @@ class Quizcontroller extends Controller
 {
     public function index(Request $request)
     {
-        $questions = Question::orderBy('id')->get();
-        if ($questions->isEmpty()) {
-            $request->session()->forget(['question_index', 'score']);
+        if (! Question::exists()) {
+            $request->session()->forget(['question_index', 'score', 'quiz_question_ids']);
 
             return view('quiz_empty');
         }
@@ -27,13 +27,10 @@ class Quizcontroller extends Controller
             ]]);
         }
         $players = $request->session()->get('quiz_players', []);
-        if ($players !== []) {
-            // Complete rounds give every participant the same number of questions.
-            $questions = $questions->take(intdiv($questions->count(), count($players)) * count($players));
-        }
+        $questionIds = $this->questionIds($request, max(1, count($players)));
         $index = $request->session()->get('question_index', 0);
-        if ($players !== [] && $index >= $questions->count()) {
-            return view('quiz_finish', ['score' => $request->session()->get('score'), 'total' => $questions->count(), 'players' => $players]);
+        if ($players !== [] && $index >= count($questionIds)) {
+            return view('quiz_finish', ['score' => $request->session()->get('score'), 'total' => count($questionIds), 'players' => $players]);
         }
         if ($request->user()->refresh()->hasReachedFreeQuizLimit()) {
             return view('quiz_upgrade', [
@@ -44,15 +41,21 @@ class Quizcontroller extends Controller
         }
 
         if ($players === []) {
-            return view('games.players', ['gameType' => 'quiz']);
+            return view('games.players', ['gameType' => 'quiz', 'quizCategories' => QuizCategories::choices()]);
         }
 
-        return view('quiz', ['question' => $questions[$index], 'number' => $index + 1, 'total' => $questions->count(), 'players' => $players, 'currentPlayer' => $index % count($players)]);
+        $question = Question::find($questionIds[$index]);
+        if (! $question) {
+            return view('quiz_empty');
+        }
+        $question = $question->forLocale(app()->getLocale());
+
+        return view('quiz', ['question' => $question, 'number' => $index + 1, 'total' => count($questionIds), 'players' => $players, 'currentPlayer' => $index % count($players)]);
     }
 
     public function restart(Request $request)
     {
-        $request->session()->forget(['question_index', 'score', 'resultat']);
+        $request->session()->forget(['question_index', 'score', 'resultat', 'quiz_question_ids']);
         $players = $request->session()->get('quiz_players', []);
         if ($players !== []) {
             foreach ($players as &$player) {
@@ -76,14 +79,15 @@ class Quizcontroller extends Controller
             return redirect()->route('quiz');
         }
         $index = $request->session()->get('question_index', 0);
-        $total = intdiv(Question::count(), count($players)) * count($players);
-        if ($index >= $total) {
+        $questionIds = $this->questionIds($request, count($players));
+        if ($index >= count($questionIds)) {
             return redirect()->route('quiz');
         }
-        $question = Question::orderBy('id')->skip($index)->first();
+        $question = Question::find($questionIds[$index]);
         if (! $question) {
             return redirect()->route('quiz');
         }
+        $question = $question->forLocale(app()->getLocale());
         $validated = $request->validate([
             'question_id' => ['required', 'integer'],
             'reponse' => ['required', 'string', Rule::in($question->options)],
@@ -118,7 +122,30 @@ class Quizcontroller extends Controller
         $feedback = $correct
             ? __('The answer is correct.')
             : __('The answer is incorrect. The correct answer is: :answer', ['answer' => $question->answer]);
+        $explanation = $question->translations[app()->getLocale()]['explanation'] ?? null;
+        if ($explanation) {
+            $feedback .= ' '.$explanation;
+        }
 
         return redirect()->route('quiz')->with('resultat', $players[$currentPlayer]['name'].' : '.$feedback);
+    }
+
+    private function questionIds(Request $request, int $playerCount): array
+    {
+        if (! $request->session()->has('quiz_question_ids')) {
+            // Preserve the order of older games already in progress.
+            $query = Question::inCategory($request->session()->get('quiz_category', 'general'));
+            if ($request->session()->get('question_index', 0) > 0) {
+                $query->orderBy('id');
+            } else {
+                $query->inRandomOrder();
+            }
+            $ids = $query->pluck('id')->all();
+            // Complete rounds give every participant the same number of questions.
+            $ids = array_slice($ids, 0, intdiv(count($ids), $playerCount) * $playerCount);
+            $request->session()->put('quiz_question_ids', $ids);
+        }
+
+        return $request->session()->get('quiz_question_ids');
     }
 }

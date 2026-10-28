@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="640" y2="360" gradientUnits="userSpaceOnUse"><stop stop-color="#dff5ff"/><stop offset="1" stop-color="#e2faf1"/></linearGradient>
+    <linearGradient id="board" x1="200" y1="50" x2="420" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#3ba4ff"/><stop offset="1" stop-color="#2563d9"/></linearGradient>
+    <pattern id="holes" x="194" y="54" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="18" cy="18" r="13" fill="#eaf7ff"/><path d="M5 18a13 13 0 0 1 26 0" stroke="#174da5" stroke-opacity=".3" stroke-width="3"/></pattern>
+    <g id="red"><circle r="13" fill="#ff636b"/><circle r="9" stroke="#da424e" stroke-width="2"/></g>
+    <g id="yellow"><circle r="13" fill="#ffd34f"/><circle r="9" stroke="#e7ab2e" stroke-width="2"/></g>
+  </defs>
+  <rect width="640" height="360" rx="20" fill="url(#sky)"/>
+  <circle cx="555" cy="55" r="85" fill="white" fill-opacity=".45"/>
+  <circle cx="80" cy="290" r="65" fill="white" fill-opacity=".5"/>
+  <ellipse cx="320" cy="318" rx="172" ry="15" fill="#b9dfe8" fill-opacity=".6"/>
+  <rect x="177" y="46" width="286" height="250" rx="18" fill="#1953b6"/>
+  <rect x="177" y="38" width="286" height="250" rx="18" fill="url(#board)"/>
+  <rect x="194" y="54" width="252" height="216" fill="url(#holes)"/>
+  <use href="#red" x="212" y="252"/><use href="#yellow" x="248" y="252"/>
+  <use href="#red" x="284" y="252"/><use href="#yellow" x="320" y="252"/>
+  <use href="#yellow" x="356" y="252"/><use href="#red" x="392" y="252"/>
+  <use href="#red" x="428" y="252"/><use href="#yellow" x="248" y="216"/>
+  <use href="#red" x="284" y="216"/><use href="#yellow" x="320" y="216"/>
+  <use href="#red" x="356" y="216"/><use href="#yellow" x="392" y="216"/>
+  <use href="#red" x="284" y="180"/><use href="#red" x="320" y="180"/>
+  <use href="#yellow" x="356" y="180"/><use href="#yellow" x="320" y="144"/>
+  <path d="M188 288v22h48M452 288v22h-48" stroke="#2563d9" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <use href="#yellow" x="125" y="276"/><use href="#red" x="509" y="262"/>
+  <path d="m114 95 5 12 14 1-11 9 3 13-11-7-12 7 3-13-10-9 14-1z" fill="#ffd34f"/>
+</svg>

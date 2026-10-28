@@ -1,0 +1,196 @@
+/* A bright, shared backdrop for the game space and its account screens. */
+html {
+    min-height: 100%;
+    background: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    box-sizing: border-box;
+    color: #202039;
+    background-color: #ffffff;
+    background-image:
+        radial-gradient(ellipse at 0% 0%, #aee6ff 0%, transparent 48%),
+        radial-gradient(ellipse at 100% 100%, #bceeff 0%, transparent 48%),
+        linear-gradient(135deg, #f2fbff 0%, #ffffff 42%, #ffffff 65%, #edfaff 100%);
+    background-repeat: no-repeat;
+}
+
+.card,
+.quiz-card,
+.login-card,
+.register-card {
+    border: 1px solid #dce9ee;
+    box-shadow: 0 12px 32px rgb(58 100 126 / 8%);
+}
+
+.quiz-card {
+    align-self: flex-start;
+}
+
+/* Colorful edges make the home screen feel like a collection of games. */
+.games .card {
+    border-top: 5px solid #8271e8;
+    border-radius: 20px;
+}
+
+.games .card:nth-child(2n) {
+    border-top-color: #18a88b;
+}
+
+.game-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.games .card:nth-child(2n) .badge {
+    background: #e3f8f0;
+    color: #176b59;
+}
+
+.hero h1 {
+    color: #30265c;
+}
+
+/* Navigation actions share button sizing while retaining native links. */
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background: #4338ca;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.action-button.action-secondary {
+    background: #eef7ff;
+    border-color: #c8e1f5;
+    color: #205b8c;
+}
+
+.action-button.action-secondary:hover {
+    background: #dcefff;
+    border-color: #94c5e9;
+    color: #17476f;
+}
+
+.action-button:focus-visible {
+    outline: 3px solid #818cf8;
+    outline-offset: 3px;
+}
+
+/* Shared, fluid layout for both games and their setup screens. */
+.purchases .purchase-search { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; }
+.purchase-search > div { flex: 1 1 180px; min-width: 0; }
+.purchase-search .button { margin-top: 0; }
+.purchase-list { margin-top: 28px; }
+.purchase-item { border-top: 1px solid #dce9ee; padding: 24px 0; min-width: 0; }
+.purchase-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.purchase-heading h3 { margin: 0; }
+.purchase-status { padding: 6px 12px; border-radius: 20px; background: #eef0ff; color: #3730a3; font-size: .9em; }
+.purchase-status-paid { background: #e3f8f0; color: #176b59; }
+.purchase-status-failed, .purchase-status-expired { background: #fff0f0; color: #9f2424; }
+.purchase-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 16px; margin: 20px 0; }
+.purchase-data dt { color: #62627a; font-size: .9em; margin-bottom: 6px; }
+.purchase-data dd { margin: 0; overflow-wrap: anywhere; }
+.purchase-reference { grid-column: 1 / -1; }
+.purchase-pagination { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+body.game-page {
+    display: block;
+    margin: 0;
+    padding: clamp(12px, 2vw, 32px);
+}
+
+.game-page .game-shell {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1600px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.game-page .game-surface {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    padding: clamp(18px, 3vw, 48px);
+    overflow-wrap: anywhere;
+}
+
+.quiz-layout {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 3vh, 48px);
+    min-height: calc(100svh - clamp(24px, 4vw, 64px));
+}
+
+.game-navigation { display: flex; align-items: center; gap: 16px; }
+.quiz-play { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.quiz-play h1 { line-height: 1.4; }
+.quiz-play .options label { line-height: 1.5; }
+.quiz-play .options label:has(input:checked) { background: #eef0ff; border-color: #4f46e5; }
+.quiz-play .options label:focus-within { outline: 3px solid #818cf8; outline-offset: 2px; }
+.quiz-play button { min-height: 44px; font: inherit; }
+
+.game-details {
+    border-top: 1px solid #dce9ee;
+    padding-top: clamp(20px, 2vw, 32px);
+    line-height: 1.6;
+}
+
+.quiz-metadata { display: grid; gap: 16px; }
+.quiz-metadata p, .quiz-players p { margin: 0; }
+.quiz-players { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+.player-scores { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; padding: 0; margin: 12px 0 0; }
+.player-scores li { padding: 8px 14px; background: #eef7ff; border-radius: 8px; }
+.connect-four-surface { display: flex; flex-direction: column; }
+.connect-four-play { width: min(100%, 860px); margin: auto; }
+.connect-four-surface .actions { gap: 20px; }
+.game-page .setup-surface { min-height: calc(100svh - 140px); }
+.game-page .game-summary { background: white; border-radius: 16px; min-height: calc(100svh - clamp(24px, 4vw, 64px)); }
+.game-summary p, .game-summary li { line-height: 1.7; }
+
+@media (min-width: 768px) {
+    .quiz-metadata { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+}
+
+@media (min-width: 1024px) {
+    .quiz-play h1 { font-size: clamp(1.6rem, 2vw, 2.4rem); margin-bottom: 2rem; }
+    .quiz-play .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-bottom: 24px; }
+    .quiz-play .options label { display: flex; align-items: center; min-width: 0; padding: 24px; margin-bottom: 0; }
+    .quiz-play .options input { flex-shrink: 0; }
+    .game-page .connect-four-surface { min-height: calc(100svh - 220px); }
+    .connect-four-play { width: min(100%, max(540px, calc((100svh - 420px) * 7 / 6)), 860px); }
+    .game-page .category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+    .game-page .setup-surface form > [data-player-field] { max-width: 720px; }
+    .game-page .setup-surface #player-count { max-width: 720px; }
+}
+

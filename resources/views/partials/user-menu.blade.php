@@ -28,8 +28,8 @@
             <small>{{ auth()->user()->email }}</small>
         </div>
         <a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+        <a href="{{ route('purchases.index') }}">{{ __('Purchases and subscription') }}</a>
         <a href="{{ route('preferences.edit') }}">{{ __('Settings') }}</a>
-        <a href="{{ route('accueil') }}#jeux">{{ __('My games') }}</a>
         <form method="POST" action="{{ route('quiz.logout') }}">
             @csrf
             <button type="submit">{{ __('Log out') }}</button>

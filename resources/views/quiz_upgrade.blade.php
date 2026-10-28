@@ -20,10 +20,12 @@
         .notice { padding: 12px; background: #eef0ff; border-radius: 8px; }
         .error { background: #fff0f0; color: #9f2424; }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
-    <main class="card">
-        <a href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
+<body class="game-page">
+    <div class="game-shell">
+    <main class="card game-surface game-summary">
+        <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
         <p><span class="badge">{{ __('Free version') }}</span></p>
         <h1>{{ __('Continue with the full quiz') }}</h1>
         <p>{{ __('You have used your :limit free questions. Upgrade your account to answer the remaining questions.', ['limit' => $limit]) }}</p>
@@ -36,7 +38,7 @@
                 @endforeach
             </ul>
         @endif
-        <p><a href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change players') }}</a></p>
+        <p><a class="action-button action-secondary" href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change category or players') }}</a></p>
         @if (session('resultat') && (auth()->user()->quiz_notifications ?? true))
             <p class="notice" role="status">{{ session('resultat') }}</p>
         @endif
@@ -56,5 +58,7 @@
             <p>{{ __('Payment is not available yet.') }}</p>
         @endif
     </main>
+    </div>
+    @include('partials.chatbox')
 </body>
 </html>

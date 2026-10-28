@@ -1,0 +1,41 @@
+#chatbox-root { --chat-accent: #4f46e5; --chat-border: #e2e3ed; position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 1000; font: 15px/1.5 system-ui, sans-serif; color: #202039; text-align: left; }
+#chatbox-root * { box-sizing: border-box; }
+#chatbox-root [hidden] { display: none !important; }
+#chatbox-root button, #chatbox-root input, #chatbox-root textarea { font: inherit; }
+#chatbox-root button { cursor: pointer; width: auto; margin: 0; border: 1px solid var(--chat-border); border-radius: 8px; padding: 8px 12px; background: white; color: #303049; }
+#chatbox-root button:hover { background: #eef0ff; }
+#chatbox-root button:disabled { cursor: wait; opacity: .55; }
+#chatbox-root :focus-visible { outline: 3px solid #818cf8; outline-offset: 2px; }
+#chatbox-toggle { display: flex; align-items: center; gap: 9px; margin-left: auto; box-shadow: 0 6px 24px #24215c25; }
+#chatbox-root #chatbox-toggle, #chatbox-root #chatbox-send { background: var(--chat-accent); color: white; border-color: transparent; }
+#chatbox-panel { position: absolute; right: 0; bottom: 58px; width: min(740px, calc(100vw - 32px)); height: min(600px, calc(100dvh - 105px)); background: #fff; border: 1px solid var(--chat-border); border-radius: 16px; box-shadow: 0 16px 65px #20203933; overflow: hidden; display: flex; flex-direction: column; }
+#chatbox-root .chatbox-header { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; background: #f5f5ff; border-bottom: 1px solid var(--chat-border); }
+#chatbox-root .chatbox-header small { display: block; color: #62627a; font-size: 12px; }
+#chatbox-close { font-size: 22px !important; line-height: 1; }
+.chatbox-columns { display: grid; grid-template-columns: 210px minmax(0, 1fr); flex: 1; min-height: 0; }
+.chatbox-sidebar { background: #fafaff; border-right: 1px solid var(--chat-border); padding: 10px; overflow-y: auto; }
+#chatbox-root .chatbox-sidebar button { width: 100%; text-align: left; margin-bottom: 6px; overflow-wrap: anywhere; }
+#chatbox-root button[aria-current="true"] { background: #e8e7ff; border-color: #a9a3ef; }
+.chatbox-main { display: flex; flex-direction: column; padding: 14px; min-height: 0; min-width: 0; }
+#chatbox-title { padding-bottom: 10px; border-bottom: 1px solid var(--chat-border); overflow-wrap: anywhere; }
+#chatbox-create { overflow-y: auto; }
+#chatbox-root #chatbox-search { width: 100%; padding: 10px; border: 1px solid var(--chat-border); border-radius: 8px; margin: 6px 0 12px; background: white; color: #202039; }
+#chatbox-root #chatbox-recipients button { display: block; width: 100%; text-align: left; margin-bottom: 6px; }
+#chatbox-messages { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 12px 2px; min-height: 40px; }
+.chatbox-bubble { max-width: 88%; width: fit-content; margin: 0 auto 12px 0; padding: 10px 12px; background: #f0f0f6; border-radius: 12px 12px 12px 3px; overflow-wrap: anywhere; }
+.chatbox-bubble[data-own="true"] { margin-left: auto; margin-right: 0; background: #e8e7ff; border-radius: 12px 12px 3px 12px; }
+.chatbox-bubble small { display: block; color: #56566e; font-size: 11px; margin-bottom: 4px; }
+.chatbox-bubble p { white-space: pre-wrap; margin: 0; color: inherit; line-height: 1.5; }
+#chatbox-root #chatbox-status, #chatbox-root .chatbox-notice { margin: 6px 0; font-size: 12px; color: #62627a; }
+#chatbox-root #chatbox-error { background: #fff0f0; color: #9b2525; padding: 8px; margin: 6px 0; font-size: 13px; }
+#chatbox-form { display: flex; gap: 8px; padding-top: 8px; }
+#chatbox-root #chatbox-input { flex: 1; min-width: 0; resize: none; border: 1px solid var(--chat-border); border-radius: 8px; padding: 9px; background: white; color: #202039; }
+.chatbox-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 600px) {
+    .chatbox-columns { grid-template-columns: 125px minmax(0, 1fr); }
+    .chatbox-main { padding: 10px; }
+    .chatbox-sidebar { padding: 6px; font-size: 12px; }
+    #chatbox-root .chatbox-sidebar button { padding: 8px 6px; }
+    #chatbox-form { flex-direction: column; }
+    .chatbox-bubble { max-width: 96%; }
+}

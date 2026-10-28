@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ __('Quiz results') }}</title>
 <style>body { font-family: {{ auth()->user()->interfaceFont() }}; font-size: {{ auth()->user()->interfaceTextSize() }}; }</style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
+<body class="game-page">
+    <main class="game-shell">
+    <section class="card game-surface game-summary">
 
     <h1>{{ __('Quiz completed!') }}</h1>
-    <a href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
+    <p>{{ __('Category') }} : <strong>{{ \App\Services\Games\QuizCategories::label(session('quiz_category', 'general')) }}</strong></p>
+    <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
     <p>{{ __(count($players) > 1 ? 'Combined score: :score / :total' : 'Your score: :score / :total', ['score' => $score, 'total' => $total]) }}</p>
     <h2>{{ __('Player scores') }}</h2>
     @php
@@ -25,11 +29,14 @@
             <li>{{ $player['name'] }} : {{ $player['score'] }} / {{ $player['answered'] }}</li>
         @endforeach
     </ol>
-    <p><a href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change players') }}</a></p>
+    <p><a class="action-button action-secondary" href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change category or players') }}</a></p>
     <form method="POST" action="{{ route('quiz.restart') }}">
         @csrf
-        <button type="submit">{{ __('Start again') }}</button>
+        <button class="action-button" type="submit">{{ __('Start again') }}</button>
     </form>
 
+    </section>
+    </main>
+    @include('partials.chatbox')
 </body>
 </html>

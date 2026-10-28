@@ -9,9 +9,7 @@ import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 
 export default defineConfig({
-    devtools: {
-        apply: 'serve',
-    },
+    
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./resources/js', import.meta.url)),
@@ -40,9 +38,6 @@ export default defineConfig({
         }),
         wayfinder({
             formVariants: true,
-        }),
-        vueDevTools({
-            appendTo: 'resources/js/app.ts',
         }),
     ],
 });

@@ -1,0 +1,147 @@
+CHATBOX — STOCKAGE, FICHIERS ET VÉRIFICATION
+
+État constaté le 22 octobre 2026
+
+Le stockage existait avant cette intervention. Selon les métadonnées locales,
+database/migrations/2026_10_20_000000_create_chat_tables.php a été créé le
+20 octobre 2026 à 13:20 ; ChatController.php a été créé ce jour-là à 14:17.
+Ces dates de fichiers ne prouvent pas à quel moment la migration a été exécutée.
+
+La base locale configurée est SQLite : database/database.sqlite.
+Une vérification en lecture seule a confirmé la migration du chat dans le lot 5
+et la présence des tables conversations, conversation_user et messages.
+Au début de cette intervention, les trois tables contenaient zéro ligne.
+Les fichiers du chat n'étaient pas encore ajoutés à Git : pas de commit permettant
+de dater leur introduction dans l'historique du dépôt.
+
+OÙ SONT STOCKÉES LES DONNÉES ?
+
+- database/migrations/2026_10_20_000000_create_chat_tables.php : structure SQL.
+  conversations contient le type human/ai et les dates.
+  conversation_user associe les participants aux conversations.
+  messages contient conversation_id, user_id, role, content et les dates.
+- app/Models/Conversation.php : relations participants() et messages().
+- app/Models/Message.php : relations conversation() et user().
+- app/Models/User.php : relation conversations() ajoutée précédemment.
+- app/Http/Controllers/ChatController.php : store() utilise Conversation::create()
+  puis participants()->attach() ; send() utilise messages()->create().
+  Ce sont ces instructions Eloquent qui déclenchent les INSERT SQL.
+  show() relit les messages et index() liste les conversations du compte connecté.
+
+AJOUTS DU 22 OCTOBRE 2026
+
+1. Interface
+   resources/views/partials/chatbox.blade.php : bouton Messages, panneau,
+   liste des conversations, recherche de joueur, formulaire et bouton de reprise IA.
+   La configuration du compte connecté et le jeton CSRF sont transmis au script.
+
+   public/css/chatbox.css : styles isolés par préfixe chatbox, panneau adaptable
+   aux petits écrans, états de focus et mise en page des messages.
+
+   public/js/chatbox.js : ouverture/fermeture, requêtes fetch authentifiées,
+   brouillons conservés pendant le changement de conversation sur la même page,
+   pagination, envoi, messages d'erreur et protection contre les réponses retardées.
+   Les messages sont insérés avec textContent, sans interpréter leur HTML.
+
+   La partial est incluse en bas des vues home, profile, settings, quiz,
+   quiz_finish, quiz_empty, quiz_upgrade, games/players, games/connect-four et app.
+   Elle n'est rendue que pour les comptes authentifiés.
+   Les ressources sont servies directement depuis public : aucun ajout au build Vite.
+
+2. Serveur et actualisation
+   app/Http/Controllers/ChatController.php : recherche paginée des noms publics,
+   tri des conversations par activité, lecture des 50 messages les plus récents,
+   chargement des précédents avec before_id et des nouveaux avec after_id.
+   Le mode de pagination initial reste disponible pour les appels existants.
+
+   Tant que le panneau est ouvert et l'onglet visible, le navigateur interroge
+   le serveur toutes les 4 secondes. Aucun serveur WebSocket supplémentaire.
+   Le bouton Messages ne signale pas les nouveaux messages lorsque le panneau
+   est fermé ; aucun système de lu/non-lu n'a été ajouté.
+
+3. Réponses IA
+   app/Services/Chat/AiReplyService.php : appel serveur à l'API Responses OpenAI,
+   contexte limité aux 20 derniers messages, sortie limitée à 1 200 tokens,
+   délai maximum de 45 secondes et store=false.
+   Référence officielle : https://developers.openai.com/api/docs/guides/text
+   La clé, l'e-mail et les identifiants des utilisateurs ne sont pas transmis
+   dans le texte du contexte. Le contenu des messages de la conversation IA
+   est envoyé à OpenAI pour produire sa réponse.
+
+   ChatController::reply() : vérifie la participation, utilise un verrou de cache,
+   enregistre la réponse avec role=assistant et user_id=null. Un nouvel appel
+   pour la même question renvoie la réponse déjà stockée. Si le fournisseur
+   échoue, la question reste stockée et aucune fausse réponse n'est enregistrée.
+   Une question en attente doit recevoir sa réponse avant la question suivante.
+
+   config/services.php et .env.example : OPENAI_API_KEY et OPENAI_MODEL.
+   Ces valeurs restent exclusivement côté serveur. Aucun appel réel payant
+   n'a été effectué pendant cette intervention.
+
+4. Routes dans routes/web.php
+   GET  /chat/recipients                         : rechercher un destinataire
+   GET  /chat/conversations                      : lister ses conversations
+   POST /chat/conversations                      : créer une conversation
+   GET  /chat/conversations/{id}                 : charger l'historique
+   POST /chat/conversations/{id}/messages        : enregistrer un message
+   POST /chat/conversations/{id}/reply           : générer/reprendre la réponse IA
+   Toutes exigent une connexion. Les créations, envois, recherches et demandes
+   IA ont des limites de fréquence ; les écritures gardent la protection CSRF.
+   app/Policies/ConversationPolicy.php assure l'accès réservé aux participants.
+
+5. Traductions et tests
+   lang/fr.json et lang/de.json : libellés et erreurs du chat.
+   tests/Feature/ChatStorageTest.php et ChatMessagingTest.php : tests préexistants.
+   tests/Feature/ChatInterfaceTest.php : tests ajoutés pour l'interface rendue,
+   les destinataires publics, la pagination, l'autorisation, le contexte IA,
+   la reprise après panne et le verrouillage des demandes simultanées.
+   Les réponses OpenAI sont simulées : aucune clé réelle nécessaire pour ces tests.
+   tests/browser/chatbox.test.mjs : test Chrome/Edge de la véritable interface,
+   avec un serveur HTTP simulé. Ce test ne remplace pas les tests Laravel.
+
+POUR ESSAYER
+
+1. Avec PHP 8.4 autorisé sur la machine, démarrer le projet comme d'habitude :
+      php artisan serve
+   Ouvrir /accueil, se connecter et cliquer sur Messages en bas à droite.
+
+2. Cliquer sur Nouvelle conversation, choisir un joueur et envoyer un message.
+   Avec un second compte dans un autre navigateur, ouvrir la conversation.
+   Le message doit apparaître au plus tard après le prochain cycle de 4 secondes,
+   hors latence réseau. Charger Messages précédents pour remonter l'historique.
+
+3. Pour activer l'IA, renseigner dans le .env local ou les variables du serveur :
+      OPENAI_API_KEY=votre_cle_api
+      OPENAI_MODEL=un_modele_texte_disponible_sur_votre_compte
+   Puis exécuter :
+      php artisan config:clear
+   Choisir Discuter avec l'IA. Sans configuration, le message est enregistré
+   et une explication est affichée ; Réessayer la réponse IA devient disponible.
+   Les appels réels utilisent la facturation du compte API configuré.
+
+4. Les tables existent déjà dans la base locale inspectée. Sur une autre base,
+   appliquer les migrations normales du projet avant d'utiliser le chat :
+      php artisan migrate
+   Ne pas utiliser migrate:fresh sur une base contenant des données à conserver.
+
+VÉRIFICATIONS
+
+Syntaxe JavaScript :
+   node --check public/js/chatbox.js
+
+Test navigateur (Chrome/Edge installé, ou CHATBOX_BROWSER défini) :
+   node --test tests/browser/chatbox.test.mjs
+Ce test vérifie les derniers messages et les anciens, l'envoi, l'affichage
+de HTML comme texte, la conservation des brouillons, la réception automatique,
+la reprise IA sans double envoi, le petit écran et les changements de sélection.
+Il a été exécuté avec succès dans Chrome, avec les styles réels de la page
+quiz_upgrade et des réponses HTTP simulées. Un aperçu mobile est disponible
+dans storage/chatbox-mobile-preview.png. Les traductions françaises et allemandes
+des libellés du chat ont également été vérifiées.
+
+Tests Laravel (base SQLite en mémoire définie par phpunit.xml) :
+   php artisan test --compact --filter=Chat
+Les tests Laravel n'ont pas pu être exécutés dans cette session : Windows bloque
+le binaire PHP installé par une politique de contrôle des applications.
+La vérification réelle de Laravel et un échange IA avec une clé valide restent
+à effectuer dans un environnement où PHP est autorisé.

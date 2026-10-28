@@ -6,6 +6,7 @@
     <title>Quiz</title>
     <style>
         body {
+            margin: 0;
             font-family: {{ auth()->user()->interfaceFont() }}; font-size: {{ auth()->user()->interfaceTextSize() }};
             background: #f4f4f8;
             display: flex;
@@ -14,12 +15,15 @@
         }
 
         .quiz-card {
+            box-sizing: border-box;
+            min-width: 0;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             padding: 2rem;
             max-width: 480px;
             width: 100%;
+            overflow-wrap: anywhere;
         }
 
         .progress {
@@ -76,29 +80,56 @@
             color: #2f7a3a;
             font-size: 0.95rem;
         }
+
+        @media (min-width: 1024px) {
+            body {
+                padding: 3rem clamp(2rem, 4vw, 6rem);
+            }
+
+            .quiz-card {
+                max-width: 1440px;
+                padding: clamp(2rem, 3vw, 4rem);
+            }
+
+            h1 {
+                font-size: clamp(1.5rem, 2vw, 2.25rem);
+                line-height: 1.35;
+            }
+
+            .options {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .options label {
+                display: flex;
+                align-items: center;
+                min-width: 0;
+                margin-bottom: 0;
+                padding: 1.25rem;
+                line-height: 1.5;
+            }
+
+            .options input[type="radio"] {
+                flex-shrink: 0;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
-    <div class="quiz-card">
-        <a href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
-        <form method="POST" action="/deconnexion" style="margin-bottom: 1rem;">
-            @csrf
-            <button type="submit" style="background: #999; font-size: 0.85rem; padding: 0.4rem 0.9rem;">
-                {{ __('Log out') }}
-            </button>
-        </form>
-        <p class="progress">{{ __('Question :number / :total', ['number' => $number, 'total' => $total]) }}</p>
-        <p role="status"><strong>{{ __(':name to play', ['name' => $players[$currentPlayer]['name']]) }}</strong></p>
-        <ul aria-label="{{ __('Player scores') }}">
-            @foreach($players as $player)
-                <li>{{ $player['name'] }} : {{ $player['score'] }} / {{ $player['answered'] }}</li>
-            @endforeach
-        </ul>
-        <p><a href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change players') }}</a></p>
+<body class="game-page">
+    <main class="game-shell">
+    <div class="quiz-card game-surface quiz-layout">
+        <nav class="game-navigation">
+        <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
+        </nav>
+        <section class="quiz-play" aria-labelledby="quiz-question">
         @if(session('payment_status'))
             <p class="resultat" role="status">{{ session('payment_status') }}</p>
         @endif
-        <h1>{{ $question->question }}</h1>
+        <h1 id="quiz-question">{{ $question->question }}</h1>
         @if($errors->any())
             <p role="alert">{{ $errors->first() }}</p>
         @endif
@@ -123,7 +154,28 @@
         @if(session('resultat') && (auth()->user()->quiz_notifications ?? true))
             <div class="resultat">{{ session('resultat') }}</div>
         @endif
+        </section>
+        <footer class="game-details">
+            <div class="quiz-metadata">
+                <p>{{ __('Question :number / :total', ['number' => $number, 'total' => $total]) }}</p>
+                <p>{{ __('Category') }} : <strong>{{ \App\Services\Games\QuizCategories::label(session('quiz_category', 'general')) }}</strong></p>
+                <p>{{ __('Difficulty') }} : <strong>{{ __(['easy' => 'Easy', 'medium' => 'Intermediate', 'hard' => 'Difficult'][$question->difficulty] ?? 'Intermediate') }}</strong></p>
+            </div>
+            <div class="quiz-players">
+                <div>
+                    <p role="status"><strong>{{ __(':name to play', ['name' => $players[$currentPlayer]['name']]) }}</strong></p>
+                    <ul class="player-scores" aria-label="{{ __('Player scores') }}">
+                        @foreach($players as $player)
+                            <li>{{ $player['name'] }} : {{ $player['score'] }} / {{ $player['answered'] }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <a class="action-button action-secondary" href="{{ route('games.players', ['game' => 'quiz']) }}">{{ __('Change category or players') }}</a>
+            </div>
+        </footer>
     </div>
+    </main>
 
+    @include('partials.chatbox')
 </body>
 </html>

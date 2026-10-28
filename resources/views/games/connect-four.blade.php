@@ -33,16 +33,17 @@
         .error { padding: 12px; background: #fef2f2; color: #991b1b; border-radius: 8px; }
         :focus-visible { outline: 3px solid #818cf8; outline-offset: 3px; }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
-<main>
+<body class="game-page">
+<main class="game-shell connect-four-layout">
     <header>
-        <a href="{{ route('accueil') }}">&larr; {{ __('Back to home') }}</a>
+        <a class="action-button action-secondary" href="{{ route('accueil') }}">&larr; {{ __('Back to home') }}</a>
         @include('partials.user-menu')
     </header>
     <h1>{{ __('Connect Four') }}</h1>
     <p class="subtitle">{{ __('Two players, one screen. Align four discs to win.') }}</p>
-    <section class="card" aria-label="{{ __('Connect Four') }}">
+    <section class="card game-surface connect-four-surface" aria-label="{{ __('Connect Four') }}">
         <div class="status" role="status" aria-live="polite">
             @if($game['status'] === 'draw')
                 {{ __('Draw! The board is full.') }}
@@ -62,6 +63,7 @@
         @error('move')
             <p class="error" role="alert">{{ $message }}</p>
         @enderror
+        <div class="connect-four-play">
         <form method="POST" action="{{ route('connect-four.play') }}">
             @csrf
             <input type="hidden" name="move" value="{{ $game['moves'] }}">
@@ -87,9 +89,10 @@
                 </div>
             @endforeach
         </div>
-        <div class="actions">
+        </div>
+        <div class="actions game-details">
             <span>{{ __('Moves played: :count', ['count' => $game['moves']]) }}</span>
-            <a href="{{ route('games.players', ['game' => 'connect-four']) }}">{{ __('Change players') }}</a>
+            <a class="action-button action-secondary" href="{{ route('games.players', ['game' => 'connect-four']) }}">{{ __('Change players') }}</a>
             <form method="POST" action="{{ route('connect-four.restart') }}">
                 @csrf
                 <button class="restart" type="submit">{{ __('New game') }}</button>
@@ -98,5 +101,6 @@
     </section>
     <p class="rules">{{ __('Player 1 is red; player 2 is yellow. Take turns choosing a column. Discs fall to the bottom. Align four horizontally, vertically or diagonally. A full board without a winner is a draw.') }}</p>
 </main>
+    @include('partials.chatbox')
 </body>
 </html>

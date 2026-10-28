@@ -2,6 +2,16 @@
 
 return [
 
+    'mistral' => [
+        'key' => env('MISTRAL_API_KEY'),
+        'model' => env('MISTRAL_MODEL', 'mistral-small-latest'),
+    ],
+
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
+        'model' => env('OPENAI_MODEL'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

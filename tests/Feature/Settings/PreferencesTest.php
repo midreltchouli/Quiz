@@ -79,6 +79,26 @@ class PreferencesTest extends TestCase
         $this->assertSame('en', $user->fresh()->locale);
     }
 
+    public function test_home_language_picker_saves_language_and_returns_home_without_changing_other_preferences(): void
+    {
+        $user = User::factory()->create(['locale' => 'en', 'font_family' => 'georgia', 'text_size' => 'large', 'quiz_notifications' => false]);
+
+        $this->actingAs($user)->get(route('accueil'))
+            ->assertOk()->assertSee('class="language-picker"', false)
+            ->assertSee('Français')->assertSee('English')->assertSee('Deutsch')
+            ->assertDontSee('class="brand"', false);
+
+        $this->patch(route('preferences.update'), ['locale' => 'fr', 'return_to' => 'home'])
+            ->assertSessionHasNoErrors()->assertRedirect(route('accueil'));
+
+        $user->refresh();
+        $this->assertSame('fr', $user->locale);
+        $this->assertSame('georgia', $user->font_family);
+        $this->assertSame('large', $user->text_size);
+        $this->assertFalse($user->quiz_notifications);
+        $this->get(route('accueil'))->assertSee('lang="fr"', false);
+    }
+
     public function test_font_size_and_notification_preferences_are_saved_and_applied(): void
     {
         $user = User::factory()->create();
