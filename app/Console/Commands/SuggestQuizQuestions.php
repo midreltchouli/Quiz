@@ -27,9 +27,12 @@ class SuggestQuizQuestions extends Command
 
             return self::FAILURE;
         }
-        $this->info('Lancement manuel : 5 appels Mistral maximum, aucune relance automatique.');
+        $this->info('Lancement manuel : 5 tours maximum, avec 2 nouvelles tentatives au total uniquement après HTTP 429 (7 appels maximum).');
         try {
-            $suggestions = $agent->generate($this->argument('category'), $count, $this->option('difficulty'));
+            $suggestions = $agent->generate(
+                $this->argument('category'), $count, $this->option('difficulty'),
+                fn (int $retry, int $delay) => $this->warn("Mistral répond HTTP 429. Nouvelle tentative {$retry}/2 dans {$delay} secondes…")
+            );
         } catch (RuntimeException $exception) {
             $this->error($exception->getMessage());
 

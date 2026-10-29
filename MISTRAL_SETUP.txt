@@ -1,6 +1,9 @@
 ENRICHISSEMENT DU QUIZ AVEC MISTRAL
 
-Premier essai : lancement manuel, 1 à 5 propositions, 5 appels Mistral maximum.
+Premier essai : lancement manuel, 1 à 5 propositions, 5 tours Mistral maximum.
+Deux nouvelles tentatives maximum pour tout le lancement après HTTP 429, soit 7 appels maximum.
+Les délais sont de 5 puis 10 secondes. Retry-After est respecté jusqu'à 30 secondes par attente ;
+un délai demandé supérieur entraîne l'arrêt, sans appel anticipé. Chaque attente est affichée.
 Il n'existe aucun lancement planifié ni route publique pour cet outil.
 Les appels consomment le quota API Mistral ; ce code ne garantit pas leur gratuité.
 Utiliser le mode gratuit dans la console Mistral pour commencer et vérifier ses limites.
@@ -45,11 +48,21 @@ questions : ajout uniquement lors d'une validation explicite avec approve.
 Une validation répétée du même brouillon ne crée pas un deuxième exemplaire.
 Aucune donnée personnelle, conversation ou paiement n'est envoyé à Mistral.
 Seuls les textes des questions trouvées par les outils et les références sont transmis.
-Une erreur fournisseur interrompt le lancement sans relance automatique ni lot partiel enregistré.
-Un lot incomplet mais valide peut être enregistré si la limite des 5 appels est atteinte.
+Une erreur fournisseur hors HTTP 429 interrompt immédiatement le lancement.
+Après épuisement des deux tentatives supplémentaires sur HTTP 429, le lancement s'arrête.
+Un échec ne conserve aucun lot partiel ; les brouillons des précédents lancements restent intacts.
+Un lot incomplet mais valide peut être enregistré si la limite des 5 tours est atteinte.
 
 TESTS SANS APPEL PAYANT
 php artisan test --filter=QuestionEnrichmentTest
+
+EN CAS DE HTTP 429
+Ce code peut signifier une limite API (débit ou quota) ou une capacité gratuite indisponible,
+pas une erreur de commande Artisan. Les tentatives espacées ne garantissent pas la disponibilité.
+Consulter Admin Panel > API > Limits et Usage dans la console Mistral, pour le modèle configuré.
+Attendre le renouvellement de la fenêtre si la limite est temporaire ; un quota mensuel
+épuisé ne se résout pas en attendant une minute ou en changeant simplement la clé.
+Le code ne peut pas augmenter les limites du compte. Aucune offre payante n'est activée par l'application.
 
 FICHIERS
 config/services.php : configuration Mistral.

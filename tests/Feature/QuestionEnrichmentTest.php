@@ -6,7 +6,10 @@ use App\Models\Question;
 use App\Models\QuestionSuggestion;
 use App\Services\Quiz\QuestionEnrichmentAgent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Client\Factory;
+use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Sleep;
 use RuntimeException;
 use Tests\TestCase;
 
@@ -19,6 +22,13 @@ class QuestionEnrichmentTest extends TestCase
         parent::setUp();
         config(['services.mistral.key' => 'test-key', 'services.mistral.model' => 'mistral-small-latest']);
         Http::preventStrayRequests();
+        Sleep::fake();
+    }
+
+    protected function tearDown(): void
+    {
+        Sleep::fake(false);
+        parent::tearDown();
     }
 
     private function entry(): array
@@ -44,15 +54,19 @@ class QuestionEnrichmentTest extends TestCase
         )]]]];
     }
 
-    private function fakeAgent(?array $entry = null): void
+    private function fakeAgent(?array $entry = null, ?ResponseSequence $sequence = null): void
     {
+        Http::swap(new Factory);
+        Http::preventStrayRequests();
         $entry ??= $this->entry();
-        $sequence = Http::sequence()->push($this->calls([
-            'search_references' => ['query' => 'oxygen atomic number'],
-            'find_similar_questions' => ['query' => 'oxygen'],
-        ]));
-        for ($i = 0; $i < 5; $i++) {
-            $sequence->push($this->calls(['submit_suggestions' => ['suggestions' => [$entry]]]));
+        if ($sequence === null) {
+            $sequence = Http::sequence()->push($this->calls([
+                'search_references' => ['query' => 'oxygen atomic number'],
+                'find_similar_questions' => ['query' => 'oxygen'],
+            ]));
+            for ($i = 0; $i < 5; $i++) {
+                $sequence->push($this->calls(['submit_suggestions' => ['suggestions' => [$entry]]]));
+            }
         }
         Http::fake([
             'api.mistral.ai/v1/chat/completions' => $sequence,
@@ -158,18 +172,113 @@ class QuestionEnrichmentTest extends TestCase
         }
     }
 
-    public function test_provider_failure_discards_staged_drafts_without_retrying(): void
+    public function test_persistent_rate_limits_discard_staged_drafts_after_bounded_retries(): void
     {
-        $this->fakeAgent();
         $sequence = Http::sequence()
             ->push($this->calls(['search_references' => ['query' => 'oxygen atomic number']]))
             ->push($this->calls(['submit_suggestions' => ['suggestions' => [$this->entry()]]]))
+            ->push(['error' => 'quota reached'], 429)
+            ->push(['error' => 'quota reached'], 429)
             ->push(['error' => 'quota reached'], 429);
-        Http::fake(['api.mistral.ai/v1/chat/completions' => $sequence]);
+        $this->fakeAgent(sequence: $sequence);
         $this->artisan('quiz:suggest science --count=2')->assertFailed();
         $this->assertDatabaseCount('question_suggestions', 0);
         $this->assertDatabaseCount('questions', 0);
+        Http::assertSentCount(6);
+        Sleep::assertSequence([Sleep::for(5)->seconds(), Sleep::for(10)->seconds()]);
+    }
+
+    public function test_rate_limit_error_stops_after_two_retries_and_displays_each_wait(): void
+    {
+        Http::fake(['api.mistral.ai/v1/chat/completions' => Http::response([
+            'message' => 'Rate limit exceeded', 'type' => 'rate_limited', 'code' => '1300',
+        ], 429)]);
+        $this->artisan('quiz:suggest science --count=1')
+            ->expectsOutputToContain('Nouvelle tentative 1/2 dans 5 secondes')
+            ->expectsOutputToContain('Nouvelle tentative 2/2 dans 10 secondes')
+            ->expectsOutputToContain('Mistral refuse encore l’appel (HTTP 429)')
+            ->assertFailed();
+        Http::assertSentCount(3);
+        Sleep::assertSequence([Sleep::for(5)->seconds(), Sleep::for(10)->seconds()]);
+        $this->assertDatabaseCount('question_suggestions', 0);
+    }
+
+    public function test_invalid_key_is_distinguished_from_rate_limits_without_exposing_it(): void
+    {
+        Http::fake(['api.mistral.ai/v1/chat/completions' => Http::response([
+            'message' => 'Invalid key test-key',
+        ], 401)]);
+        $this->artisan('quiz:suggest science --count=1')
+            ->expectsOutputToContain('Clé Mistral refusée (HTTP 401)')->assertFailed();
+        Http::assertSentCount(1);
+        Sleep::assertNeverSlept();
+        $this->assertDatabaseCount('question_suggestions', 0);
+    }
+
+    public function test_retry_recovers_without_restarting_or_duplicating_the_conversation(): void
+    {
+        $this->fakeAgent(sequence: Http::sequence()
+            ->push([], 429)
+            ->push($this->calls(['search_references' => ['query' => 'oxygen atomic number']]))
+            ->push([], 429)
+            ->push($this->calls(['submit_suggestions' => ['suggestions' => [$this->entry()]]])));
+
+        $this->artisan('quiz:suggest science --count=1')->assertSuccessful();
+
+        $requests = Http::recorded(fn ($request) => str_contains($request->url(), 'api.mistral.ai'))
+            ->map(fn ($pair) => $pair[0]->data())->values();
+        $this->assertSame($requests[0], $requests[1]);
+        $this->assertSame($requests[2], $requests[3]);
+        $this->assertGreaterThan(count($requests[0]['messages']), count($requests[2]['messages']));
+        $this->assertDatabaseCount('question_suggestions', 1);
+        $this->assertDatabaseCount('questions', 0);
+        Http::assertSentCount(5);
+        Sleep::assertSequence([Sleep::for(5)->seconds(), Sleep::for(10)->seconds()]);
+    }
+
+    public function test_retry_budget_is_shared_between_all_agent_rounds(): void
+    {
+        $this->fakeAgent(sequence: Http::sequence()
+            ->push([], 429)->push([], 429)
+            ->push($this->calls(['search_references' => ['query' => 'oxygen atomic number']]))
+            ->push([], 429));
+
+        $this->artisan('quiz:suggest science --count=1')->assertFailed();
+        Http::assertSentCount(5);
+        Sleep::assertSleptTimes(2);
+        $this->assertDatabaseCount('question_suggestions', 0);
+    }
+
+    public function test_retry_after_is_respected_when_within_the_wait_limit(): void
+    {
+        $this->fakeAgent(sequence: Http::sequence()
+            ->push([], 429, ['Retry-After' => '12'])
+            ->push($this->calls(['search_references' => ['query' => 'oxygen atomic number']]))
+            ->push($this->calls(['submit_suggestions' => ['suggestions' => [$this->entry()]]])));
+
+        $this->artisan('quiz:suggest science --count=1')->assertSuccessful();
+        Sleep::assertSequence([Sleep::for(12)->seconds()]);
         Http::assertSentCount(4);
+    }
+
+    public function test_excessive_retry_after_stops_instead_of_retrying_too_early(): void
+    {
+        Http::fake(['api.mistral.ai/v1/chat/completions' => Http::response([], 429, ['Retry-After' => '90'])]);
+        $this->artisan('quiz:suggest science --count=1')->assertFailed();
+        Http::assertSentCount(1);
+        Sleep::assertNeverSlept();
+    }
+
+    public function test_other_provider_errors_are_not_retried(): void
+    {
+        foreach ([400, 403, 500] as $status) {
+            Http::swap(new Factory);
+            Http::preventStrayRequests();
+            Http::fake(['api.mistral.ai/v1/chat/completions' => Http::response([], $status)]);
+            $this->artisan('quiz:suggest science --count=1')->assertFailed();
+            Http::assertSentCount(1);
+        }
+        Sleep::assertNeverSlept();
     }
 
     public function test_unknown_tools_cannot_write_or_publish_questions(): void
