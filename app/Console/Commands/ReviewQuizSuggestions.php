@@ -23,9 +23,9 @@ class ReviewQuizSuggestions extends Command
         }
         $action = $this->argument('action');
         if ($action === 'list') {
-            $this->table(['ID', 'Catégorie', 'Question française', 'État'],
+            $this->table(['ID', 'Fournisseur', 'Catégorie', 'Question française', 'État'],
                 QuestionSuggestion::latest('id')->limit(30)->get()->map(fn ($draft) => [
-                    $draft->id, $draft->category, $draft->translations['fr']['question'], $draft->status,
+                    $draft->id, $draft->provider, $draft->category, $draft->translations['fr']['question'], $draft->status,
                 ])->all());
 
             return self::SUCCESS;

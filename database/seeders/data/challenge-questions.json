@@ -5488,7 +5488,7 @@
             "26"
           ],
           "answer": "20",
-          "explanation": "C(6,3) = 6 × 5 × 4 / 6 = 20."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 6 people and k = 3 people per group. We first count ordered selections: 6 choices, then 5, then 4. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(6,3) = (6 × 5 × 4) / (3 × 2 × 1) = 120/6 = 20 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 6 personnes, sans tenir compte de l’ordre ?",
@@ -5499,7 +5499,7 @@
             "26"
           ],
           "answer": "20",
-          "explanation": "C(6,3) = 6 × 5 × 4 / 6 = 20."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 6 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 6 possibilités, puis 5, puis 4. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(6,3) = (6 × 5 × 4) / (3 × 2 × 1) = 120/6 = 20 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 6 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -5510,7 +5510,7 @@
             "26"
           ],
           "answer": "20",
-          "explanation": "C(6,3) = 6 × 5 × 4 / 6 = 20."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 6 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 6 Möglichkeiten, dann 5, dann 4. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(6,3) = (6 × 5 × 4) / (3 × 2 × 1) = 120/6 = 20 Gruppen."
         }
       }
     },
@@ -5529,7 +5529,7 @@
             "1/6"
           ],
           "answer": "1/6",
-          "explanation": "6 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 7”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). There are 6.\nCalculation: P(E) = 6/36 = 1/6. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 7 ?",
@@ -5540,7 +5540,7 @@
             "1/6"
           ],
           "answer": "1/6",
-          "explanation": "6 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 7 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Il y en a 6.\nApplication : P(E) = 6/36 = 1/6. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 7?",
@@ -5551,7 +5551,7 @@
             "1/6"
           ],
           "answer": "1/6",
-          "explanation": "6 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 7“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Es sind 6.\nRechnung: P(E) = 6/36 = 1/6. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -5570,7 +5570,7 @@
             "8"
           ],
           "answer": "12",
-          "explanation": "The power rule gives f′(x) = 3x^2; substituting x = 2 gives 12."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 3. Multiply by the exponent and reduce that exponent by 1: f′(x) = 3 × x^2. Only then substitute x = 2.\nCalculation: f′(2) = 3 × 2^2 = 3 × 4 = 12. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^3, combien vaut f′(2) ?",
@@ -5581,7 +5581,7 @@
             "8"
           ],
           "answer": "12",
-          "explanation": "La règle de dérivation donne f′(x) = 3x^2 ; en remplaçant x par 2, on obtient 12."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 3. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 3 × x^2. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 3 × 2^2 = 3 × 4 = 12. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^3 ist, wie groß ist f′(2)?",
@@ -5592,7 +5592,7 @@
             "8"
           ],
           "answer": "12",
-          "explanation": "Die Potenzregel ergibt f′(x) = 3x^2; mit x = 2 folgt 12."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 3. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 3 × x^2. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 3 × 2^2 = 3 × 4 = 12. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -5611,7 +5611,7 @@
             "82"
           ],
           "answer": "80",
-          "explanation": "2 × (1 + 3 + 9 + 27) = 80."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 2, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 2 + 6 + 18 + 54.\nCalculation: S_4 = 2 × (3^4 − 1) / (3 − 1) = 2 × 80/2 = 80. Check by addition: 2 + 6 + 18 + 54 = 80."
         },
         "fr": {
           "question": "Une suite géométrique commence par 2 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -5622,7 +5622,7 @@
             "82"
           ],
           "answer": "80",
-          "explanation": "2 × (1 + 3 + 9 + 27) = 80."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 2, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 2 + 6 + 18 + 54.\nApplication : S_4 = 2 × (3^4 − 1) / (3 − 1) = 2 × 80/2 = 80. Vérification par addition : 2 + 6 + 18 + 54 = 80."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 2 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -5633,7 +5633,7 @@
             "82"
           ],
           "answer": "80",
-          "explanation": "2 × (1 + 3 + 9 + 27) = 80."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 2, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 2 + 6 + 18 + 54.\nRechnung: S_4 = 2 × (3^4 − 1) / (3 − 1) = 2 × 80/2 = 80. Kontrolle durch Addition: 2 + 6 + 18 + 54 = 80."
         }
       }
     },
@@ -5652,7 +5652,7 @@
             "9"
           ],
           "answer": "6",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 3 × 4 − 2 × 3 = 6."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 3, b = 2, c = 3 and d = 4. The positions of these entries matter.\nCalculation: det = 3 × 4 − 2 × 3 = 12 − 6 = 6."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[3, 2], [3, 4]] ?",
@@ -5663,7 +5663,7 @@
             "9"
           ],
           "answer": "6",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 3 × 4 − 2 × 3 = 6."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 3, b = 2, c = 3 et d = 4. La position des coefficients est importante.\nApplication : det = 3 × 4 − 2 × 3 = 12 − 6 = 6."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[3, 2], [3, 4]]?",
@@ -5674,7 +5674,7 @@
             "9"
           ],
           "answer": "6",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 3 × 4 − 2 × 3 = 6."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 3, b = 2, c = 3 und d = 4. Die Positionen der Einträge sind wichtig.\nRechnung: det = 3 × 4 − 2 × 3 = 12 − 6 = 6."
         }
       }
     },
@@ -5693,7 +5693,7 @@
             "6"
           ],
           "answer": "6",
-          "explanation": "2^6 = 64, so the base-two logarithm is 6."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 64, so we seek y such that 2^y = 64.\nCalculation: 2^6 = 64; therefore log₂(64) = 6."
         },
         "fr": {
           "question": "Combien vaut log₂(64) ?",
@@ -5704,7 +5704,7 @@
             "6"
           ],
           "answer": "6",
-          "explanation": "2^6 = 64, donc le logarithme en base deux vaut 6."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 64. On cherche donc y tel que 2^y = 64.\nApplication : 2^6 = 64 ; donc log₂(64) = 6."
         },
         "de": {
           "question": "Wie groß ist log₂(64)?",
@@ -5715,7 +5715,7 @@
             "6"
           ],
           "answer": "6",
-          "explanation": "2^6 = 64, daher ist der Logarithmus zur Basis zwei 6."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 64. Gesucht ist also y mit 2^y = 64.\nRechnung: 2^6 = 64; daher ist log₂(64) = 6."
         }
       }
     },
@@ -5734,7 +5734,7 @@
             "9/49"
           ],
           "answer": "1/7",
-          "explanation": "P = (3/7) × (2/6) = 1/7."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 3, t = 7, so P = (3/7) × (2/6) = 6/42 = 1/7."
         },
         "fr": {
           "question": "Un sac contient 3 boules rouges et 4 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -5745,7 +5745,7 @@
             "9/49"
           ],
           "answer": "1/7",
-          "explanation": "P = (3/7) × (2/6) = 1/7."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 3, t = 7, donc P = (3/7) × (2/6) = 6/42 = 1/7."
         },
         "de": {
           "question": "Ein Beutel enthält 3 rote und 4 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -5756,7 +5756,7 @@
             "9/49"
           ],
           "answer": "1/7",
-          "explanation": "P = (3/7) × (2/6) = 1/7."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 3, t = 7, also P = (3/7) × (2/6) = 6/42 = 1/7."
         }
       }
     },
@@ -5775,7 +5775,7 @@
             "3F"
           ],
           "answer": "2F",
-          "explanation": "47 = 2 × 16 + 15; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 47 = 2 × 16 + 15. The quotient 2 is digit 2 and the remainder 15 is digit F. Read them in that order: 2F."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 47 en hexadécimal ?",
@@ -5786,7 +5786,7 @@
             "3F"
           ],
           "answer": "2F",
-          "explanation": "47 = 2 × 16 + 15 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 47 = 2 × 16 + 15. Le quotient 2 s’écrit 2 et le reste 15 s’écrit F. On les lit dans cet ordre : 2F."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 47 im Hexadezimalsystem?",
@@ -5797,7 +5797,7 @@
             "3F"
           ],
           "answer": "2F",
-          "explanation": "47 = 2 × 16 + 15; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 47 = 2 × 16 + 15. Der Quotient 2 entspricht der Ziffer 2, der Rest 15 der Ziffer F. In dieser Reihenfolge ergibt das 2F."
         }
       }
     },
@@ -5816,7 +5816,7 @@
             "0"
           ],
           "answer": "2",
-          "explanation": "2^5 = 32 = 6 × 5 + 2."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 5; the integer quotient is q = 6.\nCalculation: 32 = 6 × 5 + 2, so r = 32 − 6 × 5 = 2. This remainder is between 0 and 4."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 5 ?",
@@ -5827,7 +5827,7 @@
             "0"
           ],
           "answer": "2",
-          "explanation": "2^5 = 32 = 6 × 5 + 2."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 5 ; le quotient entier est q = 6.\nApplication : 32 = 6 × 5 + 2, donc r = 32 − 6 × 5 = 2. Ce reste est bien compris entre 0 et 4."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 5?",
@@ -5838,7 +5838,7 @@
             "0"
           ],
           "answer": "2",
-          "explanation": "2^5 = 32 = 6 × 5 + 2."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 5 ist der ganzzahlige Quotient q = 6.\nRechnung: 32 = 6 × 5 + 2, also r = 32 − 6 × 5 = 2. Der Rest liegt zwischen 0 und 4."
         }
       }
     },
@@ -5857,7 +5857,7 @@
             "440"
           ],
           "answer": "440",
-          "explanation": "S = 20/2 × (2 × 3 + 19 × 2) = 440."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 3, d = 2 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 3 + 19 × 2 = 41.\nCalculation: S_20 = 20 × (3 + 41)/2 = 10 × 44 = 440. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 3 et a pour raison 2. Quelle est la somme de ses 20 premiers termes ?",
@@ -5868,7 +5868,7 @@
             "440"
           ],
           "answer": "440",
-          "explanation": "S = 20/2 × (2 × 3 + 19 × 2) = 440."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 3, d = 2 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 3 + 19 × 2 = 41.\nApplication : S_20 = 20 × (3 + 41)/2 = 10 × 44 = 440. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 3 und hat die Differenz 2. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -5879,7 +5879,7 @@
             "440"
           ],
           "answer": "440",
-          "explanation": "S = 20/2 × (2 × 3 + 19 × 2) = 440."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 3, d = 2 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 3 + 19 × 2 = 41.\nRechnung: S_20 = 20 × (3 + 41)/2 = 10 × 44 = 440. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     },
@@ -5898,7 +5898,7 @@
             "210"
           ],
           "answer": "35",
-          "explanation": "C(7,3) = 7 × 6 × 5 / 6 = 35."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 7 people and k = 3 people per group. We first count ordered selections: 7 choices, then 6, then 5. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(7,3) = (7 × 6 × 5) / (3 × 2 × 1) = 210/6 = 35 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 7 personnes, sans tenir compte de l’ordre ?",
@@ -5909,7 +5909,7 @@
             "210"
           ],
           "answer": "35",
-          "explanation": "C(7,3) = 7 × 6 × 5 / 6 = 35."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 7 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 7 possibilités, puis 6, puis 5. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(7,3) = (7 × 6 × 5) / (3 × 2 × 1) = 210/6 = 35 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 7 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -5920,7 +5920,7 @@
             "210"
           ],
           "answer": "35",
-          "explanation": "C(7,3) = 7 × 6 × 5 / 6 = 35."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 7 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 7 Möglichkeiten, dann 6, dann 5. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(7,3) = (7 × 6 × 5) / (3 × 2 × 1) = 210/6 = 35 Gruppen."
         }
       }
     },
@@ -5939,7 +5939,7 @@
             "7/36"
           ],
           "answer": "5/36",
-          "explanation": "5 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 8”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (2,6), (3,5), (4,4), (5,3), (6,2). There are 5.\nCalculation: P(E) = 5/36 = 5/36. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 8 ?",
@@ -5950,7 +5950,7 @@
             "7/36"
           ],
           "answer": "5/36",
-          "explanation": "5 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 8 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (2,6), (3,5), (4,4), (5,3), (6,2). Il y en a 5.\nApplication : P(E) = 5/36 = 5/36. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 8?",
@@ -5961,7 +5961,7 @@
             "7/36"
           ],
           "answer": "5/36",
-          "explanation": "5 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 8“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (2,6), (3,5), (4,4), (5,3), (6,2). Es sind 5.\nRechnung: P(E) = 5/36 = 5/36. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -5980,7 +5980,7 @@
             "34"
           ],
           "answer": "32",
-          "explanation": "The power rule gives f′(x) = 4x^3; substituting x = 2 gives 32."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 4. Multiply by the exponent and reduce that exponent by 1: f′(x) = 4 × x^3. Only then substitute x = 2.\nCalculation: f′(2) = 4 × 2^3 = 4 × 8 = 32. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^4, combien vaut f′(2) ?",
@@ -5991,7 +5991,7 @@
             "34"
           ],
           "answer": "32",
-          "explanation": "La règle de dérivation donne f′(x) = 4x^3 ; en remplaçant x par 2, on obtient 32."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 4. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 4 × x^3. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 4 × 2^3 = 4 × 8 = 32. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^4 ist, wie groß ist f′(2)?",
@@ -6002,7 +6002,7 @@
             "34"
           ],
           "answer": "32",
-          "explanation": "Die Potenzregel ergibt f′(x) = 4x^3; mit x = 2 folgt 32."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 4. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 4 × x^3. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 4 × 2^3 = 4 × 8 = 32. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -6021,7 +6021,7 @@
             "120"
           ],
           "answer": "120",
-          "explanation": "3 × (1 + 3 + 9 + 27) = 120."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 3, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 3 + 9 + 27 + 81.\nCalculation: S_4 = 3 × (3^4 − 1) / (3 − 1) = 3 × 80/2 = 120. Check by addition: 3 + 9 + 27 + 81 = 120."
         },
         "fr": {
           "question": "Une suite géométrique commence par 3 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -6032,7 +6032,7 @@
             "120"
           ],
           "answer": "120",
-          "explanation": "3 × (1 + 3 + 9 + 27) = 120."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 3, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 3 + 9 + 27 + 81.\nApplication : S_4 = 3 × (3^4 − 1) / (3 − 1) = 3 × 80/2 = 120. Vérification par addition : 3 + 9 + 27 + 81 = 120."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 3 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -6043,7 +6043,7 @@
             "120"
           ],
           "answer": "120",
-          "explanation": "3 × (1 + 3 + 9 + 27) = 120."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 3, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 3 + 9 + 27 + 81.\nRechnung: S_4 = 3 × (3^4 − 1) / (3 − 1) = 3 × 80/2 = 120. Kontrolle durch Addition: 3 + 9 + 27 + 81 = 120."
         }
       }
     },
@@ -6062,7 +6062,7 @@
             "26"
           ],
           "answer": "14",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 4 × 5 − 2 × 3 = 14."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 4, b = 2, c = 3 and d = 5. The positions of these entries matter.\nCalculation: det = 4 × 5 − 2 × 3 = 20 − 6 = 14."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[4, 2], [3, 5]] ?",
@@ -6073,7 +6073,7 @@
             "26"
           ],
           "answer": "14",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 4 × 5 − 2 × 3 = 14."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 4, b = 2, c = 3 et d = 5. La position des coefficients est importante.\nApplication : det = 4 × 5 − 2 × 3 = 20 − 6 = 14."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[4, 2], [3, 5]]?",
@@ -6084,7 +6084,7 @@
             "26"
           ],
           "answer": "14",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 4 × 5 − 2 × 3 = 14."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 4, b = 2, c = 3 und d = 5. Die Positionen der Einträge sind wichtig.\nRechnung: det = 4 × 5 − 2 × 3 = 20 − 6 = 14."
         }
       }
     },
@@ -6103,7 +6103,7 @@
             "8"
           ],
           "answer": "7",
-          "explanation": "2^7 = 128, so the base-two logarithm is 7."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 128, so we seek y such that 2^y = 128.\nCalculation: 2^7 = 128; therefore log₂(128) = 7."
         },
         "fr": {
           "question": "Combien vaut log₂(128) ?",
@@ -6114,7 +6114,7 @@
             "8"
           ],
           "answer": "7",
-          "explanation": "2^7 = 128, donc le logarithme en base deux vaut 7."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 128. On cherche donc y tel que 2^y = 128.\nApplication : 2^7 = 128 ; donc log₂(128) = 7."
         },
         "de": {
           "question": "Wie groß ist log₂(128)?",
@@ -6125,7 +6125,7 @@
             "8"
           ],
           "answer": "7",
-          "explanation": "2^7 = 128, daher ist der Logarithmus zur Basis zwei 7."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 128. Gesucht ist also y mit 2^y = 128.\nRechnung: 2^7 = 128; daher ist log₂(128) = 7."
         }
       }
     },
@@ -6144,7 +6144,7 @@
             "4/27"
           ],
           "answer": "1/6",
-          "explanation": "P = (4/9) × (3/8) = 1/6."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 4, t = 9, so P = (4/9) × (3/8) = 12/72 = 1/6."
         },
         "fr": {
           "question": "Un sac contient 4 boules rouges et 5 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -6155,7 +6155,7 @@
             "4/27"
           ],
           "answer": "1/6",
-          "explanation": "P = (4/9) × (3/8) = 1/6."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 4, t = 9, donc P = (4/9) × (3/8) = 12/72 = 1/6."
         },
         "de": {
           "question": "Ein Beutel enthält 4 rote und 5 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -6166,7 +6166,7 @@
             "4/27"
           ],
           "answer": "1/6",
-          "explanation": "P = (4/9) × (3/8) = 1/6."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 4, t = 9, also P = (4/9) × (3/8) = 12/72 = 1/6."
         }
       }
     },
@@ -6185,7 +6185,7 @@
             "3B"
           ],
           "answer": "3B",
-          "explanation": "59 = 3 × 16 + 11; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 59 = 3 × 16 + 11. The quotient 3 is digit 3 and the remainder 11 is digit B. Read them in that order: 3B."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 59 en hexadécimal ?",
@@ -6196,7 +6196,7 @@
             "3B"
           ],
           "answer": "3B",
-          "explanation": "59 = 3 × 16 + 11 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 59 = 3 × 16 + 11. Le quotient 3 s’écrit 3 et le reste 11 s’écrit B. On les lit dans cet ordre : 3B."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 59 im Hexadezimalsystem?",
@@ -6207,7 +6207,7 @@
             "3B"
           ],
           "answer": "3B",
-          "explanation": "59 = 3 × 16 + 11; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 59 = 3 × 16 + 11. Der Quotient 3 entspricht der Ziffer 3, der Rest 11 der Ziffer B. In dieser Reihenfolge ergibt das 3B."
         }
       }
     },
@@ -6226,7 +6226,7 @@
             "5"
           ],
           "answer": "4",
-          "explanation": "2^5 = 32 = 4 × 7 + 4."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 7; the integer quotient is q = 4.\nCalculation: 32 = 4 × 7 + 4, so r = 32 − 4 × 7 = 4. This remainder is between 0 and 6."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 7 ?",
@@ -6237,7 +6237,7 @@
             "5"
           ],
           "answer": "4",
-          "explanation": "2^5 = 32 = 4 × 7 + 4."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 7 ; le quotient entier est q = 4.\nApplication : 32 = 4 × 7 + 4, donc r = 32 − 4 × 7 = 4. Ce reste est bien compris entre 0 et 6."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 7?",
@@ -6248,7 +6248,7 @@
             "5"
           ],
           "answer": "4",
-          "explanation": "2^5 = 32 = 4 × 7 + 4."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 7 ist der ganzzahlige Quotient q = 4.\nRechnung: 32 = 4 × 7 + 4, also r = 32 − 4 × 7 = 4. Der Rest liegt zwischen 0 und 6."
         }
       }
     },
@@ -6267,7 +6267,7 @@
             "630"
           ],
           "answer": "650",
-          "explanation": "S = 20/2 × (2 × 4 + 19 × 3) = 650."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 4, d = 3 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 4 + 19 × 3 = 61.\nCalculation: S_20 = 20 × (4 + 61)/2 = 10 × 65 = 650. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 4 et a pour raison 3. Quelle est la somme de ses 20 premiers termes ?",
@@ -6278,7 +6278,7 @@
             "630"
           ],
           "answer": "650",
-          "explanation": "S = 20/2 × (2 × 4 + 19 × 3) = 650."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 4, d = 3 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 4 + 19 × 3 = 61.\nApplication : S_20 = 20 × (4 + 61)/2 = 10 × 65 = 650. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 4 und hat die Differenz 3. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -6289,7 +6289,7 @@
             "630"
           ],
           "answer": "650",
-          "explanation": "S = 20/2 × (2 × 4 + 19 × 3) = 650."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 4, d = 3 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 4 + 19 × 3 = 61.\nRechnung: S_20 = 20 × (4 + 61)/2 = 10 × 65 = 650. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     },
@@ -6308,7 +6308,7 @@
             "64"
           ],
           "answer": "56",
-          "explanation": "C(8,3) = 8 × 7 × 6 / 6 = 56."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 8 people and k = 3 people per group. We first count ordered selections: 8 choices, then 7, then 6. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(8,3) = (8 × 7 × 6) / (3 × 2 × 1) = 336/6 = 56 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 8 personnes, sans tenir compte de l’ordre ?",
@@ -6319,7 +6319,7 @@
             "64"
           ],
           "answer": "56",
-          "explanation": "C(8,3) = 8 × 7 × 6 / 6 = 56."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 8 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 8 possibilités, puis 7, puis 6. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(8,3) = (8 × 7 × 6) / (3 × 2 × 1) = 336/6 = 56 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 8 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -6330,7 +6330,7 @@
             "64"
           ],
           "answer": "56",
-          "explanation": "C(8,3) = 8 × 7 × 6 / 6 = 56."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 8 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 8 Möglichkeiten, dann 7, dann 6. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(8,3) = (8 × 7 × 6) / (3 × 2 × 1) = 336/6 = 56 Gruppen."
         }
       }
     },
@@ -6349,7 +6349,7 @@
             "1/9"
           ],
           "answer": "1/9",
-          "explanation": "4 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 9”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (3,6), (4,5), (5,4), (6,3). There are 4.\nCalculation: P(E) = 4/36 = 1/9. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 9 ?",
@@ -6360,7 +6360,7 @@
             "1/9"
           ],
           "answer": "1/9",
-          "explanation": "4 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 9 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (3,6), (4,5), (5,4), (6,3). Il y en a 4.\nApplication : P(E) = 4/36 = 1/9. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 9?",
@@ -6371,7 +6371,7 @@
             "1/9"
           ],
           "answer": "1/9",
-          "explanation": "4 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 9“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (3,6), (4,5), (5,4), (6,3). Es sind 4.\nRechnung: P(E) = 4/36 = 1/9. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -6390,7 +6390,7 @@
             "32"
           ],
           "answer": "80",
-          "explanation": "The power rule gives f′(x) = 5x^4; substituting x = 2 gives 80."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 5. Multiply by the exponent and reduce that exponent by 1: f′(x) = 5 × x^4. Only then substitute x = 2.\nCalculation: f′(2) = 5 × 2^4 = 5 × 16 = 80. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^5, combien vaut f′(2) ?",
@@ -6401,7 +6401,7 @@
             "32"
           ],
           "answer": "80",
-          "explanation": "La règle de dérivation donne f′(x) = 5x^4 ; en remplaçant x par 2, on obtient 80."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 5. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 5 × x^4. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 5 × 2^4 = 5 × 16 = 80. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^5 ist, wie groß ist f′(2)?",
@@ -6412,7 +6412,7 @@
             "32"
           ],
           "answer": "80",
-          "explanation": "Die Potenzregel ergibt f′(x) = 5x^4; mit x = 2 folgt 80."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 5. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 5 × x^4. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 5 × 2^4 = 5 × 16 = 80. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -6431,7 +6431,7 @@
             "164"
           ],
           "answer": "160",
-          "explanation": "4 × (1 + 3 + 9 + 27) = 160."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 4, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 4 + 12 + 36 + 108.\nCalculation: S_4 = 4 × (3^4 − 1) / (3 − 1) = 4 × 80/2 = 160. Check by addition: 4 + 12 + 36 + 108 = 160."
         },
         "fr": {
           "question": "Une suite géométrique commence par 4 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -6442,7 +6442,7 @@
             "164"
           ],
           "answer": "160",
-          "explanation": "4 × (1 + 3 + 9 + 27) = 160."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 4, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 4 + 12 + 36 + 108.\nApplication : S_4 = 4 × (3^4 − 1) / (3 − 1) = 4 × 80/2 = 160. Vérification par addition : 4 + 12 + 36 + 108 = 160."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 4 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -6453,7 +6453,7 @@
             "164"
           ],
           "answer": "160",
-          "explanation": "4 × (1 + 3 + 9 + 27) = 160."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 4, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 4 + 12 + 36 + 108.\nRechnung: S_4 = 4 × (3^4 − 1) / (3 − 1) = 4 × 80/2 = 160. Kontrolle durch Addition: 4 + 12 + 36 + 108 = 160."
         }
       }
     },
@@ -6472,7 +6472,7 @@
             "27"
           ],
           "answer": "24",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 5 × 6 − 2 × 3 = 24."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 5, b = 2, c = 3 and d = 6. The positions of these entries matter.\nCalculation: det = 5 × 6 − 2 × 3 = 30 − 6 = 24."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[5, 2], [3, 6]] ?",
@@ -6483,7 +6483,7 @@
             "27"
           ],
           "answer": "24",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 5 × 6 − 2 × 3 = 24."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 5, b = 2, c = 3 et d = 6. La position des coefficients est importante.\nApplication : det = 5 × 6 − 2 × 3 = 30 − 6 = 24."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[5, 2], [3, 6]]?",
@@ -6494,7 +6494,7 @@
             "27"
           ],
           "answer": "24",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 5 × 6 − 2 × 3 = 24."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 5, b = 2, c = 3 und d = 6. Die Positionen der Einträge sind wichtig.\nRechnung: det = 5 × 6 − 2 × 3 = 30 − 6 = 24."
         }
       }
     },
@@ -6513,7 +6513,7 @@
             "8"
           ],
           "answer": "8",
-          "explanation": "2^8 = 256, so the base-two logarithm is 8."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 256, so we seek y such that 2^y = 256.\nCalculation: 2^8 = 256; therefore log₂(256) = 8."
         },
         "fr": {
           "question": "Combien vaut log₂(256) ?",
@@ -6524,7 +6524,7 @@
             "8"
           ],
           "answer": "8",
-          "explanation": "2^8 = 256, donc le logarithme en base deux vaut 8."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 256. On cherche donc y tel que 2^y = 256.\nApplication : 2^8 = 256 ; donc log₂(256) = 8."
         },
         "de": {
           "question": "Wie groß ist log₂(256)?",
@@ -6535,7 +6535,7 @@
             "8"
           ],
           "answer": "8",
-          "explanation": "2^8 = 256, daher ist der Logarithmus zur Basis zwei 8."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 256. Gesucht ist also y mit 2^y = 256.\nRechnung: 2^8 = 256; daher ist log₂(256) = 8."
         }
       }
     },
@@ -6554,7 +6554,7 @@
             "25/121"
           ],
           "answer": "2/11",
-          "explanation": "P = (5/11) × (4/10) = 2/11."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 5, t = 11, so P = (5/11) × (4/10) = 20/110 = 2/11."
         },
         "fr": {
           "question": "Un sac contient 5 boules rouges et 6 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -6565,7 +6565,7 @@
             "25/121"
           ],
           "answer": "2/11",
-          "explanation": "P = (5/11) × (4/10) = 2/11."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 5, t = 11, donc P = (5/11) × (4/10) = 20/110 = 2/11."
         },
         "de": {
           "question": "Ein Beutel enthält 5 rote und 6 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -6576,7 +6576,7 @@
             "25/121"
           ],
           "answer": "2/11",
-          "explanation": "P = (5/11) × (4/10) = 2/11."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 5, t = 11, also P = (5/11) × (4/10) = 20/110 = 2/11."
         }
       }
     },
@@ -6595,7 +6595,7 @@
             "5F"
           ],
           "answer": "4F",
-          "explanation": "79 = 4 × 16 + 15; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 79 = 4 × 16 + 15. The quotient 4 is digit 4 and the remainder 15 is digit F. Read them in that order: 4F."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 79 en hexadécimal ?",
@@ -6606,7 +6606,7 @@
             "5F"
           ],
           "answer": "4F",
-          "explanation": "79 = 4 × 16 + 15 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 79 = 4 × 16 + 15. Le quotient 4 s’écrit 4 et le reste 15 s’écrit F. On les lit dans cet ordre : 4F."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 79 im Hexadezimalsystem?",
@@ -6617,7 +6617,7 @@
             "5F"
           ],
           "answer": "4F",
-          "explanation": "79 = 4 × 16 + 15; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 79 = 4 × 16 + 15. Der Quotient 4 entspricht der Ziffer 4, der Rest 15 der Ziffer F. In dieser Reihenfolge ergibt das 4F."
         }
       }
     },
@@ -6636,7 +6636,7 @@
             "2"
           ],
           "answer": "10",
-          "explanation": "2^5 = 32 = 2 × 11 + 10."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 11; the integer quotient is q = 2.\nCalculation: 32 = 2 × 11 + 10, so r = 32 − 2 × 11 = 10. This remainder is between 0 and 10."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 11 ?",
@@ -6647,7 +6647,7 @@
             "2"
           ],
           "answer": "10",
-          "explanation": "2^5 = 32 = 2 × 11 + 10."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 11 ; le quotient entier est q = 2.\nApplication : 32 = 2 × 11 + 10, donc r = 32 − 2 × 11 = 10. Ce reste est bien compris entre 0 et 10."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 11?",
@@ -6658,7 +6658,7 @@
             "2"
           ],
           "answer": "10",
-          "explanation": "2^5 = 32 = 2 × 11 + 10."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 11 ist der ganzzahlige Quotient q = 2.\nRechnung: 32 = 2 × 11 + 10, also r = 32 − 2 × 11 = 10. Der Rest liegt zwischen 0 und 10."
         }
       }
     },
@@ -6677,7 +6677,7 @@
             "860"
           ],
           "answer": "860",
-          "explanation": "S = 20/2 × (2 × 5 + 19 × 4) = 860."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 5, d = 4 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 5 + 19 × 4 = 81.\nCalculation: S_20 = 20 × (5 + 81)/2 = 10 × 86 = 860. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 5 et a pour raison 4. Quelle est la somme de ses 20 premiers termes ?",
@@ -6688,7 +6688,7 @@
             "860"
           ],
           "answer": "860",
-          "explanation": "S = 20/2 × (2 × 5 + 19 × 4) = 860."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 5, d = 4 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 5 + 19 × 4 = 81.\nApplication : S_20 = 20 × (5 + 81)/2 = 10 × 86 = 860. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 5 und hat die Differenz 4. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -6699,7 +6699,7 @@
             "860"
           ],
           "answer": "860",
-          "explanation": "S = 20/2 × (2 × 5 + 19 × 4) = 860."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 5, d = 4 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 5 + 19 × 4 = 81.\nRechnung: S_20 = 20 × (5 + 81)/2 = 10 × 86 = 860. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     },
@@ -6718,7 +6718,7 @@
             "504"
           ],
           "answer": "84",
-          "explanation": "C(9,3) = 9 × 8 × 7 / 6 = 84."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 9 people and k = 3 people per group. We first count ordered selections: 9 choices, then 8, then 7. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(9,3) = (9 × 8 × 7) / (3 × 2 × 1) = 504/6 = 84 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 9 personnes, sans tenir compte de l’ordre ?",
@@ -6729,7 +6729,7 @@
             "504"
           ],
           "answer": "84",
-          "explanation": "C(9,3) = 9 × 8 × 7 / 6 = 84."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 9 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 9 possibilités, puis 8, puis 7. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(9,3) = (9 × 8 × 7) / (3 × 2 × 1) = 504/6 = 84 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 9 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -6740,7 +6740,7 @@
             "504"
           ],
           "answer": "84",
-          "explanation": "C(9,3) = 9 × 8 × 7 / 6 = 84."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 9 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 9 Möglichkeiten, dann 8, dann 7. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(9,3) = (9 × 8 × 7) / (3 × 2 × 1) = 504/6 = 84 Gruppen."
         }
       }
     },
@@ -6759,7 +6759,7 @@
             "5/36"
           ],
           "answer": "1/12",
-          "explanation": "3 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 10”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (4,6), (5,5), (6,4). There are 3.\nCalculation: P(E) = 3/36 = 1/12. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 10 ?",
@@ -6770,7 +6770,7 @@
             "5/36"
           ],
           "answer": "1/12",
-          "explanation": "3 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 10 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (4,6), (5,5), (6,4). Il y en a 3.\nApplication : P(E) = 3/36 = 1/12. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 10?",
@@ -6781,7 +6781,7 @@
             "5/36"
           ],
           "answer": "1/12",
-          "explanation": "3 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 10“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (4,6), (5,5), (6,4). Es sind 3.\nRechnung: P(E) = 3/36 = 1/12. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -6800,7 +6800,7 @@
             "194"
           ],
           "answer": "192",
-          "explanation": "The power rule gives f′(x) = 6x^5; substituting x = 2 gives 192."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 6. Multiply by the exponent and reduce that exponent by 1: f′(x) = 6 × x^5. Only then substitute x = 2.\nCalculation: f′(2) = 6 × 2^5 = 6 × 32 = 192. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^6, combien vaut f′(2) ?",
@@ -6811,7 +6811,7 @@
             "194"
           ],
           "answer": "192",
-          "explanation": "La règle de dérivation donne f′(x) = 6x^5 ; en remplaçant x par 2, on obtient 192."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 6. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 6 × x^5. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 6 × 2^5 = 6 × 32 = 192. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^6 ist, wie groß ist f′(2)?",
@@ -6822,7 +6822,7 @@
             "194"
           ],
           "answer": "192",
-          "explanation": "Die Potenzregel ergibt f′(x) = 6x^5; mit x = 2 folgt 192."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 6. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 6 × x^5. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 6 × 2^5 = 6 × 32 = 192. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -6841,7 +6841,7 @@
             "200"
           ],
           "answer": "200",
-          "explanation": "5 × (1 + 3 + 9 + 27) = 200."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 5, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 5 + 15 + 45 + 135.\nCalculation: S_4 = 5 × (3^4 − 1) / (3 − 1) = 5 × 80/2 = 200. Check by addition: 5 + 15 + 45 + 135 = 200."
         },
         "fr": {
           "question": "Une suite géométrique commence par 5 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -6852,7 +6852,7 @@
             "200"
           ],
           "answer": "200",
-          "explanation": "5 × (1 + 3 + 9 + 27) = 200."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 5, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 5 + 15 + 45 + 135.\nApplication : S_4 = 5 × (3^4 − 1) / (3 − 1) = 5 × 80/2 = 200. Vérification par addition : 5 + 15 + 45 + 135 = 200."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 5 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -6863,7 +6863,7 @@
             "200"
           ],
           "answer": "200",
-          "explanation": "5 × (1 + 3 + 9 + 27) = 200."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 5, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 5 + 15 + 45 + 135.\nRechnung: S_4 = 5 × (3^4 − 1) / (3 − 1) = 5 × 80/2 = 200. Kontrolle durch Addition: 5 + 15 + 45 + 135 = 200."
         }
       }
     },
@@ -6882,7 +6882,7 @@
             "48"
           ],
           "answer": "36",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 6 × 7 − 2 × 3 = 36."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 6, b = 2, c = 3 and d = 7. The positions of these entries matter.\nCalculation: det = 6 × 7 − 2 × 3 = 42 − 6 = 36."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[6, 2], [3, 7]] ?",
@@ -6893,7 +6893,7 @@
             "48"
           ],
           "answer": "36",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 6 × 7 − 2 × 3 = 36."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 6, b = 2, c = 3 et d = 7. La position des coefficients est importante.\nApplication : det = 6 × 7 − 2 × 3 = 42 − 6 = 36."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[6, 2], [3, 7]]?",
@@ -6904,7 +6904,7 @@
             "48"
           ],
           "answer": "36",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 6 × 7 − 2 × 3 = 36."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 6, b = 2, c = 3 und d = 7. Die Positionen der Einträge sind wichtig.\nRechnung: det = 6 × 7 − 2 × 3 = 42 − 6 = 36."
         }
       }
     },
@@ -6923,7 +6923,7 @@
             "10"
           ],
           "answer": "9",
-          "explanation": "2^9 = 512, so the base-two logarithm is 9."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 512, so we seek y such that 2^y = 512.\nCalculation: 2^9 = 512; therefore log₂(512) = 9."
         },
         "fr": {
           "question": "Combien vaut log₂(512) ?",
@@ -6934,7 +6934,7 @@
             "10"
           ],
           "answer": "9",
-          "explanation": "2^9 = 512, donc le logarithme en base deux vaut 9."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 512. On cherche donc y tel que 2^y = 512.\nApplication : 2^9 = 512 ; donc log₂(512) = 9."
         },
         "de": {
           "question": "Wie groß ist log₂(512)?",
@@ -6945,7 +6945,7 @@
             "10"
           ],
           "answer": "9",
-          "explanation": "2^9 = 512, daher ist der Logarithmus zur Basis zwei 9."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 512. Gesucht ist also y mit 2^y = 512.\nRechnung: 2^9 = 512; daher ist log₂(512) = 9."
         }
       }
     },
@@ -6964,7 +6964,7 @@
             "30/169"
           ],
           "answer": "5/26",
-          "explanation": "P = (6/13) × (5/12) = 5/26."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 6, t = 13, so P = (6/13) × (5/12) = 30/156 = 5/26."
         },
         "fr": {
           "question": "Un sac contient 6 boules rouges et 7 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -6975,7 +6975,7 @@
             "30/169"
           ],
           "answer": "5/26",
-          "explanation": "P = (6/13) × (5/12) = 5/26."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 6, t = 13, donc P = (6/13) × (5/12) = 30/156 = 5/26."
         },
         "de": {
           "question": "Ein Beutel enthält 6 rote und 7 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -6986,7 +6986,7 @@
             "30/169"
           ],
           "answer": "5/26",
-          "explanation": "P = (6/13) × (5/12) = 5/26."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 6, t = 13, also P = (6/13) × (5/12) = 30/156 = 5/26."
         }
       }
     },
@@ -7005,7 +7005,7 @@
             "6D"
           ],
           "answer": "6D",
-          "explanation": "109 = 6 × 16 + 13; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 109 = 6 × 16 + 13. The quotient 6 is digit 6 and the remainder 13 is digit D. Read them in that order: 6D."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 109 en hexadécimal ?",
@@ -7016,7 +7016,7 @@
             "6D"
           ],
           "answer": "6D",
-          "explanation": "109 = 6 × 16 + 13 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 109 = 6 × 16 + 13. Le quotient 6 s’écrit 6 et le reste 13 s’écrit D. On les lit dans cet ordre : 6D."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 109 im Hexadezimalsystem?",
@@ -7027,7 +7027,7 @@
             "6D"
           ],
           "answer": "6D",
-          "explanation": "109 = 6 × 16 + 13; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 109 = 6 × 16 + 13. Der Quotient 6 entspricht der Ziffer 6, der Rest 13 der Ziffer D. In dieser Reihenfolge ergibt das 6D."
         }
       }
     },
@@ -7046,7 +7046,7 @@
             "7"
           ],
           "answer": "6",
-          "explanation": "2^5 = 32 = 2 × 13 + 6."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 13; the integer quotient is q = 2.\nCalculation: 32 = 2 × 13 + 6, so r = 32 − 2 × 13 = 6. This remainder is between 0 and 12."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 13 ?",
@@ -7057,7 +7057,7 @@
             "7"
           ],
           "answer": "6",
-          "explanation": "2^5 = 32 = 2 × 13 + 6."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 13 ; le quotient entier est q = 2.\nApplication : 32 = 2 × 13 + 6, donc r = 32 − 2 × 13 = 6. Ce reste est bien compris entre 0 et 12."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 13?",
@@ -7068,7 +7068,7 @@
             "7"
           ],
           "answer": "6",
-          "explanation": "2^5 = 32 = 2 × 13 + 6."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 13 ist der ganzzahlige Quotient q = 2.\nRechnung: 32 = 2 × 13 + 6, also r = 32 − 2 × 13 = 6. Der Rest liegt zwischen 0 und 12."
         }
       }
     },
@@ -7087,7 +7087,7 @@
             "1050"
           ],
           "answer": "1070",
-          "explanation": "S = 20/2 × (2 × 6 + 19 × 5) = 1070."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 6, d = 5 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 6 + 19 × 5 = 101.\nCalculation: S_20 = 20 × (6 + 101)/2 = 10 × 107 = 1070. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 6 et a pour raison 5. Quelle est la somme de ses 20 premiers termes ?",
@@ -7098,7 +7098,7 @@
             "1050"
           ],
           "answer": "1070",
-          "explanation": "S = 20/2 × (2 × 6 + 19 × 5) = 1070."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 6, d = 5 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 6 + 19 × 5 = 101.\nApplication : S_20 = 20 × (6 + 101)/2 = 10 × 107 = 1070. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 6 und hat die Differenz 5. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -7109,7 +7109,7 @@
             "1050"
           ],
           "answer": "1070",
-          "explanation": "S = 20/2 × (2 × 6 + 19 × 5) = 1070."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 6, d = 5 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 6 + 19 × 5 = 101.\nRechnung: S_20 = 20 × (6 + 101)/2 = 10 × 107 = 1070. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     },
@@ -7128,7 +7128,7 @@
             "130"
           ],
           "answer": "120",
-          "explanation": "C(10,3) = 10 × 9 × 8 / 6 = 120."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 10 people and k = 3 people per group. We first count ordered selections: 10 choices, then 9, then 8. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(10,3) = (10 × 9 × 8) / (3 × 2 × 1) = 720/6 = 120 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 10 personnes, sans tenir compte de l’ordre ?",
@@ -7139,7 +7139,7 @@
             "130"
           ],
           "answer": "120",
-          "explanation": "C(10,3) = 10 × 9 × 8 / 6 = 120."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 10 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 10 possibilités, puis 9, puis 8. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(10,3) = (10 × 9 × 8) / (3 × 2 × 1) = 720/6 = 120 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 10 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -7150,7 +7150,7 @@
             "130"
           ],
           "answer": "120",
-          "explanation": "C(10,3) = 10 × 9 × 8 / 6 = 120."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 10 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 10 Möglichkeiten, dann 9, dann 8. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(10,3) = (10 × 9 × 8) / (3 × 2 × 1) = 720/6 = 120 Gruppen."
         }
       }
     },
@@ -7169,7 +7169,7 @@
             "1/18"
           ],
           "answer": "1/18",
-          "explanation": "2 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 11”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (5,6), (6,5). There are 2.\nCalculation: P(E) = 2/36 = 1/18. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 11 ?",
@@ -7180,7 +7180,7 @@
             "1/18"
           ],
           "answer": "1/18",
-          "explanation": "2 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 11 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (5,6), (6,5). Il y en a 2.\nApplication : P(E) = 2/36 = 1/18. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 11?",
@@ -7191,7 +7191,7 @@
             "1/18"
           ],
           "answer": "1/18",
-          "explanation": "2 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 11“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (5,6), (6,5). Es sind 2.\nRechnung: P(E) = 2/36 = 1/18. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -7210,7 +7210,7 @@
             "128"
           ],
           "answer": "448",
-          "explanation": "The power rule gives f′(x) = 7x^6; substituting x = 2 gives 448."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 7. Multiply by the exponent and reduce that exponent by 1: f′(x) = 7 × x^6. Only then substitute x = 2.\nCalculation: f′(2) = 7 × 2^6 = 7 × 64 = 448. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^7, combien vaut f′(2) ?",
@@ -7221,7 +7221,7 @@
             "128"
           ],
           "answer": "448",
-          "explanation": "La règle de dérivation donne f′(x) = 7x^6 ; en remplaçant x par 2, on obtient 448."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 7. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 7 × x^6. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 7 × 2^6 = 7 × 64 = 448. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^7 ist, wie groß ist f′(2)?",
@@ -7232,7 +7232,7 @@
             "128"
           ],
           "answer": "448",
-          "explanation": "Die Potenzregel ergibt f′(x) = 7x^6; mit x = 2 folgt 448."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 7. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 7 × x^6. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 7 × 2^6 = 7 × 64 = 448. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -7251,7 +7251,7 @@
             "246"
           ],
           "answer": "240",
-          "explanation": "6 × (1 + 3 + 9 + 27) = 240."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 6, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 6 + 18 + 54 + 162.\nCalculation: S_4 = 6 × (3^4 − 1) / (3 − 1) = 6 × 80/2 = 240. Check by addition: 6 + 18 + 54 + 162 = 240."
         },
         "fr": {
           "question": "Une suite géométrique commence par 6 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -7262,7 +7262,7 @@
             "246"
           ],
           "answer": "240",
-          "explanation": "6 × (1 + 3 + 9 + 27) = 240."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 6, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 6 + 18 + 54 + 162.\nApplication : S_4 = 6 × (3^4 − 1) / (3 − 1) = 6 × 80/2 = 240. Vérification par addition : 6 + 18 + 54 + 162 = 240."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 6 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -7273,7 +7273,7 @@
             "246"
           ],
           "answer": "240",
-          "explanation": "6 × (1 + 3 + 9 + 27) = 240."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 6, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 6 + 18 + 54 + 162.\nRechnung: S_4 = 6 × (3^4 − 1) / (3 − 1) = 6 × 80/2 = 240. Kontrolle durch Addition: 6 + 18 + 54 + 162 = 240."
         }
       }
     },
@@ -7292,7 +7292,7 @@
             "53"
           ],
           "answer": "50",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 7 × 8 − 2 × 3 = 50."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 7, b = 2, c = 3 and d = 8. The positions of these entries matter.\nCalculation: det = 7 × 8 − 2 × 3 = 56 − 6 = 50."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[7, 2], [3, 8]] ?",
@@ -7303,7 +7303,7 @@
             "53"
           ],
           "answer": "50",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 7 × 8 − 2 × 3 = 50."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 7, b = 2, c = 3 et d = 8. La position des coefficients est importante.\nApplication : det = 7 × 8 − 2 × 3 = 56 − 6 = 50."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[7, 2], [3, 8]]?",
@@ -7314,7 +7314,7 @@
             "53"
           ],
           "answer": "50",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 7 × 8 − 2 × 3 = 50."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 7, b = 2, c = 3 und d = 8. Die Positionen der Einträge sind wichtig.\nRechnung: det = 7 × 8 − 2 × 3 = 56 − 6 = 50."
         }
       }
     },
@@ -7333,7 +7333,7 @@
             "10"
           ],
           "answer": "10",
-          "explanation": "2^10 = 1024, so the base-two logarithm is 10."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 1024, so we seek y such that 2^y = 1024.\nCalculation: 2^10 = 1024; therefore log₂(1024) = 10."
         },
         "fr": {
           "question": "Combien vaut log₂(1024) ?",
@@ -7344,7 +7344,7 @@
             "10"
           ],
           "answer": "10",
-          "explanation": "2^10 = 1024, donc le logarithme en base deux vaut 10."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 1024. On cherche donc y tel que 2^y = 1024.\nApplication : 2^10 = 1024 ; donc log₂(1024) = 10."
         },
         "de": {
           "question": "Wie groß ist log₂(1024)?",
@@ -7355,7 +7355,7 @@
             "10"
           ],
           "answer": "10",
-          "explanation": "2^10 = 1024, daher ist der Logarithmus zur Basis zwei 10."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 1024. Gesucht ist also y mit 2^y = 1024.\nRechnung: 2^10 = 1024; daher ist log₂(1024) = 10."
         }
       }
     },
@@ -7374,7 +7374,7 @@
             "49/225"
           ],
           "answer": "1/5",
-          "explanation": "P = (7/15) × (6/14) = 1/5."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 7, t = 15, so P = (7/15) × (6/14) = 42/210 = 1/5."
         },
         "fr": {
           "question": "Un sac contient 7 boules rouges et 8 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -7385,7 +7385,7 @@
             "49/225"
           ],
           "answer": "1/5",
-          "explanation": "P = (7/15) × (6/14) = 1/5."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 7, t = 15, donc P = (7/15) × (6/14) = 42/210 = 1/5."
         },
         "de": {
           "question": "Ein Beutel enthält 7 rote und 8 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -7396,7 +7396,7 @@
             "49/225"
           ],
           "answer": "1/5",
-          "explanation": "P = (7/15) × (6/14) = 1/5."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 7, t = 15, also P = (7/15) × (6/14) = 42/210 = 1/5."
         }
       }
     },
@@ -7415,7 +7415,7 @@
             "BF"
           ],
           "answer": "AF",
-          "explanation": "175 = 10 × 16 + 15; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 175 = 10 × 16 + 15. The quotient 10 is digit A and the remainder 15 is digit F. Read them in that order: AF."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 175 en hexadécimal ?",
@@ -7426,7 +7426,7 @@
             "BF"
           ],
           "answer": "AF",
-          "explanation": "175 = 10 × 16 + 15 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 175 = 10 × 16 + 15. Le quotient 10 s’écrit A et le reste 15 s’écrit F. On les lit dans cet ordre : AF."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 175 im Hexadezimalsystem?",
@@ -7437,7 +7437,7 @@
             "BF"
           ],
           "answer": "AF",
-          "explanation": "175 = 10 × 16 + 15; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 175 = 10 × 16 + 15. Der Quotient 10 entspricht der Ziffer A, der Rest 15 der Ziffer F. In dieser Reihenfolge ergibt das AF."
         }
       }
     },
@@ -7456,7 +7456,7 @@
             "1"
           ],
           "answer": "15",
-          "explanation": "2^5 = 32 = 1 × 17 + 15."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 17; the integer quotient is q = 1.\nCalculation: 32 = 1 × 17 + 15, so r = 32 − 1 × 17 = 15. This remainder is between 0 and 16."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 17 ?",
@@ -7467,7 +7467,7 @@
             "1"
           ],
           "answer": "15",
-          "explanation": "2^5 = 32 = 1 × 17 + 15."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 17 ; le quotient entier est q = 1.\nApplication : 32 = 1 × 17 + 15, donc r = 32 − 1 × 17 = 15. Ce reste est bien compris entre 0 et 16."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 17?",
@@ -7478,7 +7478,7 @@
             "1"
           ],
           "answer": "15",
-          "explanation": "2^5 = 32 = 1 × 17 + 15."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 17 ist der ganzzahlige Quotient q = 1.\nRechnung: 32 = 1 × 17 + 15, also r = 32 − 1 × 17 = 15. Der Rest liegt zwischen 0 und 16."
         }
       }
     },
@@ -7497,7 +7497,7 @@
             "1280"
           ],
           "answer": "1280",
-          "explanation": "S = 20/2 × (2 × 7 + 19 × 6) = 1280."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 7, d = 6 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 7 + 19 × 6 = 121.\nCalculation: S_20 = 20 × (7 + 121)/2 = 10 × 128 = 1280. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 7 et a pour raison 6. Quelle est la somme de ses 20 premiers termes ?",
@@ -7508,7 +7508,7 @@
             "1280"
           ],
           "answer": "1280",
-          "explanation": "S = 20/2 × (2 × 7 + 19 × 6) = 1280."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 7, d = 6 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 7 + 19 × 6 = 121.\nApplication : S_20 = 20 × (7 + 121)/2 = 10 × 128 = 1280. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 7 und hat die Differenz 6. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -7519,7 +7519,7 @@
             "1280"
           ],
           "answer": "1280",
-          "explanation": "S = 20/2 × (2 × 7 + 19 × 6) = 1280."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 7, d = 6 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 7 + 19 × 6 = 121.\nRechnung: S_20 = 20 × (7 + 121)/2 = 10 × 128 = 1280. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     },
@@ -7538,7 +7538,7 @@
             "990"
           ],
           "answer": "165",
-          "explanation": "C(11,3) = 11 × 10 × 9 / 6 = 165."
+          "explanation": "Formula: C(n,k) = n! / (k! × (n−k)!). The symbol ! means factorial: for example, 3! = 3 × 2 × 1 = 6.\nHere n = 11 people and k = 3 people per group. We first count ordered selections: 11 choices, then 10, then 9. Each group is counted 3! = 6 times because its three members can be ordered in six ways. Since order does not matter, divide by 6.\nCalculation: C(11,3) = (11 × 10 × 9) / (3 × 2 × 1) = 990/6 = 165 groups."
         },
         "fr": {
           "question": "Combien de groupes distincts de trois personnes peut-on former parmi 11 personnes, sans tenir compte de l’ordre ?",
@@ -7549,7 +7549,7 @@
             "990"
           ],
           "answer": "165",
-          "explanation": "C(11,3) = 11 × 10 × 9 / 6 = 165."
+          "explanation": "Formule : C(n,k) = n! / (k! × (n−k)!). Le symbole ! désigne la factorielle : par exemple, 3! = 3 × 2 × 1 = 6.\nIci, n = 11 personnes et k = 3 personnes par groupe. On compte d’abord les choix ordonnés : 11 possibilités, puis 10, puis 9. Chaque groupe est compté 3! = 6 fois, car ses trois membres peuvent être ordonnés de six façons. Puisque l’ordre ne compte pas, on divise par 6.\nApplication : C(11,3) = (11 × 10 × 9) / (3 × 2 × 1) = 990/6 = 165 groupes."
         },
         "de": {
           "question": "Wie viele verschiedene Dreiergruppen lassen sich aus 11 Personen auswählen, wenn die Reihenfolge egal ist?",
@@ -7560,7 +7560,7 @@
             "990"
           ],
           "answer": "165",
-          "explanation": "C(11,3) = 11 × 10 × 9 / 6 = 165."
+          "explanation": "Formel: C(n,k) = n! / (k! × (n−k)!). Das Zeichen ! bedeutet Fakultät: zum Beispiel 3! = 3 × 2 × 1 = 6.\nHier sind n = 11 Personen verfügbar und k = 3 Personen bilden eine Gruppe. Zunächst zählt man geordnete Auswahlen: 11 Möglichkeiten, dann 10, dann 9. Jede Gruppe wird 3! = 6 Mal gezählt, weil ihre drei Mitglieder auf sechs Arten angeordnet werden können. Da die Reihenfolge egal ist, teilt man durch 6.\nRechnung: C(11,3) = (11 × 10 × 9) / (3 × 2 × 1) = 990/6 = 165 Gruppen."
         }
       }
     },
@@ -7579,7 +7579,7 @@
             "1/12"
           ],
           "answer": "1/36",
-          "explanation": "1 of the 36 equally likely ordered outcomes have this sum."
+          "explanation": "Formula: P(E) = number of favourable outcomes / total number of outcomes, when all outcomes are equally likely. E is the event “the sum is 12”.\nTwo independent fair dice give 6 × 6 = 36 ordered pairs. The first entry is the first die, so (1,6) and (6,1) are different outcomes. The favourable pairs are: (6,6). There are 1.\nCalculation: P(E) = 1/36 = 1/36. Reduce a fraction by dividing its numerator and denominator by their greatest common divisor."
         },
         "fr": {
           "question": "On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit 12 ?",
@@ -7590,7 +7590,7 @@
             "1/12"
           ],
           "answer": "1/36",
-          "explanation": "1 des 36 couples ordonnés équiprobables ont cette somme."
+          "explanation": "Formule : P(E) = nombre d’issues favorables / nombre total d’issues, lorsque les issues sont équiprobables. E est l’événement « la somme vaut 12 ».\nDeux dés équilibrés et indépendants donnent 6 × 6 = 36 couples ordonnés. La première valeur est celle du premier dé : (1,6) et (6,1) sont donc deux issues différentes. Les couples favorables sont : (6,6). Il y en a 1.\nApplication : P(E) = 1/36 = 1/36. On simplifie une fraction en divisant le numérateur et le dénominateur par leur plus grand diviseur commun."
         },
         "de": {
           "question": "Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme 12?",
@@ -7601,7 +7601,7 @@
             "1/12"
           ],
           "answer": "1/36",
-          "explanation": "1 der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe."
+          "explanation": "Formel: P(E) = Anzahl günstiger Ergebnisse / Anzahl aller Ergebnisse, wenn alle Ergebnisse gleich wahrscheinlich sind. E bedeutet „die Summe ist 12“.\nZwei unabhängige faire Würfel ergeben 6 × 6 = 36 geordnete Paare. Der erste Eintrag gehört zum ersten Würfel: (1,6) und (6,1) sind daher verschiedene Ergebnisse. Die günstigen Paare sind: (6,6). Es sind 1.\nRechnung: P(E) = 1/36 = 1/36. Man kürzt einen Bruch, indem man Zähler und Nenner durch ihren größten gemeinsamen Teiler teilt."
         }
       }
     },
@@ -7620,7 +7620,7 @@
             "1026"
           ],
           "answer": "1024",
-          "explanation": "The power rule gives f′(x) = 8x^7; substituting x = 2 gives 1024."
+          "explanation": "Formula: if f(x) = x^n, the power rule gives f′(x) = n × x^(n−1). The derivative describes the instantaneous rate of change of f.\nHere n = 8. Multiply by the exponent and reduce that exponent by 1: f′(x) = 8 × x^7. Only then substitute x = 2.\nCalculation: f′(2) = 8 × 2^7 = 8 × 128 = 1024. We evaluate the derivative, not f(2)."
         },
         "fr": {
           "question": "Si f(x) = x^8, combien vaut f′(2) ?",
@@ -7631,7 +7631,7 @@
             "1026"
           ],
           "answer": "1024",
-          "explanation": "La règle de dérivation donne f′(x) = 8x^7 ; en remplaçant x par 2, on obtient 1024."
+          "explanation": "Formule : si f(x) = x^n, la règle de dérivation des puissances donne f′(x) = n × x^(n−1). La dérivée décrit le taux de variation instantané de f.\nIci, n = 8. On multiplie par l’exposant et on diminue cet exposant de 1 : f′(x) = 8 × x^7. Ensuite seulement, on remplace x par 2.\nApplication : f′(2) = 8 × 2^7 = 8 × 128 = 1024. On calcule la dérivée en 2, et non f(2)."
         },
         "de": {
           "question": "Wenn f(x) = x^8 ist, wie groß ist f′(2)?",
@@ -7642,7 +7642,7 @@
             "1026"
           ],
           "answer": "1024",
-          "explanation": "Die Potenzregel ergibt f′(x) = 8x^7; mit x = 2 folgt 1024."
+          "explanation": "Formel: Für f(x) = x^n gilt die Potenzregel f′(x) = n × x^(n−1). Die Ableitung beschreibt die momentane Änderungsrate von f.\nHier ist n = 8. Man multipliziert mit dem Exponenten und verringert ihn um 1: f′(x) = 8 × x^7. Erst danach setzt man x = 2 ein.\nRechnung: f′(2) = 8 × 2^7 = 8 × 128 = 1024. Gesucht ist die Ableitung an der Stelle 2, nicht f(2)."
         }
       }
     },
@@ -7661,7 +7661,7 @@
             "280"
           ],
           "answer": "280",
-          "explanation": "7 × (1 + 3 + 9 + 27) = 280."
+          "explanation": "Formula: S_n = a × (q^n − 1) / (q − 1), for q ≠ 1. Here a is the first term, q the multiplier between terms, and n the number of terms.\nWe have a = 7, q = 3 and n = 4. Multiplying each term by 3 gives the four terms 7 + 21 + 63 + 189.\nCalculation: S_4 = 7 × (3^4 − 1) / (3 − 1) = 7 × 80/2 = 280. Check by addition: 7 + 21 + 63 + 189 = 280."
         },
         "fr": {
           "question": "Une suite géométrique commence par 7 et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?",
@@ -7672,7 +7672,7 @@
             "280"
           ],
           "answer": "280",
-          "explanation": "7 × (1 + 3 + 9 + 27) = 280."
+          "explanation": "Formule : S_n = a × (q^n − 1) / (q − 1), pour q ≠ 1. a est le premier terme, q la raison multiplicative et n le nombre de termes.\nIci, a = 7, q = 3 et n = 4. On multiplie chaque terme par 3 pour obtenir le suivant : les quatre termes sont 7 + 21 + 63 + 189.\nApplication : S_4 = 7 × (3^4 − 1) / (3 − 1) = 7 × 80/2 = 280. Vérification par addition : 7 + 21 + 63 + 189 = 280."
         },
         "de": {
           "question": "Eine geometrische Folge beginnt mit 7 und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?",
@@ -7683,7 +7683,7 @@
             "280"
           ],
           "answer": "280",
-          "explanation": "7 × (1 + 3 + 9 + 27) = 280."
+          "explanation": "Formel: S_n = a × (q^n − 1) / (q − 1), für q ≠ 1. Dabei ist a das erste Glied, q der Faktor zwischen den Gliedern und n ihre Anzahl.\nHier sind a = 7, q = 3 und n = 4. Jedes Glied wird mit 3 multipliziert; die vier Glieder sind 7 + 21 + 63 + 189.\nRechnung: S_4 = 7 × (3^4 − 1) / (3 − 1) = 7 × 80/2 = 280. Kontrolle durch Addition: 7 + 21 + 63 + 189 = 280."
         }
       }
     },
@@ -7702,7 +7702,7 @@
             "78"
           ],
           "answer": "66",
-          "explanation": "For a 2×2 matrix, det = ad − bc = 8 × 9 − 2 × 3 = 66."
+          "explanation": "Formula: for the matrix [[a,b],[c,d]], det = a × d − b × c. Multiply the main-diagonal entries, then subtract the product of the other diagonal.\nHere a = 8, b = 2, c = 3 and d = 9. The positions of these entries matter.\nCalculation: det = 8 × 9 − 2 × 3 = 72 − 6 = 66."
         },
         "fr": {
           "question": "Quel est le déterminant de la matrice [[8, 2], [3, 9]] ?",
@@ -7713,7 +7713,7 @@
             "78"
           ],
           "answer": "66",
-          "explanation": "Pour une matrice 2×2, det = ad − bc = 8 × 9 − 2 × 3 = 66."
+          "explanation": "Formule : pour la matrice [[a,b],[c,d]], det = a × d − b × c. On multiplie les éléments de la diagonale principale, puis on soustrait le produit de l’autre diagonale.\nIci, a = 8, b = 2, c = 3 et d = 9. La position des coefficients est importante.\nApplication : det = 8 × 9 − 2 × 3 = 72 − 6 = 66."
         },
         "de": {
           "question": "Wie lautet die Determinante der Matrix [[8, 2], [3, 9]]?",
@@ -7724,7 +7724,7 @@
             "78"
           ],
           "answer": "66",
-          "explanation": "Für eine 2×2-Matrix gilt det = ad − bc = 8 × 9 − 2 × 3 = 66."
+          "explanation": "Formel: Für die Matrix [[a,b],[c,d]] gilt det = a × d − b × c. Man multipliziert die Einträge der Hauptdiagonale und zieht das Produkt der anderen Diagonale ab.\nHier sind a = 8, b = 2, c = 3 und d = 9. Die Positionen der Einträge sind wichtig.\nRechnung: det = 8 × 9 − 2 × 3 = 72 − 6 = 66."
         }
       }
     },
@@ -7743,7 +7743,7 @@
             "12"
           ],
           "answer": "11",
-          "explanation": "2^11 = 2048, so the base-two logarithm is 11."
+          "explanation": "Rule: log_b(x) = y means b^y = x, with b > 0, b ≠ 1 and x > 0. A logarithm asks which exponent produces the given number.\nHere the base is b = 2 and x = 2048, so we seek y such that 2^y = 2048.\nCalculation: 2^11 = 2048; therefore log₂(2048) = 11."
         },
         "fr": {
           "question": "Combien vaut log₂(2048) ?",
@@ -7754,7 +7754,7 @@
             "12"
           ],
           "answer": "11",
-          "explanation": "2^11 = 2048, donc le logarithme en base deux vaut 11."
+          "explanation": "Règle : log_b(x) = y signifie b^y = x, avec b > 0, b ≠ 1 et x > 0. Un logarithme cherche l’exposant qui permet d’obtenir le nombre donné.\nIci, la base est b = 2 et x = 2048. On cherche donc y tel que 2^y = 2048.\nApplication : 2^11 = 2048 ; donc log₂(2048) = 11."
         },
         "de": {
           "question": "Wie groß ist log₂(2048)?",
@@ -7765,7 +7765,7 @@
             "12"
           ],
           "answer": "11",
-          "explanation": "2^11 = 2048, daher ist der Logarithmus zur Basis zwei 11."
+          "explanation": "Regel: log_b(x) = y bedeutet b^y = x, mit b > 0, b ≠ 1 und x > 0. Der Logarithmus fragt nach dem Exponenten, der die angegebene Zahl ergibt.\nHier sind die Basis b = 2 und x = 2048. Gesucht ist also y mit 2^y = 2048.\nRechnung: 2^11 = 2048; daher ist log₂(2048) = 11."
         }
       }
     },
@@ -7784,7 +7784,7 @@
             "56/289"
           ],
           "answer": "7/34",
-          "explanation": "P = (8/17) × (7/16) = 7/34."
+          "explanation": "Formula: P(R₁ and R₂) = P(R₁) × P(R₂ | R₁), where R₁ and R₂ mean “red on the first draw” and “red on the second draw”. The vertical bar means “given that”.\nWith r red balls among t balls, P = (r/t) × ((r−1)/(t−1)). Without replacement, after drawing a red ball there is one fewer red ball AND one fewer ball in total. The draws are not independent.\nCalculation: r = 8, t = 17, so P = (8/17) × (7/16) = 56/272 = 7/34."
         },
         "fr": {
           "question": "Un sac contient 8 boules rouges et 9 noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?",
@@ -7795,7 +7795,7 @@
             "56/289"
           ],
           "answer": "7/34",
-          "explanation": "P = (8/17) × (7/16) = 7/34."
+          "explanation": "Formule : P(R₁ et R₂) = P(R₁) × P(R₂ | R₁), où R₁ et R₂ signifient « rouge au premier tirage » et « rouge au second tirage ». La barre verticale signifie « sachant que ».\nAvec r boules rouges parmi t boules, P = (r/t) × ((r−1)/(t−1)). Sans remise, après avoir tiré une rouge, il reste une boule rouge de moins ET une boule de moins au total. Les tirages ne sont pas indépendants.\nApplication : r = 8, t = 17, donc P = (8/17) × (7/16) = 56/272 = 7/34."
         },
         "de": {
           "question": "Ein Beutel enthält 8 rote und 9 schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?",
@@ -7806,7 +7806,7 @@
             "56/289"
           ],
           "answer": "7/34",
-          "explanation": "P = (8/17) × (7/16) = 7/34."
+          "explanation": "Formel: P(R₁ und R₂) = P(R₁) × P(R₂ | R₁). R₁ und R₂ bedeuten „beim ersten Zug rot“ und „beim zweiten Zug rot“. Der senkrechte Strich bedeutet „unter der Bedingung“.\nBei r roten unter t Kugeln gilt P = (r/t) × ((r−1)/(t−1)). Ohne Zurücklegen sind nach einer roten Kugel sowohl eine rote Kugel als auch insgesamt eine Kugel weniger vorhanden. Die Ziehungen sind nicht unabhängig.\nRechnung: r = 8, t = 17, also P = (8/17) × (7/16) = 56/272 = 7/34."
         }
       }
     },
@@ -7825,7 +7825,7 @@
             "ED"
           ],
           "answer": "ED",
-          "explanation": "237 = 14 × 16 + 13; digits A–F represent 10–15."
+          "explanation": "Rule: in base 16, a two-digit number has value 16 × q + r, where q is the quotient of division by 16 and r the remainder (0 ≤ r < 16). Digits A, B, C, D, E, F represent 10, 11, 12, 13, 14, 15.\nCalculation: 237 = 14 × 16 + 13. The quotient 14 is digit E and the remainder 13 is digit D. Read them in that order: ED."
         },
         "fr": {
           "question": "Comment écrit-on le nombre décimal 237 en hexadécimal ?",
@@ -7836,7 +7836,7 @@
             "ED"
           ],
           "answer": "ED",
-          "explanation": "237 = 14 × 16 + 13 ; les chiffres A à F représentent 10 à 15."
+          "explanation": "Règle : en base 16, un nombre à deux chiffres vaut 16 × q + r, où q est le quotient de la division par 16 et r le reste (0 ≤ r < 16). Les chiffres A, B, C, D, E, F représentent 10, 11, 12, 13, 14, 15.\nApplication : 237 = 14 × 16 + 13. Le quotient 14 s’écrit E et le reste 13 s’écrit D. On les lit dans cet ordre : ED."
         },
         "de": {
           "question": "Wie schreibt man die Dezimalzahl 237 im Hexadezimalsystem?",
@@ -7847,7 +7847,7 @@
             "ED"
           ],
           "answer": "ED",
-          "explanation": "237 = 14 × 16 + 13; die Ziffern A–F stehen für 10–15."
+          "explanation": "Regel: Im Stellenwertsystem zur Basis 16 hat eine zweistellige Zahl den Wert 16 × q + r. Dabei ist q der Quotient bei Division durch 16 und r der Rest (0 ≤ r < 16). A, B, C, D, E, F stehen für 10, 11, 12, 13, 14, 15.\nRechnung: 237 = 14 × 16 + 13. Der Quotient 14 entspricht der Ziffer E, der Rest 13 der Ziffer D. In dieser Reihenfolge ergibt das ED."
         }
       }
     },
@@ -7866,7 +7866,7 @@
             "14"
           ],
           "answer": "13",
-          "explanation": "2^5 = 32 = 1 × 19 + 13."
+          "explanation": "Formula: N = q × m + r, with 0 ≤ r < m. Here N is the dividend, m the positive divisor, q the integer quotient and r the remainder. Equivalently, r = N − q × m, where q = floor(N/m).\nFirst compute the power: N = 2^5 = 32. Divide by m = 19; the integer quotient is q = 1.\nCalculation: 32 = 1 × 19 + 13, so r = 32 − 1 × 19 = 13. This remainder is between 0 and 18."
         },
         "fr": {
           "question": "Quel est le reste de la division de 2^5 par 19 ?",
@@ -7877,7 +7877,7 @@
             "14"
           ],
           "answer": "13",
-          "explanation": "2^5 = 32 = 1 × 19 + 13."
+          "explanation": "Formule : N = q × m + r, avec 0 ≤ r < m. N est le dividende, m le diviseur positif, q le quotient entier et r le reste. On a donc r = N − q × m, avec q égal à la partie entière de N/m.\nOn calcule d’abord la puissance : N = 2^5 = 32. On divise par m = 19 ; le quotient entier est q = 1.\nApplication : 32 = 1 × 19 + 13, donc r = 32 − 1 × 19 = 13. Ce reste est bien compris entre 0 et 18."
         },
         "de": {
           "question": "Welcher Rest bleibt bei der Division von 2^5 durch 19?",
@@ -7888,7 +7888,7 @@
             "14"
           ],
           "answer": "13",
-          "explanation": "2^5 = 32 = 1 × 19 + 13."
+          "explanation": "Formel: N = q × m + r, mit 0 ≤ r < m. Dabei ist N der Dividend, m der positive Divisor, q der ganzzahlige Quotient und r der Rest. Somit gilt r = N − q × m, wobei q = floor(N/m) ist.\nZuerst berechnet man die Potenz: N = 2^5 = 32. Bei Division durch m = 19 ist der ganzzahlige Quotient q = 1.\nRechnung: 32 = 1 × 19 + 13, also r = 32 − 1 × 19 = 13. Der Rest liegt zwischen 0 und 18."
         }
       }
     },
@@ -7907,7 +7907,7 @@
             "1470"
           ],
           "answer": "1490",
-          "explanation": "S = 20/2 × (2 × 8 + 19 × 7) = 1490."
+          "explanation": "Formulas: u_n = a + (n−1)d and S_n = n × (a + u_n)/2. Here a is the first term, d the constant difference and n the number of terms. The average of the first and last terms is (a + u_n)/2.\nWe have a = 8, d = 7 and n = 20. There are 19 steps between the first and twentieth terms: u_20 = 8 + 19 × 7 = 141.\nCalculation: S_20 = 20 × (8 + 141)/2 = 10 × 149 = 1490. This is also S_n = n/2 × (2a + (n−1)d)."
         },
         "fr": {
           "question": "Une suite arithmétique commence par 8 et a pour raison 7. Quelle est la somme de ses 20 premiers termes ?",
@@ -7918,7 +7918,7 @@
             "1470"
           ],
           "answer": "1490",
-          "explanation": "S = 20/2 × (2 × 8 + 19 × 7) = 1490."
+          "explanation": "Formules : u_n = a + (n−1)d et S_n = n × (a + u_n)/2. a est le premier terme, d la raison additive et n le nombre de termes. La moyenne du premier et du dernier terme vaut (a + u_n)/2.\nIci, a = 8, d = 7 et n = 20. Il y a 19 écarts entre le premier et le vingtième terme : u_20 = 8 + 19 × 7 = 141.\nApplication : S_20 = 20 × (8 + 141)/2 = 10 × 149 = 1490. On retrouve aussi S_n = n/2 × (2a + (n−1)d)."
         },
         "de": {
           "question": "Eine arithmetische Folge beginnt mit 8 und hat die Differenz 7. Wie groß ist die Summe der ersten 20 Glieder?",
@@ -7929,7 +7929,7 @@
             "1470"
           ],
           "answer": "1490",
-          "explanation": "S = 20/2 × (2 × 8 + 19 × 7) = 1490."
+          "explanation": "Formeln: u_n = a + (n−1)d und S_n = n × (a + u_n)/2. Dabei ist a das erste Glied, d die konstante Differenz und n die Anzahl der Glieder. Der Mittelwert aus erstem und letztem Glied beträgt (a + u_n)/2.\nHier sind a = 8, d = 7 und n = 20. Zwischen dem ersten und zwanzigsten Glied liegen 19 Schritte: u_20 = 8 + 19 × 7 = 141.\nRechnung: S_20 = 20 × (8 + 141)/2 = 10 × 149 = 1490. Gleichwertig gilt S_n = n/2 × (2a + (n−1)d)."
         }
       }
     }

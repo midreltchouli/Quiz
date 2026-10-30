@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Question;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class QuestionSeeder extends Seeder
 {
@@ -76,10 +77,10 @@ class QuestionSeeder extends Seeder
             ['question' => 'Which two digits are used in the binary number system?', 'options' => ['1 and 2', '0 and 1', '0 and 9', '2 and 8'], 'answer' => '0 and 1'],
         ];
 
-        $originalTranslations = json_decode(file_get_contents(database_path('seeders/data/original-translations.json')), true, flags: JSON_THROW_ON_ERROR);
-        $bank = json_decode(file_get_contents(database_path('seeders/data/questions.json')), true, flags: JSON_THROW_ON_ERROR);
-        $learning = json_decode(file_get_contents(database_path('seeders/data/learning-questions.json')), true, flags: JSON_THROW_ON_ERROR);
-        $challenges = json_decode(file_get_contents(database_path('seeders/data/challenge-questions.json')), true, flags: JSON_THROW_ON_ERROR);
+        $originalTranslations = File::json(database_path('seeders/data/original-translations.json'), JSON_THROW_ON_ERROR);
+        $bank = File::json(database_path('seeders/data/questions.json'), JSON_THROW_ON_ERROR);
+        $learning = File::json(database_path('seeders/data/learning-questions.json'), JSON_THROW_ON_ERROR);
+        $challenges = File::json(database_path('seeders/data/challenge-questions.json'), JSON_THROW_ON_ERROR);
         foreach ($learning['questions'] as &$entry) {
             $entry['difficulty'] = 'easy';
         }
@@ -123,7 +124,7 @@ class QuestionSeeder extends Seeder
                 Question::updateOrCreate(['question' => $q['question']], $q + [
                     'bank_key' => 'original:'.($index + 1),
                     'translations' => $translations,
-                    'category' => $categoriesByNumber[$index + 1],
+                    'category' => $categoriesByNumber[$index + 1] ?? throw new \LogicException('Missing category for original question '.($index + 1)),
                     'child_friendly' => in_array($index + 1, $children, true),
                     'difficulty' => 'easy',
                 ]);
@@ -152,5 +153,7 @@ class QuestionSeeder extends Seeder
                 ]);
             }
         });
+
+        $this->call(QuestionExplanationSeeder::class);
     }
 }

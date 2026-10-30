@@ -20,7 +20,11 @@ class QuestionEnrichmentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        config(['services.mistral.key' => 'test-key', 'services.mistral.model' => 'mistral-small-latest']);
+        config([
+            'services.quiz_enrichment.provider' => 'mistral',
+            'services.mistral.key' => 'test-key', 'services.mistral.model' => 'mistral-small-latest',
+            'services.openai.key' => 'test-openai-key', 'services.openai.quiz_model' => 'test-openai-model',
+        ]);
         Http::preventStrayRequests();
         Sleep::fake();
     }
@@ -84,6 +88,158 @@ class QuestionEnrichmentTest extends TestCase
         } catch (RuntimeException $exception) {
             $this->assertDatabaseCount('question_suggestions', 0);
         }
+    }
+
+    private function openAiCalls(array $tools, bool $withReasoning = false): array
+    {
+        $output = $withReasoning ? [[
+            'id' => 'rs_example', 'type' => 'reasoning', 'summary' => [], 'encrypted_content' => 'opaque-reasoning-state',
+        ]] : [];
+        foreach ($tools as $name => $args) {
+            $output[] = [
+                'id' => 'fc_'.$name, 'type' => 'function_call', 'call_id' => 'call_'.$name,
+                'name' => $name, 'arguments' => json_encode($args, JSON_THROW_ON_ERROR),
+                'status' => 'completed',
+            ];
+        }
+
+        return ['id' => 'resp_example', 'status' => 'completed', 'output' => $output];
+    }
+
+    private function fakeOpenAi(?ResponseSequence $sequence = null): void
+    {
+        Http::swap(new Factory);
+        Http::preventStrayRequests();
+        if ($sequence === null) {
+            $sequence = Http::sequence()->push($this->openAiCalls([
+                'search_references' => ['query' => 'oxygen atomic number'],
+                'find_similar_questions' => ['query' => 'oxygen'],
+            ], withReasoning: true));
+            for ($i = 0; $i < 5; $i++) {
+                $sequence->push($this->openAiCalls(['submit_suggestions' => ['suggestions' => [$this->entry()]]]));
+            }
+        }
+        Http::fake([
+            'api.openai.com/v1/responses' => $sequence,
+            'en.wikipedia.org/w/api.php*' => Http::response(['query' => ['pages' => [
+                '1' => ['title' => 'Oxygen', 'fullurl' => 'https://en.wikipedia.org/wiki/Oxygen', 'extract' => 'Oxygen is a chemical element with atomic number 8.'],
+            ]]]),
+        ]);
+    }
+
+    public function test_openai_uses_responses_and_replays_reasoning_and_tool_results_without_publishing(): void
+    {
+        config(['services.mistral.key' => null]);
+        $this->fakeOpenAi();
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')->assertSuccessful();
+
+        $draft = QuestionSuggestion::sole();
+        $this->assertSame('openai', $draft->provider);
+        $this->assertSame('test-openai-model', $draft->model);
+        $this->assertSame($this->entry()['translations'], $draft->translations);
+        $this->assertDatabaseCount('questions', 0);
+        $requests = Http::recorded(fn ($request) => str_contains($request->url(), 'api.openai.com'))->values();
+        $this->assertCount(2, $requests);
+        $first = $requests[0][0];
+        $this->assertTrue($first->hasHeader('Authorization', 'Bearer test-openai-key'));
+        $this->assertFalse($first['store']);
+        $this->assertSame(['reasoning.encrypted_content'], $first['include']);
+        $this->assertArrayNotHasKey('temperature', $first->data());
+        $this->assertTrue($first['tools'][0]['strict']);
+        $this->assertFalse($first['tools'][0]['parameters']['additionalProperties']);
+        $translationSchema = $first['tools'][2]['parameters']['properties']['suggestions']['items']['properties']['translations'];
+        $this->assertFalse($translationSchema['properties']['fr']['additionalProperties']);
+        $input = $requests[1][0]['input'];
+        $this->assertSame('reasoning', $input[1]['type']);
+        $this->assertSame('opaque-reasoning-state', $input[1]['encrypted_content']);
+        $this->assertSame('call_search_references', $input[2]['call_id']);
+        $this->assertSame('function_call_output', $input[4]['type']);
+        $this->assertSame('call_search_references', $input[4]['call_id']);
+        $this->assertSame('https://en.wikipedia.org/wiki/Oxygen', json_decode($input[4]['output'], true, flags: JSON_THROW_ON_ERROR)[0]['url']);
+        Http::assertSentCount(3);
+        $this->artisan('quiz:suggestions approve '.$draft->id)->assertSuccessful();
+        $this->assertSame('openai:'.$draft->fingerprint, Question::sole()->bank_key);
+    }
+
+    public function test_default_provider_can_be_openai(): void
+    {
+        config(['services.quiz_enrichment.provider' => 'openai']);
+        $this->fakeOpenAi();
+        $this->artisan('quiz:suggest science --count=1')->assertSuccessful();
+        $this->assertSame('openai', QuestionSuggestion::sole()->provider);
+    }
+
+    public function test_explicit_provider_overrides_the_configured_default(): void
+    {
+        config(['services.quiz_enrichment.provider' => 'openai']);
+        $this->fakeAgent();
+        $this->artisan('quiz:suggest science --count=1 --provider=mistral')->assertSuccessful();
+        $this->assertSame('mistral', QuestionSuggestion::sole()->provider);
+    }
+
+    public function test_invalid_provider_and_missing_openai_settings_do_not_fall_back_to_mistral(): void
+    {
+        $this->artisan('quiz:suggest science --provider=unknown')->assertFailed();
+        config(['services.openai.key' => null]);
+        $this->artisan('quiz:suggest science --provider=openai')
+            ->expectsOutputToContain('OPENAI_API_KEY')->assertFailed();
+        config(['services.openai.key' => 'test-openai-key', 'services.openai.quiz_model' => null, 'services.openai.model' => null]);
+        $this->artisan('quiz:suggest science --provider=openai')->assertFailed();
+        Http::assertNothingSent();
+    }
+
+    public function test_openai_reuses_the_chat_model_when_no_quiz_model_is_configured(): void
+    {
+        config(['services.openai.quiz_model' => '', 'services.openai.model' => 'existing-chat-model']);
+        $this->fakeOpenAi();
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')->assertSuccessful();
+        $this->assertSame('existing-chat-model', QuestionSuggestion::sole()->model);
+    }
+
+    public function test_openai_quota_exhaustion_stops_without_retries_or_other_provider_calls(): void
+    {
+        Http::fake(['api.openai.com/v1/responses' => Http::response([
+            'error' => ['code' => 'insufficient_quota', 'message' => 'Example quota failure'],
+        ], 429)]);
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')
+            ->expectsOutputToContain('Crédits ou plafond API OpenAI insuffisants')->assertFailed();
+        Http::assertSentCount(1);
+        Sleep::assertNeverSlept();
+        $this->assertDatabaseCount('question_suggestions', 0);
+    }
+
+    public function test_openai_transient_rate_limit_retries_the_same_input(): void
+    {
+        $this->fakeOpenAi(Http::sequence()->push(['error' => ['code' => 'rate_limit_exceeded']], 429)
+            ->push($this->openAiCalls(['search_references' => ['query' => 'oxygen atomic number']]))
+            ->push($this->openAiCalls(['submit_suggestions' => ['suggestions' => [$this->entry()]]])));
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')
+            ->expectsOutputToContain('OpenAI répond HTTP 429')->assertSuccessful();
+        Sleep::assertSequence([Sleep::for(5)->seconds()]);
+        Http::assertSentCount(4);
+        $requests = Http::recorded(fn ($request) => str_contains($request->url(), 'api.openai.com'))->values();
+        $this->assertSame($requests[0][0]->data(), $requests[1][0]->data());
+    }
+
+    public function test_incomplete_openai_output_is_not_saved(): void
+    {
+        Http::fake(['api.openai.com/v1/responses' => Http::response([
+            'status' => 'incomplete', 'output' => [], 'incomplete_details' => ['reason' => 'max_output_tokens'],
+        ])]);
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')
+            ->expectsOutputToContain('Réponse OpenAI incomplète ou refusée')->assertFailed();
+        Http::assertSentCount(1);
+        $this->assertDatabaseCount('question_suggestions', 0);
+    }
+
+    public function test_duplicates_are_rejected_across_providers(): void
+    {
+        $this->fakeAgent();
+        $this->artisan('quiz:suggest science --count=1 --provider=mistral')->assertSuccessful();
+        $this->fakeOpenAi();
+        $this->artisan('quiz:suggest science --count=1 --provider=openai')->assertFailed();
+        $this->assertDatabaseCount('question_suggestions', 1);
+        $this->assertSame('mistral', QuestionSuggestion::sole()->provider);
     }
 
     public function test_manual_command_saves_a_sourced_trilingual_draft_without_publishing(): void

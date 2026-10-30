@@ -22,7 +22,7 @@ class QuizPaymentTest extends TestCase
         Http::preventStrayRequests();
     }
 
-    public function test_tenth_answer_shows_upgrade_and_keeps_progress(): void
+    public function test_first_complete_game_finishes_before_upgrade_is_requested(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user)->get('/quiz')->assertViewIs('games.players');
@@ -32,13 +32,16 @@ class QuizPaymentTest extends TestCase
             $question = $this->get('/quiz')->assertViewIs('quiz')->viewData('question');
             $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $question->answer])
                 ->assertRedirect('/quiz');
+            $this->post(route('quiz.continue'))->assertRedirect('/quiz');
         }
-        $this->get('/quiz')->assertViewIs('quiz_upgrade')->assertSee('1,00 EUR')
+        $this->get('/quiz')->assertViewIs('quiz_finish')
             ->assertSessionHas('question_index', 10)->assertSessionHas('score', 10);
         $this->assertSame(10, $user->fresh()->quiz_questions_answered);
-        $next = Question::findOrFail(session('quiz_question_ids.10'));
+        $this->post('/quiz/restart');
+        $this->get('/quiz')->assertViewIs('quiz_upgrade')->assertSee('1,00 EUR');
+        $next = Question::findOrFail(session('quiz_question_ids.0'));
         $this->post('/quiz/verified', ['question_id' => $next->id, 'reponse' => $next->answer])
-            ->assertSessionHas('question_index', 10)->assertSessionHas('score', 10);
+            ->assertSessionHas('question_index', 0)->assertSessionHas('score', 0);
         $this->assertSame(10, $user->fresh()->quiz_questions_answered);
     }
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Question;
+use App\Models\QuizAttempt;
 use App\Models\User;
 use Database\Seeders\QuestionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -36,7 +37,7 @@ class QuizTest extends TestCase
             ->assertOk()
             ->assertViewIs('quiz')
             ->assertViewHas('number', 1)
-            ->assertViewHas('total', Question::inCategory('general')->count());
+            ->assertViewHas('total', 10);
     }
 
     public function test_the_results_are_displayed_after_the_last_question(): void
@@ -85,7 +86,7 @@ class QuizTest extends TestCase
         $this->seed(QuestionSeeder::class);
         Question::whereNotIn('id', Question::inCategory('general')->orderBy('id')->limit(12)->pluck('id'))->delete();
         $user = User::factory()->create(['quiz_upgraded_at' => now()]);
-        $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 1, 'players' => ['Alice']]);
+        $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 1, 'players' => ['Alice'], 'length' => 20]);
 
         $first = $this->get('/quiz')->viewData('question');
         $ids = session('quiz_question_ids');
@@ -100,6 +101,7 @@ class QuizTest extends TestCase
             $this->assertSame($id, $question->id);
             $this->post('/quiz/verified', ['question_id' => $id, 'reponse' => $question->answer])
                 ->assertSessionHasNoErrors()->assertSessionHas('question_index', $index + 1);
+            $this->post(route('quiz.continue'))->assertRedirect('/quiz');
         }
 
         $this->get('/quiz')->assertViewIs('quiz_finish')->assertViewHas('score', 12);
@@ -109,11 +111,11 @@ class QuizTest extends TestCase
     public function test_answers_follow_the_saved_order_and_new_questions_wait_until_next_game(): void
     {
         $this->seed(QuestionSeeder::class);
-        $total = Question::inCategory('general')->count();
-        $ids = Question::inCategory('general')->orderByDesc('id')->pluck('id')->all();
+        $total = 10;
+        $ids = Question::inCategory('general')->orderByDesc('id')->limit(10)->pluck('id')->all();
         $this->actingAs(User::factory()->create())
             ->post('/games/quiz/players', ['player_count' => 1, 'players' => ['Alice']]);
-        $this->withSession(['quiz_question_ids' => $ids]);
+        QuizAttempt::findOrFail(session('quiz_attempt_id'))->update(['question_ids' => $ids]);
         $current = Question::findOrFail($ids[0]);
         $other = Question::findOrFail($ids[1]);
 
@@ -124,8 +126,10 @@ class QuizTest extends TestCase
             ->assertSessionHas('question_index', 0)->assertSessionHas('score', 0);
         $this->post('/quiz/verified', ['question_id' => $current->id, 'reponse' => $current->answer])
             ->assertSessionHas('question_index', 1)->assertSessionHas('score', 1);
-        $this->post('/quiz/restart')->assertSessionMissing('quiz_question_ids');
-        $this->get('/quiz')->assertViewHas('total', $total + 1);
+        $previous = session('quiz_attempt_id');
+        $this->post('/quiz/restart');
+        $this->assertNotSame($previous, session('quiz_attempt_id'));
+        $this->get('/quiz')->assertViewHas('total', 10);
     }
 
     public function test_all_seeded_questions_have_complete_translations_and_valid_answers(): void
@@ -174,7 +178,8 @@ class QuizTest extends TestCase
         $question = Question::where('bank_key', 'original:31')->firstOrFail();
         $user = User::factory()->create(['locale' => 'fr']);
         $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 1, 'players' => ['Alice']]);
-        $this->withSession(['quiz_question_ids' => [$question->id]])->get('/quiz')
+        QuizAttempt::findOrFail(session('quiz_attempt_id'))->update(['question_ids' => [$question->id]]);
+        $this->get('/quiz')
             ->assertSee('Cœur')->assertDontSee('>Heart<', false);
         $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => 'Heart'])
             ->assertSessionHasErrors('reponse')->assertSessionHas('question_index', 0);

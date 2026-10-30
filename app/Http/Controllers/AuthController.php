@@ -60,8 +60,10 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+        $user->forceFill(['locale' => app()->getLocale()])->save();
 
         Auth::login($user);
+        $request->session()->regenerate();
 
         return redirect()->route('accueil');
     }

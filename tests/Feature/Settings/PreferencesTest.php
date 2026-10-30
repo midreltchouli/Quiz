@@ -55,7 +55,7 @@ class PreferencesTest extends TestCase
         $this->post(route('login.store'), [
             'name' => $user->name, 'email' => $user->email, 'password' => 'password',
         ])->assertRedirect(route('accueil'));
-        $this->get(route('accueil'))->assertSee('lang="fr"', false)->assertSee('Les jeux');
+        $this->get(route('accueil'))->assertSee('lang="fr"', false)->assertSee('Choisis ton prochain défi');
     }
 
     public function test_german_and_returning_to_english_work_without_affecting_other_users(): void
@@ -84,9 +84,9 @@ class PreferencesTest extends TestCase
         $user = User::factory()->create(['locale' => 'en', 'font_family' => 'georgia', 'text_size' => 'large', 'quiz_notifications' => false]);
 
         $this->actingAs($user)->get(route('accueil'))
-            ->assertOk()->assertSee('class="language-picker"', false)
+            ->assertOk()->assertSee('id="account-locale"', false)
             ->assertSee('Français')->assertSee('English')->assertSee('Deutsch')
-            ->assertDontSee('class="brand"', false);
+            ->assertSee('class="brand"', false);
 
         $this->patch(route('preferences.update'), ['locale' => 'fr', 'return_to' => 'home'])
             ->assertSessionHasNoErrors()->assertRedirect(route('accueil'));

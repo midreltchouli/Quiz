@@ -121,6 +121,9 @@
 </head>
 <body class="game-page">
     <main class="game-shell">
+    @if ($review)
+        @include('partials.quiz-review')
+    @else
     <div class="quiz-card game-surface quiz-layout">
         <nav class="game-navigation">
         <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
@@ -174,6 +177,7 @@
             </div>
         </footer>
     </div>
+    @endif
     </main>
 
     @include('partials.chatbox')

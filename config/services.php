@@ -2,6 +2,10 @@
 
 return [
 
+    'quiz_enrichment' => [
+        'provider' => env('QUIZ_AI_PROVIDER', 'mistral'),
+    ],
+
     'mistral' => [
         'key' => env('MISTRAL_API_KEY'),
         'model' => env('MISTRAL_MODEL', 'mistral-small-latest'),
@@ -10,6 +14,7 @@ return [
     'openai' => [
         'key' => env('OPENAI_API_KEY'),
         'model' => env('OPENAI_MODEL'),
+        'quiz_model' => env('OPENAI_QUIZ_MODEL', env('OPENAI_MODEL')),
     ],
 
     /*

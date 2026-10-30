@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Question;
+use App\Models\QuizAttempt;
 use App\Models\User;
+use Database\Seeders\QuestionExplanationSeeder;
 use Database\Seeders\QuestionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -36,7 +38,10 @@ class QuizDifficultyTest extends TestCase
 
         $this->post('/games/quiz/players', ['category' => 'kids', 'player_count' => 1, 'players' => ['Alice']]);
         $this->get('/quiz')->assertViewIs('quiz');
-        $this->assertContains($printer->id, session('quiz_question_ids'));
+        foreach (Question::whereIn('id', session('quiz_question_ids'))->get() as $question) {
+            $this->assertTrue($question->child_friendly);
+        }
+        $this->assertTrue(Question::inCategory('kids')->whereKey($printer->id)->exists());
     }
 
     public function test_new_challenges_strengthen_each_previously_small_category(): void
@@ -68,10 +73,33 @@ class QuizDifficultyTest extends TestCase
     {
         $question = Question::where('bank_key', 'challenge:combinations-6')->firstOrFail();
         $this->post('/games/quiz/players', ['category' => 'math', 'player_count' => 1, 'players' => ['Alice']]);
-        $this->withSession(['quiz_question_ids' => [$question->id]])->get('/quiz')->assertSee('Difficile');
+        QuizAttempt::findOrFail(session('quiz_attempt_id'))->update(['question_ids' => [$question->id]]);
+        $this->get('/quiz')->assertSee('Difficile');
         $wrong = collect($question->options)->first(fn ($option) => $option !== $question->answer);
         $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $wrong])
             ->assertSessionHas('score', 0)->assertSessionHas('question_index', 1)
             ->assertSessionHas('resultat', fn ($message) => str_contains($message, 'C(6,3)') && str_contains($message, '20'));
+        $this->get('/quiz')->assertSee('C(n,k) = n! / (k! × (n−k)!)')
+            ->assertSee('on divise par 6')->assertSee('Application :');
+    }
+
+    public function test_refreshing_math_explanations_preserves_questions_answers_sources_and_custom_metadata(): void
+    {
+        $question = Question::where('bank_key', 'challenge:without-replacement-3')->firstOrFail();
+        $translations = $question->translations;
+        $translations['fr']['explanation'] = 'Ancienne explication';
+        $translations['fr']['custom_note'] = 'Conserver cette note';
+        $question->update(['translations' => $translations, 'source_url' => 'https://example.com/my-reference']);
+        $count = Question::count();
+        $before = $question->only(['question', 'options', 'answer', 'source_url']);
+        $this->seed(QuestionExplanationSeeder::class);
+        $this->seed(QuestionExplanationSeeder::class);
+        $question->refresh();
+        $this->assertSame($count, Question::count());
+        $this->assertSame($before, $question->only(['question', 'options', 'answer', 'source_url']));
+        $this->assertSame('Conserver cette note', $question->translations['fr']['custom_note']);
+        $this->assertStringContainsString('Les tirages ne sont pas indépendants', $question->translations['fr']['explanation']);
+        $this->assertStringContainsString('(r/t) × ((r−1)/(t−1))', $question->translations['fr']['explanation']);
+        $this->assertStringContainsString('6/42 = 1/7', $question->translations['fr']['explanation']);
     }
 }

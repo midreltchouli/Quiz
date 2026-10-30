@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\User;
 use App\Services\Games\QuizCategories;
+use App\Services\Games\QuizProgress;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class Quizcontroller extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
+        $progress = app(QuizProgress::class);
+        $attempt = $progress->current($request);
+        if ($attempt) {
+            $progress->restore($request, $attempt);
+        }
         if (! Question::exists()) {
-            $request->session()->forget(['question_index', 'score', 'quiz_question_ids']);
+            $request->session()->forget(['question_index', 'score', 'quiz_question_ids', 'quiz_review']);
 
             return view('quiz_empty');
         }
@@ -29,11 +37,13 @@ class Quizcontroller extends Controller
         $players = $request->session()->get('quiz_players', []);
         $questionIds = $this->questionIds($request, max(1, count($players)));
         $index = $request->session()->get('question_index', 0);
+        $review = $this->reviewData($request);
         if ($players !== [] && $index >= count($questionIds)) {
-            return view('quiz_finish', ['score' => $request->session()->get('score'), 'total' => count($questionIds), 'players' => $players]);
+            return view('quiz_finish', ['score' => $request->session()->get('score'), 'total' => count($questionIds), 'players' => $players, 'review' => $review, 'attempt' => $attempt]);
         }
-        if ($request->user()->refresh()->hasReachedFreeQuizLimit()) {
+        if (! $progress->canPlay($request)) {
             return view('quiz_upgrade', [
+                'review' => $review,
                 'limit' => config('billing.free_question_limit'),
                 'price' => number_format(config('billing.amount') / 100, 2, ',', ' ').' '.strtoupper(config('billing.currency')),
                 'paymentReady' => filled(config('billing.stripe_secret')) && filled(config('billing.stripe_webhook_secret')),
@@ -44,18 +54,35 @@ class Quizcontroller extends Controller
             return view('games.players', ['gameType' => 'quiz', 'quizCategories' => QuizCategories::choices()]);
         }
 
-        $question = Question::find($questionIds[$index]);
+        $question = Question::where('id', $questionIds[$index])->first();
         if (! $question) {
             return view('quiz_empty');
         }
         $question = $question->forLocale(app()->getLocale());
 
-        return view('quiz', ['question' => $question, 'number' => $index + 1, 'total' => count($questionIds), 'players' => $players, 'currentPlayer' => $index % count($players)]);
+        return view('quiz', ['question' => $question, 'number' => $index + 1, 'total' => count($questionIds), 'players' => $players, 'currentPlayer' => $index % count($players), 'review' => $review]);
     }
 
-    public function restart(Request $request)
+    public function continue(Request $request): RedirectResponse
     {
-        $request->session()->forget(['question_index', 'score', 'resultat', 'quiz_question_ids']);
+        $request->session()->forget(['quiz_review', 'resultat']);
+
+        return redirect()->route('quiz');
+    }
+
+    public function restart(Request $request): RedirectResponse
+    {
+        $progress = app(QuizProgress::class);
+        $attempt = $progress->current($request);
+        if ($attempt) {
+            if ($attempt->daily_date) {
+                return redirect()->route('accueil');
+            }
+            $progress->start($request, $attempt->category, $attempt->length, array_column($attempt->players, 'name'));
+
+            return redirect()->route('quiz');
+        }
+        $request->session()->forget(['question_index', 'score', 'resultat', 'quiz_question_ids', 'quiz_review']);
         $players = $request->session()->get('quiz_players', []);
         if ($players !== []) {
             foreach ($players as &$player) {
@@ -69,13 +96,18 @@ class Quizcontroller extends Controller
         return redirect()->route('quiz');
     }
 
-    public function verified(Request $request)
+    public function verified(Request $request): RedirectResponse
     {
+        $progress = app(QuizProgress::class);
+        $attempt = $progress->current($request);
+        if ($attempt) {
+            $progress->restore($request, $attempt);
+        }
         $players = $request->session()->get('quiz_players', []);
         if ($players === []) {
             return redirect()->route('quiz');
         }
-        if ($request->user()->refresh()->hasReachedFreeQuizLimit()) {
+        if (! $progress->canPlay($request)) {
             return redirect()->route('quiz');
         }
         $index = $request->session()->get('question_index', 0);
@@ -83,7 +115,7 @@ class Quizcontroller extends Controller
         if ($index >= count($questionIds)) {
             return redirect()->route('quiz');
         }
-        $question = Question::find($questionIds[$index]);
+        $question = Question::where('id', $questionIds[$index])->first();
         if (! $question) {
             return redirect()->route('quiz');
         }
@@ -95,7 +127,7 @@ class Quizcontroller extends Controller
         if ((int) $validated['question_id'] !== $question->id) {
             return redirect()->route('quiz');
         }
-        $accepted = DB::transaction(function () use ($request) {
+        $accepted = $attempt ? $progress->answer($request, $question, $validated['reponse']) : DB::transaction(function () use ($request) {
             $user = User::whereKey($request->user()->id)->lockForUpdate()->firstOrFail();
             if ($user->hasReachedFreeQuizLimit()) {
                 return false;
@@ -126,10 +158,46 @@ class Quizcontroller extends Controller
         if ($explanation) {
             $feedback .= ' '.$explanation;
         }
+        if (($request->user()->quiz_notifications ?? true) && ($explanation || $question->source_url)) {
+            $request->session()->put('quiz_review', [
+                'question_id' => $question->id, 'correct' => $correct,
+                'player_name' => $players[$currentPlayer]['name'],
+                'number' => $index + 1, 'total' => count($questionIds),
+            ]);
+        } else {
+            $request->session()->forget('quiz_review');
+        }
 
         return redirect()->route('quiz')->with('resultat', $players[$currentPlayer]['name'].' : '.$feedback);
     }
 
+    /** @return array<string, mixed>|null */
+    private function reviewData(Request $request): ?array
+    {
+        $saved = $request->session()->get('quiz_review');
+        if (! is_array($saved) || ! ($request->user()->quiz_notifications ?? true)) {
+            return null;
+        }
+        $question = Question::where('id', $saved['question_id'])->first();
+        if (! $question) {
+            $request->session()->forget('quiz_review');
+
+            return null;
+        }
+        $locale = app()->getLocale();
+        $source = $question->translations[$locale]['source_url'] ?? $question->source_url;
+        $safeSource = is_string($source) && filter_var($source, FILTER_VALIDATE_URL)
+            && parse_url($source, PHP_URL_SCHEME) === 'https';
+
+        return $saved + [
+            'question' => $question->forLocale($locale),
+            'explanation' => $question->translations[$locale]['explanation'] ?? null,
+            'source_url' => $safeSource ? $source : null,
+            'source_name' => $safeSource ? parse_url($source, PHP_URL_HOST) : null,
+        ];
+    }
+
+    /** @return list<int> */
     private function questionIds(Request $request, int $playerCount): array
     {
         if (! $request->session()->has('quiz_question_ids')) {

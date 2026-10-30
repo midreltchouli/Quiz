@@ -81,6 +81,13 @@
                     </div>
                 </fieldset>
                 <h2>{{ __('Choose players') }}</h2>
+                <label for="quiz-length">{{ __('Questions per player') }}</label>
+                <select id="quiz-length" name="length">
+                    @foreach([5, 10, 20] as $length)
+                        <option value="{{ $length }}" @selected((int) old('length', session('quiz_length', 10)) === $length)>{{ $length }}</option>
+                    @endforeach
+                </select>
+                <p>{{ __('Everyone gets the same number of turns. Smaller categories may give a shorter game.') }}</p>
                 <label for="player-count">{{ __('Number of players') }}</label>
                 <select id="player-count" name="player_count">
                     @for($n = $min; $n <= $max; $n++)

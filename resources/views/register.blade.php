@@ -82,11 +82,12 @@
     </style>
     <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
+<body class="auth-page">
+    @include('partials.auth-navigation')
 
     <div class="register-card">
         <h1>{{ __('Create an account') }}</h1>
-        <form method="POST" action="/register">
+        <form method="POST" action="{{ route('register.store') }}">
             @csrf
 
             <label for="name">{{ __('Name') }}</label>
@@ -101,7 +102,6 @@
             <button type="submit">{{ __('Sign up') }}</button>
         </form>
 
-        <a href="/login" class="login-link action-button action-secondary">{{ __('Already have an account? Log in') }}</a>
     </div>
 
 </body>

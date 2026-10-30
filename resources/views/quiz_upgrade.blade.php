@@ -24,11 +24,16 @@
 </head>
 <body class="game-page">
     <div class="game-shell">
+    @if ($review)
+        @include('partials.quiz-review')
+    @else
     <main class="card game-surface game-summary">
         <a class="action-button action-secondary" href="{{ route('accueil') }}">{{ __('Back to home') }}</a>
         <p><span class="badge">{{ __('Free version') }}</span></p>
         <h1>{{ __('Continue with the full quiz') }}</h1>
-        <p>{{ __('You have used your :limit free questions. Upgrade your account to answer the remaining questions.', ['limit' => $limit]) }}</p>
+        <p>{{ __('Free discovery is complete. Unlock the classic quiz to keep playing all categories.') }}</p>
+        <p>{{ __('Continue learning for free with the daily challenge.') }}</p>
+        <form method="POST" action="{{ route('quiz.daily') }}">@csrf<button type="submit">{{ __('Play today’s challenge') }}</button></form>
         <p>{{ __('Your progress and score are saved.') }}</p>
         @if(session('quiz_players'))
             <h2>{{ __('Player scores') }}</h2>
@@ -58,6 +63,7 @@
             <p>{{ __('Payment is not available yet.') }}</p>
         @endif
     </main>
+    @endif
     </div>
     @include('partials.chatbox')
 </body>

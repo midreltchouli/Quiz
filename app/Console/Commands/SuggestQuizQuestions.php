@@ -10,9 +10,9 @@ use Throwable;
 
 class SuggestQuizQuestions extends Command
 {
-    protected $signature = 'quiz:suggest {category=science} {--count=5} {--difficulty=medium}';
+    protected $signature = 'quiz:suggest {category=science} {--count=5} {--difficulty=medium} {--provider= : mistral ou openai, sinon QUIZ_AI_PROVIDER}';
 
-    protected $description = 'Préparer 1 à 5 brouillons multilingues avec Mistral, sans publication automatique';
+    protected $description = 'Préparer 1 à 5 brouillons avec Mistral ou OpenAI, sans publication automatique';
 
     public function handle(QuestionEnrichmentAgent $agent): int
     {
@@ -27,11 +27,19 @@ class SuggestQuizQuestions extends Command
 
             return self::FAILURE;
         }
-        $this->info('Lancement manuel : 5 tours maximum, avec 2 nouvelles tentatives au total uniquement après HTTP 429 (7 appels maximum).');
+        $provider = $this->option('provider') ?? config('services.quiz_enrichment.provider', 'mistral');
+        if (! in_array($provider, ['mistral', 'openai'], true)) {
+            $this->error('Fournisseur invalide : choisis mistral ou openai.');
+
+            return self::FAILURE;
+        }
+        $label = $provider === 'openai' ? 'OpenAI' : 'Mistral';
+        $this->info("Fournisseur : {$label}. Lancement manuel : 5 tours maximum et 2 tentatives supplémentaires après HTTP 429 (7 appels maximum).");
         try {
             $suggestions = $agent->generate(
                 $this->argument('category'), $count, $this->option('difficulty'),
-                fn (int $retry, int $delay) => $this->warn("Mistral répond HTTP 429. Nouvelle tentative {$retry}/2 dans {$delay} secondes…")
+                fn (int $retry, int $delay) => $this->warn("{$label} répond HTTP 429. Nouvelle tentative {$retry}/2 dans {$delay} secondes…"),
+                $provider,
             );
         } catch (RuntimeException $exception) {
             $this->error($exception->getMessage());
@@ -42,8 +50,8 @@ class SuggestQuizQuestions extends Command
 
             return self::FAILURE;
         }
-        $this->table(['ID', 'Catégorie', 'Question française', 'État'], array_map(fn ($draft) => [
-            $draft->id, $draft->category, $draft->translations['fr']['question'], $draft->status,
+        $this->table(['ID', 'Fournisseur', 'Catégorie', 'Question française', 'État'], array_map(fn ($draft) => [
+            $draft->id, $draft->provider, $draft->category, $draft->translations['fr']['question'], $draft->status,
         ], $suggestions));
         $this->info(count($suggestions).' proposition(s) enregistrée(s). Aucune question publiée.');
         if (count($suggestions) < $count) {

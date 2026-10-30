@@ -1,4 +1,5 @@
 import { writeFile } from 'node:fs/promises';
+import { mathExplanations } from './lib/math-explanations.mjs';
 
 const rows = [];
 const T = (en, fr, de) => [en, fr, de];
@@ -181,45 +182,45 @@ const fraction = (a, b) => `${a / gcd(a, b)}/${b / gcd(a, b)}`;
 for (let i = 0; i < 6; i++) {
     const n = i + 6;
     const combinations = n * (n - 1) * (n - 2) / 6;
-    add(`combinations-${n}`, 'math', T(`How many different groups of three can be chosen from ${n} people, if order does not matter?`, `Combien de groupes distincts de trois personnes peut-on former parmi ${n} personnes, sans tenir compte de l’ordre ?`, `Wie viele verschiedene Dreiergruppen lassen sich aus ${n} Personen auswählen, wenn die Reihenfolge egal ist?`), [combinations, n * (n - 1) * (n - 2), n * (n - 1) / 2, combinations + n], 'hard', T(`C(${n},3) = ${n} × ${n - 1} × ${n - 2} / 6 = ${combinations}.`, `C(${n},3) = ${n} × ${n - 1} × ${n - 2} / 6 = ${combinations}.`, `C(${n},3) = ${n} × ${n - 1} × ${n - 2} / 6 = ${combinations}.`));
+    add(`combinations-${n}`, 'math', T(`How many different groups of three can be chosen from ${n} people, if order does not matter?`, `Combien de groupes distincts de trois personnes peut-on former parmi ${n} personnes, sans tenir compte de l’ordre ?`, `Wie viele verschiedene Dreiergruppen lassen sich aus ${n} Personen auswählen, wenn die Reihenfolge egal ist?`), [combinations, n * (n - 1) * (n - 2), n * (n - 1) / 2, combinations + n], 'hard', mathExplanations(`combinations-${n}`));
 
     const sum = i + 7;
     const favorable = 13 - sum;
-    add(`dice-${sum}`, 'math', T(`Two fair six-sided dice are rolled. What is the probability that their sum is ${sum}?`, `On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit ${sum} ?`, `Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme ${sum}?`), [fraction(favorable, 36), fraction(favorable + 1, 36), fraction(favorable + 2, 36), fraction(favorable + 3, 36)], 'medium', T(`${favorable} of the 36 equally likely ordered outcomes have this sum.`, `${favorable} des 36 couples ordonnés équiprobables ont cette somme.`, `${favorable} der 36 gleich wahrscheinlichen geordneten Ergebnisse haben diese Summe.`));
+    add(`dice-${sum}`, 'math', T(`Two fair six-sided dice are rolled. What is the probability that their sum is ${sum}?`, `On lance deux dés équilibrés à six faces. Quelle est la probabilité que leur somme soit ${sum} ?`, `Zwei faire sechsseitige Würfel werden geworfen. Wie groß ist die Wahrscheinlichkeit für die Augensumme ${sum}?`), [fraction(favorable, 36), fraction(favorable + 1, 36), fraction(favorable + 2, 36), fraction(favorable + 3, 36)], 'medium', mathExplanations(`dice-${sum}`));
 
     const exponent = i + 3;
     const derivative = exponent * 2 ** (exponent - 1);
-    add(`derivative-${exponent}`, 'math', T(`If f(x) = x^${exponent}, what is f′(2)?`, `Si f(x) = x^${exponent}, combien vaut f′(2) ?`, `Wenn f(x) = x^${exponent} ist, wie groß ist f′(2)?`), [derivative, 2 ** exponent, exponent * 2 ** exponent, derivative + 2], 'hard', T(`The power rule gives f′(x) = ${exponent}x^${exponent - 1}; substituting x = 2 gives ${derivative}.`, `La règle de dérivation donne f′(x) = ${exponent}x^${exponent - 1} ; en remplaçant x par 2, on obtient ${derivative}.`, `Die Potenzregel ergibt f′(x) = ${exponent}x^${exponent - 1}; mit x = 2 folgt ${derivative}.`));
+    add(`derivative-${exponent}`, 'math', T(`If f(x) = x^${exponent}, what is f′(2)?`, `Si f(x) = x^${exponent}, combien vaut f′(2) ?`, `Wenn f(x) = x^${exponent} ist, wie groß ist f′(2)?`), [derivative, 2 ** exponent, exponent * 2 ** exponent, derivative + 2], 'hard', mathExplanations(`derivative-${exponent}`));
 
     const a = i + 2;
-    add(`geometric-sum-${a}`, 'math', T(`A geometric sequence starts at ${a} and has ratio 3. What is the sum of its first four terms?`, `Une suite géométrique commence par ${a} et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?`, `Eine geometrische Folge beginnt mit ${a} und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?`), [40 * a, 39 * a, 41 * a, 27 * a], 'medium', T(`${a} × (1 + 3 + 9 + 27) = ${40 * a}.`, `${a} × (1 + 3 + 9 + 27) = ${40 * a}.`, `${a} × (1 + 3 + 9 + 27) = ${40 * a}.`));
+    add(`geometric-sum-${a}`, 'math', T(`A geometric sequence starts at ${a} and has ratio 3. What is the sum of its first four terms?`, `Une suite géométrique commence par ${a} et a pour raison 3. Quelle est la somme de ses quatre premiers termes ?`, `Eine geometrische Folge beginnt mit ${a} und hat den Quotienten 3. Wie groß ist die Summe der ersten vier Glieder?`), [40 * a, 39 * a, 41 * a, 27 * a], 'medium', mathExplanations(`geometric-sum-${a}`));
 
     const m = i + 3;
     const determinant = m * (m + 1) - 6;
-    add(`determinant-${m}`, 'math', T(`What is the determinant of the matrix [[${m}, 2], [3, ${m + 1}]]?`, `Quel est le déterminant de la matrice [[${m}, 2], [3, ${m + 1}]] ?`, `Wie lautet die Determinante der Matrix [[${m}, 2], [3, ${m + 1}]]?`), [determinant, m * (m + 1) + 6, -determinant, determinant + 3], 'hard', T(`For a 2×2 matrix, det = ad − bc = ${m} × ${m + 1} − 2 × 3 = ${determinant}.`, `Pour une matrice 2×2, det = ad − bc = ${m} × ${m + 1} − 2 × 3 = ${determinant}.`, `Für eine 2×2-Matrix gilt det = ad − bc = ${m} × ${m + 1} − 2 × 3 = ${determinant}.`));
+    add(`determinant-${m}`, 'math', T(`What is the determinant of the matrix [[${m}, 2], [3, ${m + 1}]]?`, `Quel est le déterminant de la matrice [[${m}, 2], [3, ${m + 1}]] ?`, `Wie lautet die Determinante der Matrix [[${m}, 2], [3, ${m + 1}]]?`), [determinant, m * (m + 1) + 6, -determinant, determinant + 3], 'hard', mathExplanations(`determinant-${m}`));
 
     const power = i + 6;
-    add(`logarithm-${power}`, 'math', T(`What is log₂(${2 ** power})?`, `Combien vaut log₂(${2 ** power}) ?`, `Wie groß ist log₂(${2 ** power})?`), [power, power - 1, power + 1, 2 * power], 'medium', T(`2^${power} = ${2 ** power}, so the base-two logarithm is ${power}.`, `2^${power} = ${2 ** power}, donc le logarithme en base deux vaut ${power}.`, `2^${power} = ${2 ** power}, daher ist der Logarithmus zur Basis zwei ${power}.`));
+    add(`logarithm-${power}`, 'math', T(`What is log₂(${2 ** power})?`, `Combien vaut log₂(${2 ** power}) ?`, `Wie groß ist log₂(${2 ** power})?`), [power, power - 1, power + 1, 2 * power], 'medium', mathExplanations(`logarithm-${power}`));
 
     const red = i + 3;
     const black = i + 4;
     const total = red + black;
     const probability = fraction(red * (red - 1), total * (total - 1));
-    add(`without-replacement-${red}`, 'math', T(`A bag has ${red} red and ${black} black balls. Two are drawn without replacement. What is the probability both are red?`, `Un sac contient ${red} boules rouges et ${black} noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?`, `Ein Beutel enthält ${red} rote und ${black} schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?`), [probability, fraction(red * red, total * total), fraction(red, total), fraction(red * (red - 1), total * total)], 'hard', T(`P = (${red}/${total}) × (${red - 1}/${total - 1}) = ${probability}.`, `P = (${red}/${total}) × (${red - 1}/${total - 1}) = ${probability}.`, `P = (${red}/${total}) × (${red - 1}/${total - 1}) = ${probability}.`));
+    add(`without-replacement-${red}`, 'math', T(`A bag has ${red} red and ${black} black balls. Two are drawn without replacement. What is the probability both are red?`, `Un sac contient ${red} boules rouges et ${black} noires. On en tire deux sans remise. Quelle est la probabilité que les deux soient rouges ?`, `Ein Beutel enthält ${red} rote und ${black} schwarze Kugeln. Zwei werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit, dass beide rot sind?`), [probability, fraction(red * red, total * total), fraction(red, total), fraction(red * (red - 1), total * total)], 'hard', mathExplanations(`without-replacement-${red}`));
 
     const decimal = [47, 59, 79, 109, 175, 237][i];
     const hexadecimal = decimal.toString(16).toUpperCase();
-    add(`hexadecimal-${decimal}`, 'math', T(`What is decimal ${decimal} written in hexadecimal?`, `Comment écrit-on le nombre décimal ${decimal} en hexadécimal ?`, `Wie schreibt man die Dezimalzahl ${decimal} im Hexadezimalsystem?`), [hexadecimal, (decimal + 1).toString(16).toUpperCase(), (decimal + 16).toString(16).toUpperCase(), (decimal - 1).toString(16).toUpperCase()], 'medium', T(`${decimal} = ${Math.floor(decimal / 16)} × 16 + ${decimal % 16}; digits A–F represent 10–15.`, `${decimal} = ${Math.floor(decimal / 16)} × 16 + ${decimal % 16} ; les chiffres A à F représentent 10 à 15.`, `${decimal} = ${Math.floor(decimal / 16)} × 16 + ${decimal % 16}; die Ziffern A–F stehen für 10–15.`));
+    add(`hexadecimal-${decimal}`, 'math', T(`What is decimal ${decimal} written in hexadecimal?`, `Comment écrit-on le nombre décimal ${decimal} en hexadécimal ?`, `Wie schreibt man die Dezimalzahl ${decimal} im Hexadezimalsystem?`), [hexadecimal, (decimal + 1).toString(16).toUpperCase(), (decimal + 16).toString(16).toUpperCase(), (decimal - 1).toString(16).toUpperCase()], 'medium', mathExplanations(`hexadecimal-${decimal}`));
 
     const modulus = [5, 7, 11, 13, 17, 19][i];
     const remainder = 2 ** 5 % modulus;
     const candidates = [remainder, (remainder + 1) % modulus, (remainder + 2) % modulus, (remainder + 3) % modulus];
-    add(`modular-${modulus}`, 'math', T(`What is the remainder when 2^5 is divided by ${modulus}?`, `Quel est le reste de la division de 2^5 par ${modulus} ?`, `Welcher Rest bleibt bei der Division von 2^5 durch ${modulus}?`), candidates, 'medium', T(`2^5 = 32 = ${Math.floor(32 / modulus)} × ${modulus} + ${remainder}.`, `2^5 = 32 = ${Math.floor(32 / modulus)} × ${modulus} + ${remainder}.`, `2^5 = 32 = ${Math.floor(32 / modulus)} × ${modulus} + ${remainder}.`));
+    add(`modular-${modulus}`, 'math', T(`What is the remainder when 2^5 is divided by ${modulus}?`, `Quel est le reste de la division de 2^5 par ${modulus} ?`, `Welcher Rest bleibt bei der Division von 2^5 durch ${modulus}?`), candidates, 'medium', mathExplanations(`modular-${modulus}`));
 
     const start = i + 3;
     const step = i + 2;
     const arithmeticSum = 10 * (2 * start + 19 * step);
-    add(`arithmetic-sum-${start}`, 'math', T(`An arithmetic sequence starts at ${start} with common difference ${step}. What is the sum of its first 20 terms?`, `Une suite arithmétique commence par ${start} et a pour raison ${step}. Quelle est la somme de ses 20 premiers termes ?`, `Eine arithmetische Folge beginnt mit ${start} und hat die Differenz ${step}. Wie groß ist die Summe der ersten 20 Glieder?`), [arithmeticSum, arithmeticSum + 20, arithmeticSum - 20, arithmeticSum + 40], 'medium', T(`S = 20/2 × (2 × ${start} + 19 × ${step}) = ${arithmeticSum}.`, `S = 20/2 × (2 × ${start} + 19 × ${step}) = ${arithmeticSum}.`, `S = 20/2 × (2 × ${start} + 19 × ${step}) = ${arithmeticSum}.`));
+    add(`arithmetic-sum-${start}`, 'math', T(`An arithmetic sequence starts at ${start} with common difference ${step}. What is the sum of its first 20 terms?`, `Une suite arithmétique commence par ${start} et a pour raison ${step}. Quelle est la somme de ses 20 premiers termes ?`, `Eine arithmetische Folge beginnt mit ${start} und hat die Differenz ${step}. Wie groß ist die Summe der ersten 20 Glieder?`), [arithmeticSum, arithmeticSum + 20, arithmeticSum - 20, arithmeticSum + 40], 'medium', mathExplanations(`arithmetic-sum-${start}`));
 }
 
 const seen = new Set();

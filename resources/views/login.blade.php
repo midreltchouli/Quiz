@@ -82,7 +82,8 @@
     </style>
     <link rel="stylesheet" href="{{ asset('css/game-space.css') }}">
 </head>
-<body>
+<body class="auth-page">
+    @include('partials.auth-navigation')
 
     <div class="login-card">
         <h1>{{ __('Log in') }}</h1>
@@ -91,7 +92,7 @@
             {{ $errors->first() }}
         </div>
         @endif
-        <form method="POST" action="/login">
+        <form method="POST" action="{{ route('login.store') }}">
             @csrf
             <label for="name">{{ __('Name') }}</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}" autocomplete="name" required>
@@ -105,7 +106,6 @@
             <button type="submit">{{ __('Log in') }}</button>
         </form>
 
-        <a href="/register" class="signup-link action-button action-secondary">{{ __('Do not have an account? Sign up') }}</a>
     </div>
 
 </body>

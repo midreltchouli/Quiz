@@ -78,6 +78,7 @@ class GamePlayersTest extends TestCase
             $question = $this->get('/quiz')->assertViewHas('currentPlayer', $index % 2)->assertViewHas('total', 4)->viewData('question');
             $answer = $index % 2 === 0 ? $question->answer : collect($question->options)->first(fn ($option) => $option !== $question->answer);
             $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $answer])->assertRedirect('/quiz');
+            $this->post(route('quiz.continue'))->assertRedirect('/quiz');
         }
         $this->get('/quiz')->assertViewIs('quiz_finish')->assertSee('Winner(s): Alice')
             ->assertSessionHas('quiz_players.0.score', 2)->assertSessionHas('quiz_players.1.score', 0)
@@ -118,11 +119,12 @@ class GamePlayersTest extends TestCase
     public function test_shared_free_limit_pauses_multiplayer_and_keeps_the_next_turn(): void
     {
         $this->seed(QuestionSeeder::class);
-        config(['billing.free_question_limit' => 1]);
-        $user = User::factory()->create();
+        config(['billing.free_question_limit' => 2]);
+        $user = User::factory()->create(['quiz_questions_answered' => 1]);
         $this->actingAs($user)->post('/games/quiz/players', ['player_count' => 2, 'players' => ['Alice', 'Bob']]);
         $question = $this->get('/quiz')->viewData('question');
         $this->post('/quiz/verified', ['question_id' => $question->id, 'reponse' => $question->answer]);
+        $this->post(route('quiz.continue'))->assertRedirect('/quiz');
         $this->get('/quiz')->assertViewIs('quiz_upgrade')->assertSee('Alice')->assertSee('Bob');
         $next = Question::findOrFail(session('quiz_question_ids.1'));
         $this->post('/quiz/verified', ['question_id' => $next->id, 'reponse' => $next->answer])

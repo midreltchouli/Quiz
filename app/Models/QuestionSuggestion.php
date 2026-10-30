@@ -14,7 +14,7 @@ class QuestionSuggestion extends Model
 {
     protected $fillable = [
         'fingerprint', 'category', 'difficulty', 'child_friendly', 'translations',
-        'source_url', 'source_excerpt', 'model', 'status', 'review_notes', 'reviewed_at', 'question_id',
+        'source_url', 'source_excerpt', 'provider', 'model', 'status', 'review_notes', 'reviewed_at', 'question_id',
     ];
 
     protected function casts(): array
@@ -52,7 +52,7 @@ class QuestionSuggestion extends Model
                 throw new RuntimeException('Cette question existe déjà dans le quiz.');
             }
             $question = Question::create([
-                'bank_key' => 'mistral:'.$suggestion->fingerprint,
+                'bank_key' => $suggestion->provider.':'.$suggestion->fingerprint,
                 'question' => $english['question'],
                 'options' => $english['options'],
                 'answer' => $english['answer'],

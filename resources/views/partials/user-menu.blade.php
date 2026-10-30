@@ -28,6 +28,7 @@
             <small>{{ auth()->user()->email }}</small>
         </div>
         <a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+        <a href="{{ route('progress.index') }}">{{ __('My progress') }}</a>
         <a href="{{ route('purchases.index') }}">{{ __('Purchases and subscription') }}</a>
         <a href="{{ route('preferences.edit') }}">{{ __('Settings') }}</a>
         <form method="POST" action="{{ route('quiz.logout') }}">

@@ -1,0 +1,166 @@
+{
+  "reviewed_on": "2026-10-29",
+  "questions": {
+    "challenge:tordesillas": {
+      "source_url": "https://en.wikipedia.org/wiki/Treaty_of_Tordesillas",
+      "explanations": {
+        "en": "The Treaty of Tordesillas was signed in 1494 by Castile and Portugal. It drew a dividing line in the Atlantic for their claims to lands outside Europe.",
+        "fr": "Le traité de Tordesillas a été signé en 1494 entre la Castille et le Portugal. Il fixait une ligne dans l’Atlantique pour répartir leurs prétentions sur les terres hors d’Europe.",
+        "de": "Der Vertrag von Tordesillas wurde 1494 zwischen Kastilien und Portugal geschlossen. Eine Trennlinie im Atlantik sollte ihre Ansprüche auf Gebiete außerhalb Europas abgrenzen."
+      }
+    },
+    "challenge:westphalia": {
+      "source_url": "https://en.wikipedia.org/wiki/Peace_of_Westphalia",
+      "explanations": {
+        "en": "The Peace of Westphalia refers to treaties concluded in 1648 at Münster and Osnabrück. They ended the Thirty Years’ War in the Holy Roman Empire.",
+        "fr": "La paix de Westphalie désigne des traités conclus en 1648 à Münster et à Osnabrück. Ils ont mis fin à la guerre de Trente Ans dans le Saint-Empire.",
+        "de": "Der Westfälische Friede umfasst Verträge, die 1648 in Münster und Osnabrück geschlossen wurden. Sie beendeten den Dreißigjährigen Krieg im Heiligen Römischen Reich."
+      }
+    },
+    "challenge:constantinople": {
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_Constantinople",
+      "explanations": {
+        "en": "Constantinople fell to the Ottoman army of Sultan Mehmed II on 29 May 1453. The capture ended the Byzantine Empire.",
+        "fr": "Constantinople a été prise par l’armée ottomane du sultan Mehmed II le 29 mai 1453. Cette conquête a mis fin à l’Empire byzantin.",
+        "de": "Konstantinopel wurde am 29. Mai 1453 vom osmanischen Heer unter Sultan Mehmed II. erobert. Damit endete das Byzantinische Reich."
+      }
+    },
+    "challenge:magna-carta": {
+      "source_url": "https://en.wikipedia.org/wiki/Magna_Carta",
+      "explanations": {
+        "en": "King John of England first granted Magna Carta in June 1215 at Runnymede. The charter sought to settle a conflict with rebel barons and placed limits on royal power.",
+        "fr": "Le roi Jean d’Angleterre a accordé la première Magna Carta en juin 1215 à Runnymede. Cette charte cherchait à régler un conflit avec des barons révoltés et limitait certains pouvoirs royaux.",
+        "de": "König Johann von England gewährte die erste Magna Carta im Juni 1215 in Runnymede. Die Urkunde sollte einen Konflikt mit aufständischen Baronen lösen und begrenzte bestimmte königliche Befugnisse."
+      }
+    },
+    "challenge:charlemagne": {
+      "source_url": "https://en.wikipedia.org/wiki/Charlemagne",
+      "explanations": {
+        "en": "Pope Leo III crowned Charlemagne emperor in Rome on Christmas Day in the year 800. Charlemagne was already king of the Franks and the Lombards.",
+        "fr": "Le pape Léon III a couronné Charlemagne empereur à Rome le jour de Noël de l’an 800. Charlemagne était déjà roi des Francs et des Lombards.",
+        "de": "Papst Leo III. krönte Karl den Großen am Weihnachtstag des Jahres 800 in Rom zum Kaiser. Karl war bereits König der Franken und der Langobarden."
+      }
+    },
+    "challenge:napoleon-code": {
+      "source_url": "https://en.wikipedia.org/wiki/Napoleonic_Code",
+      "explanations": {
+        "en": "The French Civil Code was promulgated on 21 March 1804 under Napoleon. It brought major rules of civil law together in a single code.",
+        "fr": "Le Code civil français a été promulgué le 21 mars 1804 sous Napoléon. Il rassemblait dans un même code les grandes règles du droit civil.",
+        "de": "Das französische Zivilgesetzbuch wurde am 21. März 1804 unter Napoleon verkündet. Es vereinte zentrale Regeln des Zivilrechts in einem Gesetzbuch."
+      }
+    },
+    "challenge:waterloo": {
+      "source_url": "https://en.wikipedia.org/wiki/Battle_of_Waterloo",
+      "explanations": {
+        "en": "The Battle of Waterloo took place on 18 June 1815. Napoleon’s army was defeated by an allied army led by Wellington together with the Prussian army led by Blücher.",
+        "fr": "La bataille de Waterloo a eu lieu le 18 juin 1815. L’armée de Napoléon a été battue par l’armée alliée de Wellington et l’armée prussienne de Blücher.",
+        "de": "Die Schlacht bei Waterloo fand am 18. Juni 1815 statt. Napoleons Heer wurde von Wellingtons verbündeter Armee und Blüchers preußischem Heer besiegt."
+      }
+    },
+    "challenge:us-independence": {
+      "source_url": "https://en.wikipedia.org/wiki/United_States_Declaration_of_Independence",
+      "explanations": {
+        "en": "The Continental Congress adopted the Declaration of Independence on 4 July 1776. It declared the thirteen colonies independent of Great Britain; the war continued after that date.",
+        "fr": "Le Congrès continental a adopté la Déclaration d’indépendance le 4 juillet 1776. Les treize colonies s’y déclaraient indépendantes de la Grande-Bretagne ; la guerre s’est poursuivie après cette date.",
+        "de": "Der Kontinentalkongress verabschiedete die Unabhängigkeitserklärung am 4. Juli 1776. Darin erklärten sich die dreizehn Kolonien von Großbritannien unabhängig; der Krieg dauerte danach noch an."
+      }
+    },
+    "challenge:german-empire": {
+      "source_url": "https://en.wikipedia.org/wiki/Proclamation_of_the_German_Empire",
+      "explanations": {
+        "en": "The German Empire was proclaimed in the Hall of Mirrors at Versailles on 18 January 1871. King Wilhelm I of Prussia became German emperor.",
+        "fr": "L’Empire allemand a été proclamé dans la galerie des Glaces de Versailles le 18 janvier 1871. Le roi de Prusse Guillaume Ier est devenu empereur allemand.",
+        "de": "Das Deutsche Kaiserreich wurde am 18. Januar 1871 im Spiegelsaal von Versailles proklamiert. Der preußische König Wilhelm I. wurde Deutscher Kaiser."
+      }
+    },
+    "challenge:russian-revolution": {
+      "source_url": "https://en.wikipedia.org/wiki/October_Revolution",
+      "explanations": {
+        "en": "The Bolsheviks overthrew the Russian Provisional Government in Petrograd in 1917. The event is called the October Revolution because Russia then used the Julian calendar; it occurred in November in the Gregorian calendar.",
+        "fr": "Les bolcheviks ont renversé le gouvernement provisoire russe à Petrograd en 1917. Le nom de révolution d’Octobre vient du calendrier julien alors utilisé en Russie ; l’événement se situe en novembre dans le calendrier grégorien.",
+        "de": "Die Bolschewiki stürzten 1917 in Petrograd die russische Provisorische Regierung. Der Name Oktoberrevolution folgt dem damals in Russland verwendeten julianischen Kalender; im gregorianischen Kalender geschah sie im November."
+      }
+    },
+    "challenge:india-independence": {
+      "source_url": "https://en.wikipedia.org/wiki/Indian_Independence_Act_1947",
+      "explanations": {
+        "en": "India became independent of British rule on 15 August 1947. Independence accompanied the partition of British India into India and Pakistan.",
+        "fr": "L’Inde est devenue indépendante de la domination britannique le 15 août 1947. Cette indépendance s’est accompagnée de la partition de l’Inde britannique entre l’Inde et le Pakistan.",
+        "de": "Indien wurde am 15. August 1947 von der britischen Herrschaft unabhängig. Damit verbunden war die Teilung Britisch-Indiens in Indien und Pakistan."
+      }
+    },
+    "challenge:rome-treaties": {
+      "source_url": "https://en.wikipedia.org/wiki/Treaty_of_Rome",
+      "explanations": {
+        "en": "The Treaties of Rome were signed on 25 March 1957. They established the European Economic Community and Euratom and entered into force on 1 January 1958.",
+        "fr": "Les traités de Rome ont été signés le 25 mars 1957. Ils ont créé la Communauté économique européenne et Euratom et sont entrés en vigueur le 1er janvier 1958.",
+        "de": "Die Römischen Verträge wurden am 25. März 1957 unterzeichnet. Sie gründeten die Europäische Wirtschaftsgemeinschaft und Euratom und traten am 1. Januar 1958 in Kraft."
+      }
+    },
+    "challenge:hammurabi": {
+      "source_url": "https://en.wikipedia.org/wiki/Hammurabi",
+      "explanations": {
+        "en": "Hammurabi was a king of Babylon in ancient Mesopotamia. He is particularly associated with the collection of laws known as the Code of Hammurabi.",
+        "fr": "Hammurabi était un roi de Babylone, en Mésopotamie antique. Il est notamment associé au recueil de lois appelé Code de Hammurabi.",
+        "de": "Hammurabi war ein König von Babylon im antiken Mesopotamien. Bekannt ist er besonders für die als Codex Hammurabi bezeichnete Rechtssammlung."
+      }
+    },
+    "challenge:augustus": {
+      "source_url": "https://en.wikipedia.org/wiki/Augustus",
+      "explanations": {
+        "en": "Augustus, previously known as Octavian, is conventionally regarded as the first Roman emperor. In 27 BCE, the Senate gave him the title Augustus, a key milestone in the establishment of the imperial system.",
+        "fr": "Auguste, auparavant appelé Octavien, est généralement considéré comme le premier empereur romain. En 27 avant notre ère, le Sénat lui a accordé le titre d’Auguste, une étape majeure dans l’établissement du régime impérial.",
+        "de": "Augustus, zuvor Octavian genannt, gilt üblicherweise als erster römischer Kaiser. Im Jahr 27 v. Chr. verlieh ihm der Senat den Titel Augustus, ein wichtiger Schritt zur Etablierung der Kaiserherrschaft."
+      }
+    },
+    "challenge:peloponnesian-war": {
+      "source_url": "https://en.wikipedia.org/wiki/Peloponnesian_War",
+      "explanations": {
+        "en": "Sparta led the Peloponnesian League against Athens and its allies in the Peloponnesian War. The conflict lasted from 431 to 404 BCE and ended with Athens’ defeat.",
+        "fr": "Sparte dirigeait la ligue du Péloponnèse contre Athènes et ses alliés pendant la guerre du Péloponnèse. Le conflit a duré de 431 à 404 avant notre ère et s’est terminé par la défaite d’Athènes.",
+        "de": "Sparta führte den Peloponnesischen Bund gegen Athen und dessen Verbündete im Peloponnesischen Krieg. Der Krieg dauerte von 431 bis 404 v. Chr. und endete mit der Niederlage Athens."
+      }
+    },
+    "challenge:ashoka": {
+      "source_url": "https://en.wikipedia.org/wiki/Ashoka",
+      "explanations": {
+        "en": "Ashoka belonged to the Maurya dynasty and ruled in the third century BCE. His inscriptions are important sources for the history of his empire.",
+        "fr": "Ashoka appartenait à la dynastie Maurya et a régné au IIIe siècle avant notre ère. Ses inscriptions constituent des sources importantes sur l’histoire de son empire.",
+        "de": "Ashoka gehörte zur Maurya-Dynastie und regierte im 3. Jahrhundert v. Chr. Seine Inschriften sind wichtige Quellen zur Geschichte seines Reiches."
+      }
+    },
+    "challenge:mansa-musa": {
+      "source_url": "https://en.wikipedia.org/wiki/Mansa_Musa",
+      "explanations": {
+        "en": "Mansa Musa ruled the Mali Empire in West Africa in the fourteenth century. His pilgrimage to Mecca in 1324–1325 became famous for the wealth displayed along the route.",
+        "fr": "Mansa Musa a gouverné l’Empire du Mali, en Afrique de l’Ouest, au XIVe siècle. Son pèlerinage à La Mecque en 1324–1325 est devenu célèbre pour les richesses déployées sur le trajet.",
+        "de": "Mansa Musa regierte im 14. Jahrhundert das Mali-Reich in Westafrika. Seine Pilgerreise nach Mekka 1324–1325 wurde durch den dabei gezeigten Reichtum berühmt."
+      }
+    },
+    "challenge:akbar": {
+      "source_url": "https://en.wikipedia.org/wiki/Akbar",
+      "explanations": {
+        "en": "Akbar was a Mughal emperor who ruled from 1556 to 1605. He expanded the empire and strengthened its administration in the Indian subcontinent.",
+        "fr": "Akbar était un empereur moghol qui a régné de 1556 à 1605. Il a agrandi l’empire et renforcé son administration dans le sous-continent indien.",
+        "de": "Akbar war ein Mogulkaiser und regierte von 1556 bis 1605. Er vergrößerte das Reich und stärkte dessen Verwaltung auf dem indischen Subkontinent."
+      }
+    },
+    "challenge:toussaint": {
+      "source_url": "https://en.wikipedia.org/wiki/Toussaint_Louverture",
+      "explanations": {
+        "en": "Toussaint Louverture was a major leader of the revolution in the French colony of Saint-Domingue. The colony’s western territory later became independent Haiti in 1804, after his death.",
+        "fr": "Toussaint Louverture était un dirigeant majeur de la révolution dans la colonie française de Saint-Domingue. Le territoire occidental de la colonie est devenu Haïti indépendant en 1804, après sa mort.",
+        "de": "Toussaint Louverture war ein bedeutender Anführer der Revolution in der französischen Kolonie Saint-Domingue. Deren westliches Gebiet wurde 1804, nach seinem Tod, als Haiti unabhängig."
+      }
+    },
+    "challenge:montesquieu": {
+      "source_url": "https://de.wikipedia.org/wiki/Vom_Geist_der_Gesetze",
+      "source_urls": {"fr": "https://www.bnf.fr/fr/le-manuscrit-de-lesprit-des-lois-par-montesquieu"},
+      "explanations": {
+        "en": "Montesquieu wrote The Spirit of Laws, first published in Geneva in 1748. The work studies laws and forms of government and develops his thinking on the separation of powers.",
+        "fr": "Montesquieu a écrit De l’esprit des lois, publié pour la première fois à Genève en 1748. L’ouvrage étudie les lois et les formes de gouvernement et développe sa réflexion sur la séparation des pouvoirs.",
+        "de": "Montesquieu schrieb Vom Geist der Gesetze, das 1748 erstmals in Genf erschien. Das Werk untersucht Gesetze und Regierungsformen und entwickelt seine Überlegungen zur Gewaltenteilung."
+      }
+    }
+  }
+}

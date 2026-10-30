@@ -6,13 +6,34 @@ use App\Http\Controllers\ConnectFourController;
 use App\Http\Controllers\GamePlayersController;
 use App\Http\Controllers\Quizcontroller;
 use App\Http\Controllers\QuizPaymentController;
+use App\Http\Controllers\QuizProgressController;
+use App\Http\Controllers\QuizDemoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route(auth()->check() ? 'accueil' : 'login');
+    return auth()->check() ? redirect()->route('accueil') : view('welcome-games');
 })->name('home');
 
-Route::view('/accueil', 'home')->middleware('auth')->name('accueil');
+Route::get('/accueil', [QuizProgressController::class, 'home'])->middleware('auth')->name('accueil');
+
+Route::post('/language', function (\Illuminate\Http\Request $request) {
+    $data = $request->validate(['locale' => ['required', \Illuminate\Validation\Rule::in(['en', 'fr', 'de'])]]);
+    $request->session()->put('locale', $data['locale']);
+
+    return back();
+})->name('public.language');
+
+Route::get('/demo', [QuizDemoController::class, 'show'])->name('quiz.demo');
+Route::post('/demo/start', [QuizDemoController::class, 'start'])->middleware('throttle:20,1')->block()->name('quiz.demo.start');
+Route::post('/demo/answer', [QuizDemoController::class, 'answer'])->middleware('throttle:60,1')->block()->name('quiz.demo.answer');
+Route::post('/demo/continue', [QuizDemoController::class, 'next'])->block()->name('quiz.demo.continue');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/quiz/daily', [QuizProgressController::class, 'daily'])->block()->name('quiz.daily');
+    Route::get('/progress', [QuizProgressController::class, 'index'])->name('progress.index');
+    Route::get('/progress/{attempt}', [QuizProgressController::class, 'show'])->name('progress.show');
+    Route::post('/progress/{attempt}/resume', [QuizProgressController::class, 'resume'])->block()->name('progress.resume');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
@@ -42,6 +63,7 @@ Route::get('/quiz', [Quizcontroller::class, 'index'])
 // ->name('quiz')
 
 Route::post('/quiz/verified', [Quizcontroller::class, 'verified'])->middleware('auth')->block()->name('quiz.verified');
+Route::post('/quiz/continue', [Quizcontroller::class, 'continue'])->middleware('auth')->block()->name('quiz.continue');
 
 Route::post('/quiz/upgrade/checkout', [QuizPaymentController::class, 'checkout'])
     ->middleware(['auth', 'throttle:10,1'])->name('quiz.checkout');
