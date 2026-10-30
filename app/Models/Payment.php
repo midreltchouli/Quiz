@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
@@ -17,10 +18,13 @@ class Payment extends Model
         'transaction_id',
         'paid_at',
     ];
+
     protected $casts = [
         'paid_at' => 'datetime',
         'amount' => 'integer',
     ];
+
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

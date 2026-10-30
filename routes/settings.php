@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Settings\ProfileController;
-use App\Http\Controllers\Settings\SecurityController;
 use App\Http\Controllers\Settings\PreferencesController;
+use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\PurchaseController;
+use App\Http\Controllers\Settings\SecurityController;
 /* @chisel-password-confirmation */
 use Illuminate\Auth\Middleware\RequirePassword;
 /* @end-chisel-password-confirmation */

@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'home' => '/dashboard',
+    'home' => '/accueil',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ return [
 
     'features' => [
         /* @chisel-registration */
-        //Features::registration(),
+        // Features::registration(),
         /* @end-chisel-registration */
         Features::resetPasswords(),
         /* @chisel-email-verification */

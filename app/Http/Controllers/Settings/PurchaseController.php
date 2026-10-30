@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 use Throwable;
 
 class PurchaseController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $filters = $request->validate([
             'q' => ['nullable', 'string', 'max:100'],
@@ -36,7 +38,7 @@ class PurchaseController extends Controller
         ])->header('Cache-Control', 'private, no-store');
     }
 
-    public function receipt(Request $request, int $payment)
+    public function receipt(Request $request, int $payment): RedirectResponse
     {
         // Scope the lookup to the current account before contacting Stripe.
         $purchase = $request->user()->payments()->findOrFail($payment);

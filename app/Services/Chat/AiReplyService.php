@@ -32,9 +32,22 @@ class AiReplyService
         if (! $response->successful() || $response->json('status') !== 'completed') {
             throw new RuntimeException('AI response failed.');
         }
-        $text = collect($response->json('output', []))
-            ->where('type', 'message')->flatMap(fn ($item) => $item['content'] ?? [])
-            ->where('type', 'output_text')->pluck('text')->implode("\n");
+        $output = $response->json('output', []);
+        if (! is_array($output)) {
+            throw new RuntimeException('AI returned invalid output.');
+        }
+        $parts = [];
+        foreach ($output as $item) {
+            if (! is_array($item) || ($item['type'] ?? null) !== 'message' || ! is_array($item['content'] ?? null)) {
+                continue;
+            }
+            foreach ($item['content'] as $content) {
+                if (is_array($content) && ($content['type'] ?? null) === 'output_text' && is_string($content['text'] ?? null)) {
+                    $parts[] = $content['text'];
+                }
+            }
+        }
+        $text = implode("\n", $parts);
         if (trim($text) === '') {
             throw new RuntimeException('AI returned no text.');
         }

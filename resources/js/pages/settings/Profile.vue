@@ -36,7 +36,10 @@ const user = computed(() => page.props.auth.user);
 
     <h1 class="sr-only">Profile settings</h1>
 
-    <a href="/accueil" class="text-sm text-muted-foreground underline underline-offset-4">
+    <a
+        href="/accueil"
+        class="text-sm text-muted-foreground underline underline-offset-4"
+    >
         Retour à l’accueil
     </a>
 

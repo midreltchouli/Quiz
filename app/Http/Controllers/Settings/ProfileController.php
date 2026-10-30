@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
@@ -93,7 +94,7 @@ class ProfileController extends Controller
         return redirect('/');
     }
 
-    public function avatar(Request $request)
+    public function avatar(Request $request): BinaryFileResponse
     {
         $path = $request->user()->avatar_path;
         abort_unless($path && Storage::disk('local')->exists($path), 404);

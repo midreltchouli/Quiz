@@ -15,6 +15,7 @@ class Question extends Model
         'child_friendly' => 'boolean',
     ];
 
+    /** @param Builder<static> $query */
     public function scopeInCategory(Builder $query, string $category): void
     {
         if ($category === 'kids') {
@@ -31,8 +32,8 @@ class Question extends Model
     {
         $localized = clone $this;
         $translation = $this->translations[$locale] ?? null;
-        if ($translation) {
-            $localized->fill(collect($translation)->only(['question', 'options', 'answer'])->all());
+        if (is_array($translation)) {
+            $localized->fill(array_intersect_key($translation, array_flip(['question', 'options', 'answer'])));
         }
 
         return $localized;

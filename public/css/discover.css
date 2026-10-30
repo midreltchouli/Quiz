@@ -26,6 +26,31 @@ h1, h2, h3 { color: #30265c; line-height: 1.2; overflow-wrap: anywhere; }
 .hero-preview p, .discovery-card p, .benefits p { color: #586379; }
 .discover-section { padding: 32px 0; scroll-margin-top: 20px; }
 .discover-section > h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); margin-top: 12px; }
+.game-marquee-intro { color: #586379; }
+.game-marquee { display: grid; gap: 18px; overflow: hidden; padding: 8px 0 20px; }
+.game-marquee-row { overflow: hidden; }
+.game-marquee-track, .game-marquee-group { display: flex; width: max-content; }
+.game-marquee-group { gap: 18px; padding-right: 18px; }
+.game-marquee-pair { display: flex; gap: 18px; }
+.game-marquee-track { animation: games-marquee-left 42s linear infinite; }
+.marquee-reverse .game-marquee-track { animation-name: games-marquee-right; }
+.game-marquee:hover .game-marquee-track, .game-marquee:focus-within .game-marquee-track { animation-play-state: paused; }
+.marquee-card { display: flex; align-items: center; gap: 18px; width: clamp(270px, 34vw, 420px); min-height: 150px; padding: 14px; border: 1px solid #dce9ee; border-radius: 22px; background: white; box-shadow: 0 12px 32px #46388d0d; }
+.marquee-card img { width: 44%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; }
+.marquee-card h3 { margin: 8px 0; font-size: 1.15em; }
+.marquee-card .pill { font-size: .72em; }
+.marquee-card form { margin: 0; }
+.marquee-card:nth-child(even) { background: #f3fbf8; }
+@keyframes games-marquee-left { to { transform: translateX(-50%); } }
+@keyframes games-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.home-hero { padding-top: clamp(28px, 5vw, 64px); padding-bottom: 30px; }
+.home-hero h1 { font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -.045em; margin: 20px 0; }
+.home-hero-preview { position: relative; overflow: hidden; background: linear-gradient(145deg, #fff5dc, #f0efff 60%, #e8fbf6); }
+.home-hero-preview::after { position: absolute; top: 54px; right: 38px; width: 22px; height: 22px; content: ""; border-radius: 50%; background: #ffc84c; box-shadow: -270px 164px 0 8px #24bb96; opacity: .8; pointer-events: none; }
+.home-hero-preview img { position: relative; z-index: 1; }
+.home-hero-preview h2, .home-hero-preview p { position: relative; z-index: 1; }
+.home-hero-preview h2 { margin-bottom: 8px; }
+.home-hero-preview p { margin-top: 0; }
 .discovery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .discovery-card { min-width: 0; padding: clamp(20px, 3vw, 36px); border: 1px solid #dce9ee; border-radius: 24px; background: white; }
 .discovery-card h3 { font-size: 1.5em; }
@@ -62,3 +87,4 @@ h1, h2, h3 { color: #30265c; line-height: 1.2; overflow-wrap: anywhere; }
 a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #818cf8; outline-offset: 4px; }
 @media (max-width: 760px) { .discover-hero { grid-template-columns: 1fr; } .hero-preview { max-width: 580px; } .benefits { grid-template-columns: 1fr; gap: 12px; } .discover-header { gap: 18px; } .discover-header nav { gap: 10px; } .discovery-grid:not(.benefits) { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .discover-header { align-items: flex-start; } .discover-header nav { width: 100%; justify-content: flex-end; } .demo-options { grid-template-columns: 1fr; } .stat-grid { grid-template-columns: 1fr; } .stat strong { font-size: 1.5em; } }
+@media (prefers-reduced-motion: reduce) { .game-marquee { overflow-x: auto; } .game-marquee-track { animation: none; } }

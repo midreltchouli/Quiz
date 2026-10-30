@@ -22,21 +22,29 @@
 <section id="discover-games" class="discover-section" aria-labelledby="games-heading">
     <span class="eyebrow">{{ __('Make time for a little fun') }}</span>
     <h2 id="games-heading">{{ __('Choose your next challenge') }}</h2>
-    <div class="discovery-grid">
-        <article class="discovery-card">
-            <img class="game-image" src="{{ asset('images/games/quiz.svg') }}" alt="" width="640" height="360">
-            <span class="pill">{{ __('1 to 6 players') }}</span>
-            <h3>{{ __('General knowledge quiz') }}</h3>
-            <p>{{ __('History, science, mathematics and more. Pick a category and play 5, 10 or 20 questions per player.') }}</p>
-            <form method="POST" action="{{ route('quiz.demo.start') }}">@csrf<button type="submit" class="text-link">{{ __('Try the quiz') }} →</button></form>
-        </article>
-        <article class="discovery-card green-card">
-            <img class="game-image" src="{{ asset('images/games/connect-four.svg') }}" alt="" width="640" height="360">
-            <span class="pill">{{ __('Two players, one screen') }}</span>
-            <h3>{{ __('Connect Four') }}</h3>
-            <p>{{ __('A quick duel with a friend. Plan your moves and align four discs before your opponent.') }}</p>
-            <a class="text-link" href="{{ route('register') }}">{{ __('Create an account to play') }} →</a>
-        </article>
+    <div class="game-marquee" role="region" aria-label="{{ __('Choose your next challenge') }}">
+        @foreach(['left', 'right'] as $direction)
+            <div class="game-marquee-row {{ $direction === 'right' ? 'marquee-reverse' : '' }}">
+                <div class="game-marquee-track">
+                    @for($copy = 0; $copy < 2; $copy++)
+                        <div class="game-marquee-group" @if($copy === 1) aria-hidden="true" inert @endif>
+                            @for($pair = 0; $pair < 2; $pair++)
+                                <div class="game-marquee-pair" @if($copy === 1 || $pair === 1) aria-hidden="true" inert @endif>
+                                    <article class="marquee-card">
+                                        <img src="{{ asset('images/games/connect-four.svg') }}" alt="" width="640" height="360">
+                                        <div><span class="pill">{{ __('Two players, one screen') }}</span><h3>{{ __('Connect Four') }}</h3><a class="text-link" href="{{ route('register') }}">{{ __('Create an account to play') }} →</a></div>
+                                    </article>
+                                    <article class="marquee-card">
+                                        <img src="{{ asset('images/games/quiz.svg') }}" alt="" width="640" height="360">
+                                        <div><span class="pill">{{ __('1 to 6 players') }}</span><h3>{{ __('General knowledge quiz') }}</h3><form method="POST" action="{{ route('quiz.demo.start') }}">@csrf<button type="submit" class="text-link">{{ __('Try the quiz') }} →</button></form></div>
+                                    </article>
+                                </div>
+                            @endfor
+                        </div>
+                    @endfor
+                </div>
+            </div>
+        @endforeach
     </div>
 </section>
 <section class="discovery-grid benefits discover-section" aria-label="{{ __('More with your account') }}">

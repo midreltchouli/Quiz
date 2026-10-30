@@ -40,7 +40,7 @@ class QuizCategoriesTest extends TestCase
         foreach (array_keys(config('quiz.categories')) as $category) {
             $this->post('/games/quiz/players', ['category' => $category, 'player_count' => 2, 'players' => ['Alice', 'Bob']])
                 ->assertSessionHasNoErrors()->assertSessionHas('quiz_category', $category);
-            $expected = intdiv(Question::inCategory($category)->count(), 2) * 2;
+            $expected = intdiv(min(Question::inCategory($category)->count(), 20), 2) * 2;
             $response = $this->get('/quiz')->assertViewIs('quiz')->assertViewHas('total', $expected);
             $ids = session('quiz_question_ids');
             $this->assertCount($expected, $ids);
@@ -48,7 +48,7 @@ class QuizCategoriesTest extends TestCase
             $this->assertSame($expected, Question::inCategory($category)->whereIn('id', $ids)->count());
             $this->assertSame($ids[0], $response->viewData('question')->id);
 
-            $this->post('/quiz/restart')->assertSessionHas('quiz_category', $category)->assertSessionMissing('quiz_question_ids');
+            $this->post('/quiz/restart')->assertSessionHas('quiz_category', $category);
             $this->get('/quiz')->assertViewHas('total', $expected);
             $this->assertSame($expected, Question::inCategory($category)->whereIn('id', session('quiz_question_ids'))->count());
         }

@@ -6,6 +6,7 @@ use App\Models\Question;
 
 class QuizCategories
 {
+    /** @return array<string, array{label: string, icon: string, description: string, count: int}> */
     public static function choices(): array
     {
         $counts = Question::inCategory('general')->selectRaw('category, COUNT(*) AS total')->groupBy('category')->pluck('total', 'category');
@@ -19,7 +20,12 @@ class QuizCategories
                 'kids' => $children,
                 default => (int) ($counts[$key] ?? 0),
             };
-            $choices[$key] = $definition + ['count' => $count];
+            $choices[$key] = [
+                'label' => $definition['label'],
+                'icon' => $definition['icon'],
+                'description' => $definition['description'],
+                'count' => $count,
+            ];
         }
 
         return $choices;

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PreferencesController extends Controller
 {
-    public function edit(Request $request)
+    public function edit(Request $request): View|Response
     {
         if ($request->header('X-Inertia')) {
             return Inertia::location(route('preferences.edit'));
@@ -18,7 +22,7 @@ class PreferencesController extends Controller
         return view('settings', ['user' => $request->user()]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'locale' => ['required', Rule::in(['en', 'fr', 'de'])],
@@ -32,7 +36,7 @@ class PreferencesController extends Controller
             ->with('status', 'preferences-updated');
     }
 
-    public function export(Request $request)
+    public function export(Request $request): StreamedResponse
     {
         $user = $request->user();
         $data = $user->only(['name', 'email', 'locale', 'font_family', 'text_size', 'quiz_notifications', 'created_at', 'updated_at']);

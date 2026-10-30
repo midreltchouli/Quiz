@@ -36,6 +36,7 @@ class TwoFactorChallengeTest extends TestCase
         $user = User::factory()->withTwoFactor()->create();
 
         $this->post(route('login'), [
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -45,5 +46,25 @@ class TwoFactorChallengeTest extends TestCase
             ->assertInertia(fn (Assert $page) => $page
                 ->component('auth/TwoFactorChallenge'),
             );
+    }
+
+    public function test_recovery_code_completes_login_and_lands_on_home(): void
+    {
+        $user = User::factory()->withTwoFactor()->create();
+        $this->get('/quiz')->assertRedirect(route('login'));
+
+        $this->post(route('login.store'), [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'password',
+        ])->assertRedirect(route('two-factor.login'));
+        $this->assertGuest();
+
+        $this->post(route('two-factor.login.store'), [
+            'recovery_code' => 'recovery-code-1',
+        ])->assertRedirect(route('accueil'));
+
+        $this->assertAuthenticatedAs($user);
+        $this->assertNotContains('recovery-code-1', $user->fresh()->recoveryCodes());
     }
 }

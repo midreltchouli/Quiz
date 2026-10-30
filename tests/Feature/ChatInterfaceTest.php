@@ -87,6 +87,24 @@ class ChatInterfaceTest extends TestCase
         $this->assertDatabaseCount('messages', 2);
     }
 
+    public function test_malformed_ai_output_keeps_the_question_available_for_retry(): void
+    {
+        Http::preventStrayRequests();
+        config(['services.openai.key' => 'test-key', 'services.openai.model' => 'test-model']);
+        Http::fakeSequence()
+            ->push(['status' => 'completed', 'output' => 'invalid'])
+            ->push(['status' => 'completed', 'output' => [['type' => 'message', 'content' => [['type' => 'output_text', 'text' => ['invalid']]]]]]);
+        [, $conversation] = $this->prepareConversation();
+        $sent = $this->postJson(route('chat.send', $conversation), ['content' => 'Question'])->assertCreated();
+
+        for ($attempt = 0; $attempt < 2; $attempt++) {
+            $this->postJson(route('chat.reply', $conversation), ['message_id' => $sent->json('message.id')])->assertStatus(503);
+        }
+
+        $this->assertDatabaseCount('messages', 1);
+        Http::assertSentCount(2);
+    }
+
     public function test_missing_ai_configuration_never_calls_the_provider(): void
     {
         Http::preventStrayRequests();

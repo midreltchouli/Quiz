@@ -24,12 +24,13 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->post(route('login.store'), [
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'password',
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('accueil', absolute: false));
     }
 
     public function test_users_with_two_factor_enabled_are_redirected_to_two_factor_challenge()
@@ -44,6 +45,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->withTwoFactor()->create();
 
         $response = $this->post(route('login'), [
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -58,6 +60,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $this->post(route('login.store'), [
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -83,10 +86,24 @@ class AuthenticationTest extends TestCase
         RateLimiter::increment(md5('login'.implode('|', [$user->email, '127.0.0.1'])), amount: 5);
 
         $response = $this->post(route('login.store'), [
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
 
         $response->assertTooManyRequests();
+    }
+
+    public function test_repeated_failed_logins_are_throttled(): void
+    {
+        $user = User::factory()->create();
+        $credentials = ['name' => $user->name, 'email' => $user->email, 'password' => 'wrong-password'];
+
+        for ($attempt = 0; $attempt < 5; $attempt++) {
+            $this->post(route('login.store'), $credentials)->assertSessionHasErrors('email');
+        }
+
+        $this->post(route('login.store'), $credentials)->assertTooManyRequests();
+        $this->assertGuest();
     }
 }

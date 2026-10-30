@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conversation;
 use App\Models\User;
 use App\Services\Chat\AiReplyService;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -122,7 +123,7 @@ class ChatController extends Controller
             return response()->json(['message' => __('Chat is busy. Please try again.')], 409);
         }
         try {
-            $question = $conversation->messages()->findOrFail($data['message_id']);
+            $question = $conversation->messages()->whereKey($request->integer('message_id'))->firstOrFail();
             abort_unless($question->role === 'user', 422);
             $existing = $conversation->messages()->where('id', '>', $question->id)->first();
             if ($existing?->role === 'assistant') {
@@ -134,7 +135,7 @@ class ChatController extends Controller
             }
             try {
                 $content = $ai->generate($conversation);
-            } catch (\Illuminate\Http\Client\ConnectionException|\RuntimeException $exception) {
+            } catch (ConnectionException|\RuntimeException $exception) {
                 // Ne pas exposer la réponse du fournisseur, la clé ni le contenu privé.
                 return response()->json(['message' => __('AI is unavailable. Your message is saved. Please retry.')], 503);
             }

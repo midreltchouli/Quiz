@@ -5,10 +5,12 @@ use App\Http\Controllers\ChatController; // Importe le contrôleur des conversat
 use App\Http\Controllers\ConnectFourController;
 use App\Http\Controllers\GamePlayersController;
 use App\Http\Controllers\Quizcontroller;
+use App\Http\Controllers\QuizDemoController;
 use App\Http\Controllers\QuizPaymentController;
 use App\Http\Controllers\QuizProgressController;
-use App\Http\Controllers\QuizDemoController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 Route::get('/', function () {
     return auth()->check() ? redirect()->route('accueil') : view('welcome-games');
@@ -16,8 +18,8 @@ Route::get('/', function () {
 
 Route::get('/accueil', [QuizProgressController::class, 'home'])->middleware('auth')->name('accueil');
 
-Route::post('/language', function (\Illuminate\Http\Request $request) {
-    $data = $request->validate(['locale' => ['required', \Illuminate\Validation\Rule::in(['en', 'fr', 'de'])]]);
+Route::post('/language', function (Request $request) {
+    $data = $request->validate(['locale' => ['required', Rule::in(['en', 'fr', 'de'])]]);
     $request->session()->put('locale', $data['locale']);
 
     return back();
@@ -78,7 +80,7 @@ Route::post('/quiz/restart', [Quizcontroller::class, 'restart'])
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login.store');
+Route::post('/login', [AuthController::class, 'authenticate'])->middleware(['guest', 'throttle:login'])->name('login.store');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 Route::post('/deconnexion', [AuthController::class, 'logout'])->name('quiz.logout');

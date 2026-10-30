@@ -30,13 +30,19 @@ class ReviewQuizSuggestions extends Command
 
             return self::SUCCESS;
         }
-        if (! in_array($action, ['show', 'approve', 'reject'], true)
-            || ! ctype_digit((string) $this->argument('id'))) {
+        $id = filter_var($this->argument('id'), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if (! in_array($action, ['show', 'approve', 'reject'], true) || $id === false) {
             $this->error('Utilisation : quiz:suggestions list ou quiz:suggestions show|approve|reject ID');
 
             return self::FAILURE;
         }
-        $suggestion = QuestionSuggestion::find($this->argument('id'));
+        $notes = $this->option('notes');
+        if ($notes !== null && ! is_string($notes)) {
+            $this->error('--notes doit être un texte.');
+
+            return self::FAILURE;
+        }
+        $suggestion = QuestionSuggestion::find($id);
         if (! $suggestion) {
             $this->error('Proposition introuvable.');
 
@@ -50,16 +56,16 @@ class ReviewQuizSuggestions extends Command
         }
         try {
             if ($action === 'approve') {
-                $question = $suggestion->approve($this->option('notes'));
+                $question = $suggestion->approve($notes);
                 $this->info('Question publiée : '.$question->id);
             } else {
-                DB::transaction(function () use ($suggestion) {
+                DB::transaction(function () use ($suggestion, $notes) {
                     $locked = QuestionSuggestion::whereKey($suggestion->id)->lockForUpdate()->firstOrFail();
                     if ($locked->status !== 'pending') {
                         throw new RuntimeException('Seule une proposition en attente peut être refusée.');
                     }
                     $locked->update([
-                        'status' => 'rejected', 'review_notes' => $this->option('notes'), 'reviewed_at' => now(),
+                        'status' => 'rejected', 'review_notes' => $notes, 'reviewed_at' => now(),
                     ]);
                 });
                 $this->info('Proposition refusée, conservée dans l’historique.');

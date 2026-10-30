@@ -33,11 +33,18 @@ class SuggestQuizQuestions extends Command
 
             return self::FAILURE;
         }
+        $category = $this->argument('category');
+        $difficulty = $this->option('difficulty');
+        if (! is_string($category) || ! is_string($difficulty)) {
+            $this->error('La catégorie et la difficulté doivent être des textes.');
+
+            return self::FAILURE;
+        }
         $label = $provider === 'openai' ? 'OpenAI' : 'Mistral';
         $this->info("Fournisseur : {$label}. Lancement manuel : 5 tours maximum et 2 tentatives supplémentaires après HTTP 429 (7 appels maximum).");
         try {
             $suggestions = $agent->generate(
-                $this->argument('category'), $count, $this->option('difficulty'),
+                $category, $count, $difficulty,
                 fn (int $retry, int $delay) => $this->warn("{$label} répond HTTP 429. Nouvelle tentative {$retry}/2 dans {$delay} secondes…"),
                 $provider,
             );
